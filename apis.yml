@@ -1,0 +1,33 @@
+aid: robocorp
+name: Robocorp
+description: >-
+  Robocorp is an open source RPA and workflow automation platform for building Python-based automation bots.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Workflow Automation
+  - RPA
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/apis.yml
+created: 2026-03-27
+modified: 2026-03-27
+specificationVersion: 0.19
+apis:
+  - aid: robocorp:robocorp
+    name: Robocorp
+    description: >-
+      Robocorp is an open source RPA and workflow automation platform for building Python-based automation bots.
+    humanURL: https://robocorp.com
+    tags:
+      - Workflow Automation
+    properties:
+      - type: Documentation
+        url: https://robocorp.com/docs
+common:
+  - type: Website
+    url: https://robocorp.com
+  - type: Documentation
+    url: https://robocorp.com/docs
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
