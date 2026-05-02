@@ -1,0 +1,36 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://cloud.robocorp.com/api/v1/workspaces/ws_abc123/work-items",
+    "headers": {
+      "Authorization": "RC-WSKEY your-api-key",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "process_id": "proc_xyz789",
+      "payload": {
+        "customer_id": "CUST-001",
+        "invoice_number": "INV-2026-00542",
+        "amount": 1250.00,
+        "currency": "USD",
+        "due_date": "2026-05-30"
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "id": "wi_ghi012",
+      "process_id": "proc_xyz789",
+      "state": "PENDING",
+      "payload": {
+        "customer_id": "CUST-001",
+        "invoice_number": "INV-2026-00542",
+        "amount": 1250.00,
+        "currency": "USD",
+        "due_date": "2026-05-30"
+      },
+      "created_at": "2026-05-02T10:10:00Z"
+    }
+  }
+}

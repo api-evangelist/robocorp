@@ -1,0 +1,493 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Robocorp Automation Orchestration"
+  description: >-
+    Unified workflow capability for RPA automation orchestration using the
+    Robocorp Control Room API. Combines worker management, process execution,
+    work item queuing, secret management, asset storage, webhook configuration,
+    and task package deployment into workflows for automation operations teams.
+  tags:
+    - RPA
+    - Automation
+    - Orchestration
+    - Workflow
+    - Robocorp
+    - Python
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      ROBOCORP_API_KEY: ROBOCORP_API_KEY
+      ROBOCORP_WORKSPACE_ID: ROBOCORP_WORKSPACE_ID
+
+capability:
+  consumes:
+    - import: control-room
+      location: ./shared/control-room.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: robocorp-orchestration-api
+      description: "Unified REST API for Robocorp RPA automation orchestration."
+      resources:
+        - path: /v1/workspace
+          name: workspace
+          description: "Workspace management"
+          operations:
+            - method: GET
+              name: get-workspace
+              description: "Get workspace details"
+              call: "control-room.get-workspace"
+              with:
+                workspace_id: "rest.workspace_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/workers
+          name: workers
+          description: "Worker agent management"
+          operations:
+            - method: GET
+              name: list-workers
+              description: "List all workers in the workspace"
+              call: "control-room.list-workers"
+              with:
+                workspace_id: "rest.workspace_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/workers/{worker-id}
+          name: worker-detail
+          description: "Individual worker"
+          operations:
+            - method: GET
+              name: get-worker
+              description: "Get a specific worker"
+              call: "control-room.get-worker"
+              with:
+                workspace_id: "rest.workspace_id"
+                worker_id: "rest.worker-id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: DELETE
+              name: delete-worker
+              description: "Remove a worker"
+              call: "control-room.delete-worker"
+              with:
+                workspace_id: "rest.workspace_id"
+                worker_id: "rest.worker-id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/worker-groups
+          name: worker-groups
+          description: "Worker group organization"
+          operations:
+            - method: GET
+              name: list-worker-groups
+              description: "List all worker groups"
+              call: "control-room.list-worker-groups"
+              with:
+                workspace_id: "rest.workspace_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-worker-group
+              description: "Create a new worker group"
+              call: "control-room.create-worker-group"
+              with:
+                workspace_id: "rest.workspace_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/processes
+          name: processes
+          description: "Automation process management"
+          operations:
+            - method: GET
+              name: list-processes
+              description: "List all automation processes"
+              call: "control-room.list-processes"
+              with:
+                workspace_id: "rest.workspace_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-process
+              description: "Create a new automation process"
+              call: "control-room.create-process"
+              with:
+                workspace_id: "rest.workspace_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/processes/{process-id}/runs
+          name: process-runs
+          description: "Process execution runs"
+          operations:
+            - method: GET
+              name: list-process-runs
+              description: "List all runs for a process"
+              call: "control-room.list-process-runs"
+              with:
+                workspace_id: "rest.workspace_id"
+                process_id: "rest.process-id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: start-process-run
+              description: "Start a new process run"
+              call: "control-room.start-process-run"
+              with:
+                workspace_id: "rest.workspace_id"
+                process_id: "rest.process-id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/work-items
+          name: work-items
+          description: "Work item queue management"
+          operations:
+            - method: GET
+              name: list-work-items
+              description: "List work items in the queue"
+              call: "control-room.list-work-items"
+              with:
+                workspace_id: "rest.workspace_id"
+                process_id: "rest.process_id"
+                state: "rest.state"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-work-item
+              description: "Add a new work item to the queue"
+              call: "control-room.create-work-item"
+              with:
+                workspace_id: "rest.workspace_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/assets
+          name: assets
+          description: "Asset storage"
+          operations:
+            - method: GET
+              name: list-assets
+              description: "List all assets"
+              call: "control-room.list-assets"
+              with:
+                workspace_id: "rest.workspace_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-asset
+              description: "Create a new asset"
+              call: "control-room.create-asset"
+              with:
+                workspace_id: "rest.workspace_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/vault/secrets
+          name: vault-secrets
+          description: "Vault secret management"
+          operations:
+            - method: GET
+              name: list-secrets
+              description: "List secret names in the vault"
+              call: "control-room.list-secrets"
+              with:
+                workspace_id: "rest.workspace_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-secret
+              description: "Create a new vault secret"
+              call: "control-room.create-secret"
+              with:
+                workspace_id: "rest.workspace_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/webhooks
+          name: webhooks
+          description: "Webhook configuration"
+          operations:
+            - method: GET
+              name: list-webhooks
+              description: "List all webhooks"
+              call: "control-room.list-webhooks"
+              with:
+                workspace_id: "rest.workspace_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-webhook
+              description: "Create a process webhook"
+              call: "control-room.create-webhook"
+              with:
+                workspace_id: "rest.workspace_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/task-packages
+          name: task-packages
+          description: "Task package deployment"
+          operations:
+            - method: GET
+              name: list-task-packages
+              description: "List all task packages"
+              call: "control-room.list-task-packages"
+              with:
+                workspace_id: "rest.workspace_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-task-package
+              description: "Deploy a new task package"
+              call: "control-room.create-task-package"
+              with:
+                workspace_id: "rest.workspace_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9080
+      namespace: robocorp-orchestration-mcp
+      transport: http
+      description: "MCP server for AI-assisted Robocorp RPA automation orchestration."
+      tools:
+        - name: get-workspace
+          description: "Get workspace configuration and details"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "control-room.get-workspace"
+          with:
+            workspace_id: "tools.workspace_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-workers
+          description: "List all automation workers and their status"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "control-room.list-workers"
+          with:
+            workspace_id: "tools.workspace_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-worker
+          description: "Get details and status for a specific worker"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "control-room.get-worker"
+          with:
+            workspace_id: "tools.workspace_id"
+            worker_id: "tools.worker_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: delete-worker
+          description: "Remove a worker from the workspace"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: true
+          call: "control-room.delete-worker"
+          with:
+            workspace_id: "tools.workspace_id"
+            worker_id: "tools.worker_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-worker-groups
+          description: "List all worker groups for organizing workers"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "control-room.list-worker-groups"
+          with:
+            workspace_id: "tools.workspace_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-worker-group
+          description: "Create a new worker group for organizing automation workers"
+          hints:
+            readOnly: false
+            destructive: false
+          call: "control-room.create-worker-group"
+          with:
+            workspace_id: "tools.workspace_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-processes
+          description: "List all automation processes defined in the workspace"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "control-room.list-processes"
+          with:
+            workspace_id: "tools.workspace_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-process
+          description: "Define a new automation process with steps and schedules"
+          hints:
+            readOnly: false
+            destructive: false
+          call: "control-room.create-process"
+          with:
+            workspace_id: "tools.workspace_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-process-runs
+          description: "List all execution runs for an automation process"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "control-room.list-process-runs"
+          with:
+            workspace_id: "tools.workspace_id"
+            process_id: "tools.process_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: start-process-run
+          description: "Trigger a new execution run for an automation process"
+          hints:
+            readOnly: false
+            destructive: false
+          call: "control-room.start-process-run"
+          with:
+            workspace_id: "tools.workspace_id"
+            process_id: "tools.process_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-work-items
+          description: "List work items in the queue with optional state filter"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "control-room.list-work-items"
+          with:
+            workspace_id: "tools.workspace_id"
+            process_id: "tools.process_id"
+            state: "tools.state"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-work-item
+          description: "Add a new work item to the process queue"
+          hints:
+            readOnly: false
+            destructive: false
+          call: "control-room.create-work-item"
+          with:
+            workspace_id: "tools.workspace_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-assets
+          description: "List all stored assets in the workspace"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "control-room.list-assets"
+          with:
+            workspace_id: "tools.workspace_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-secrets
+          description: "List vault secret names (secret values are never returned)"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "control-room.list-secrets"
+          with:
+            workspace_id: "tools.workspace_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-webhooks
+          description: "List all configured webhooks for process event notifications"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "control-room.list-webhooks"
+          with:
+            workspace_id: "tools.workspace_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-task-packages
+          description: "List all deployed task packages in the workspace"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "control-room.list-task-packages"
+          with:
+            workspace_id: "tools.workspace_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-task-package
+          description: "Deploy a new task package from zip, GitHub, or GitLab source"
+          hints:
+            readOnly: false
+            destructive: false
+          call: "control-room.create-task-package"
+          with:
+            workspace_id: "tools.workspace_id"
+          outputParameters:
+            - type: object
+              mapping: "$."

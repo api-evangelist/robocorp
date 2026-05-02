@@ -1,0 +1,611 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Robocorp Control Room API"
+  description: >-
+    The Robocorp Control Room API provides programmatic access to the
+    orchestration platform for RPA automations. Supports worker management,
+    process execution, work item queues, asset storage, vault secrets,
+    webhook configuration, and task package deployment.
+  tags:
+    - RPA
+    - Automation
+    - Orchestration
+    - Workflow
+    - Robocorp
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      ROBOCORP_API_KEY: ROBOCORP_API_KEY
+      ROBOCORP_WORKSPACE_ID: ROBOCORP_WORKSPACE_ID
+
+capability:
+  consumes:
+    - type: http
+      namespace: control-room
+      baseUri: https://cloud.robocorp.com/api/v1
+      description: "Robocorp Control Room API"
+      authentication:
+        type: apikey
+        key: Authorization
+        value: "RC-WSKEY {{ROBOCORP_API_KEY}}"
+        placement: header
+      resources:
+        - name: workspace
+          path: /workspaces/{workspace_id}
+          description: "Workspace information"
+          operations:
+            - name: get-workspace
+              method: GET
+              description: "Get workspace details"
+              inputParameters:
+                - name: workspace_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Workspace identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: workers
+          path: /workspaces/{workspace_id}/workers
+          description: "Worker agent management"
+          operations:
+            - name: list-workers
+              method: GET
+              description: "List all workers in the workspace"
+              inputParameters:
+                - name: workspace_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Workspace identifier"
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Maximum number of workers"
+                - name: cursor
+                  in: query
+                  type: string
+                  required: false
+                  description: "Pagination cursor"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: worker-detail
+          path: /workspaces/{workspace_id}/workers/{worker_id}
+          description: "Individual worker management"
+          operations:
+            - name: get-worker
+              method: GET
+              description: "Get a specific worker by ID"
+              inputParameters:
+                - name: workspace_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Workspace identifier"
+                - name: worker_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Worker identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: delete-worker
+              method: DELETE
+              description: "Remove a worker from the workspace"
+              inputParameters:
+                - name: workspace_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Workspace identifier"
+                - name: worker_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Worker identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: worker-groups
+          path: /workspaces/{workspace_id}/worker-groups
+          description: "Worker group management"
+          operations:
+            - name: list-worker-groups
+              method: GET
+              description: "List all worker groups"
+              inputParameters:
+                - name: workspace_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Workspace identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: create-worker-group
+              method: POST
+              description: "Create a new worker group"
+              inputParameters:
+                - name: workspace_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Workspace identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  description: "{{tools.description}}"
+
+        - name: processes
+          path: /workspaces/{workspace_id}/processes
+          description: "Process management"
+          operations:
+            - name: list-processes
+              method: GET
+              description: "List all processes in the workspace"
+              inputParameters:
+                - name: workspace_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Workspace identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: create-process
+              method: POST
+              description: "Create a new process"
+              inputParameters:
+                - name: workspace_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Workspace identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  description: "{{tools.description}}"
+
+        - name: process-runs
+          path: /workspaces/{workspace_id}/processes/{process_id}/runs
+          description: "Process run management"
+          operations:
+            - name: list-process-runs
+              method: GET
+              description: "List all runs for a process"
+              inputParameters:
+                - name: workspace_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Workspace identifier"
+                - name: process_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Process identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: start-process-run
+              method: POST
+              description: "Start a new process run"
+              inputParameters:
+                - name: workspace_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Workspace identifier"
+                - name: process_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Process identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  variables: "{{tools.variables}}"
+
+        - name: work-items
+          path: /workspaces/{workspace_id}/work-items
+          description: "Work item queue management"
+          operations:
+            - name: list-work-items
+              method: GET
+              description: "List work items in the workspace"
+              inputParameters:
+                - name: workspace_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Workspace identifier"
+                - name: process_id
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by process"
+                - name: state
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by work item state"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: create-work-item
+              method: POST
+              description: "Create a new work item in the queue"
+              inputParameters:
+                - name: workspace_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Workspace identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  process_id: "{{tools.process_id}}"
+                  payload: "{{tools.payload}}"
+
+        - name: vault-secrets
+          path: /workspaces/{workspace_id}/vault/secrets
+          description: "Vault secret management"
+          operations:
+            - name: list-secrets
+              method: GET
+              description: "List secret names in the vault (values not returned)"
+              inputParameters:
+                - name: workspace_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Workspace identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: create-secret
+              method: POST
+              description: "Create a new vault secret"
+              inputParameters:
+                - name: workspace_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Workspace identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  value: "{{tools.value}}"
+
+        - name: webhooks
+          path: /workspaces/{workspace_id}/webhooks
+          description: "Webhook configuration"
+          operations:
+            - name: list-webhooks
+              method: GET
+              description: "List all configured webhooks"
+              inputParameters:
+                - name: workspace_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Workspace identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: create-webhook
+              method: POST
+              description: "Create a process webhook for event notifications"
+              inputParameters:
+                - name: workspace_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Workspace identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  process_id: "{{tools.process_id}}"
+                  url: "{{tools.url}}"
+                  events: "{{tools.events}}"
+
+        - name: assets
+          path: /workspaces/{workspace_id}/assets
+          description: "Asset storage management"
+          operations:
+            - name: list-assets
+              method: GET
+              description: "List all assets in the workspace"
+              inputParameters:
+                - name: workspace_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Workspace identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: create-asset
+              method: POST
+              description: "Create a new asset in storage"
+              inputParameters:
+                - name: workspace_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Workspace identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  content_type: "{{tools.content_type}}"
+
+        - name: task-packages
+          path: /workspaces/{workspace_id}/task-packages
+          description: "Task package deployment"
+          operations:
+            - name: list-task-packages
+              method: GET
+              description: "List all task packages in the workspace"
+              inputParameters:
+                - name: workspace_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Workspace identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+            - name: create-task-package
+              method: POST
+              description: "Deploy a new task package from zip, GitHub, or GitLab"
+              inputParameters:
+                - name: workspace_id
+                  in: path
+                  type: string
+                  required: true
+                  description: "Workspace identifier"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+                  source_type: "{{tools.source_type}}"
+                  source_url: "{{tools.source_url}}"
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: control-room-rest
+      resources:
+        - path: /v1/workers
+          name: workers
+          description: "Worker management"
+          operations:
+            - method: GET
+              name: list-workers
+              description: "List workspace workers"
+              call: "control-room.list-workers"
+              with:
+                workspace_id: "rest.workspace_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/processes
+          name: processes
+          description: "Process management"
+          operations:
+            - method: GET
+              name: list-processes
+              description: "List all processes"
+              call: "control-room.list-processes"
+              with:
+                workspace_id: "rest.workspace_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/work-items
+          name: work-items
+          description: "Work item queue"
+          operations:
+            - method: GET
+              name: list-work-items
+              description: "List work items"
+              call: "control-room.list-work-items"
+              with:
+                workspace_id: "rest.workspace_id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: control-room-mcp
+      transport: http
+      tools:
+        - name: get-workspace
+          description: "Get workspace details"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "control-room.get-workspace"
+          with:
+            workspace_id: "tools.workspace_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-workers
+          description: "List all workers in the workspace"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "control-room.list-workers"
+          with:
+            workspace_id: "tools.workspace_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-processes
+          description: "List all automation processes"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "control-room.list-processes"
+          with:
+            workspace_id: "tools.workspace_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: start-process-run
+          description: "Start a new execution run for a process"
+          hints:
+            readOnly: false
+            destructive: false
+          call: "control-room.start-process-run"
+          with:
+            workspace_id: "tools.workspace_id"
+            process_id: "tools.process_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-work-items
+          description: "List work items in the queue"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "control-room.list-work-items"
+          with:
+            workspace_id: "tools.workspace_id"
+            process_id: "tools.process_id"
+            state: "tools.state"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: create-work-item
+          description: "Add a new work item to the queue"
+          hints:
+            readOnly: false
+            destructive: false
+          call: "control-room.create-work-item"
+          with:
+            workspace_id: "tools.workspace_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-secrets
+          description: "List vault secret names (values are not returned)"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "control-room.list-secrets"
+          with:
+            workspace_id: "tools.workspace_id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: list-assets
+          description: "List assets in storage"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "control-room.list-assets"
+          with:
+            workspace_id: "tools.workspace_id"
+          outputParameters:
+            - type: object
+              mapping: "$."

@@ -1,0 +1,27 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://cloud.robocorp.com/api/v1/workspaces/ws_abc123/processes/proc_xyz789/runs",
+    "headers": {
+      "Authorization": "RC-WSKEY your-api-key",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "variables": {
+        "INPUT_FILE_URL": "https://example.com/data.csv",
+        "OUTPUT_FORMAT": "json",
+        "NOTIFY_EMAIL": "ops@example.com"
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "id": "run_def456",
+      "process_id": "proc_xyz789",
+      "state": "PENDING",
+      "started_at": "2026-05-02T10:05:00Z",
+      "completed_at": null
+    }
+  }
+}

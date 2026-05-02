@@ -1,0 +1,129 @@
+extends: spectral:oas
+rules:
+  # Robocorp Control Room API Conventions
+
+  robocorp-operation-has-tag:
+    description: All operations must have at least one tag
+    message: Operation {{path}} is missing a tag
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: truthy
+
+  robocorp-operation-has-summary:
+    description: All operations must have a summary
+    message: Operation {{path}} is missing a summary
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: summary
+      function: truthy
+
+  robocorp-operation-has-description:
+    description: All operations should have a description
+    message: Operation {{path}} should include a description
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: description
+      function: truthy
+
+  robocorp-operation-has-operation-id:
+    description: All operations must have an operationId
+    message: Operation {{path}} is missing an operationId
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: truthy
+
+  robocorp-workspace-id-in-path:
+    description: All resource paths should include workspace_id
+    message: Path {{path}} should include workspace_id parameter
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/workspaces/\\{workspace_id\\}/"
+
+  robocorp-rc-wskey-auth:
+    description: Control Room API uses RC-WSKEY prefixed API keys
+    message: Security scheme should use apiKey with Authorization header
+    severity: warn
+    given: "$.components.securitySchemes[*]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - apiKey
+
+  robocorp-delete-returns-204:
+    description: DELETE operations should return 204 No Content
+    message: DELETE operation {{path}} should return 204
+    severity: warn
+    given: "$.paths[*].delete"
+    then:
+      field: responses.204
+      function: truthy
+
+  robocorp-post-create-returns-201:
+    description: POST operations that create resources should return 201
+    message: POST create operation {{path}} should return 201
+    severity: info
+    given: "$.paths[*].post"
+    then:
+      field: responses
+      function: truthy
+
+  robocorp-list-operations-paginated:
+    description: List operations should support pagination with cursor
+    message: List operation {{path}} should support cursor-based pagination
+    severity: info
+    given: "$.paths[*].get"
+    then:
+      field: parameters
+      function: truthy
+
+  robocorp-camel-case-operation-id:
+    description: OperationIds should use camelCase
+    message: OperationId {{value}} should use camelCase
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]+$"
+
+  robocorp-state-enum-defined:
+    description: State fields should use defined enumerations
+    message: State property {{path}} should define allowed values
+    severity: info
+    given: "$.components.schemas[*].properties.state"
+    then:
+      field: enum
+      function: truthy
+
+  robocorp-schema-has-description:
+    description: Schema components should have descriptions
+    message: Schema {{path}} is missing a description
+    severity: info
+    given: "$.components.schemas[*]"
+    then:
+      field: description
+      function: truthy
+
+  robocorp-has-error-response:
+    description: Operations should define 401 unauthorized response
+    message: Operation {{path}} should define 401 response
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: responses.401
+      function: truthy

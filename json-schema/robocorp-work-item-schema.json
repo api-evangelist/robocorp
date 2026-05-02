@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://api-evangelist.github.io/robocorp/json-schema/robocorp-work-item-schema.json",
+  "title": "Robocorp Work Item",
+  "description": "Schema for a Robocorp Control Room work item used in RPA process queues.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique work item identifier"
+    },
+    "process_id": {
+      "type": "string",
+      "description": "Identifier of the process this work item belongs to"
+    },
+    "state": {
+      "type": "string",
+      "description": "Current state of the work item",
+      "enum": ["PENDING", "INPROGRESS", "COMPLETED", "FAILED"]
+    },
+    "payload": {
+      "type": "object",
+      "description": "Arbitrary input data payload for the work item",
+      "additionalProperties": true
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the work item was created"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "exception": {
+      "type": "object",
+      "description": "Error details if the work item failed",
+      "properties": {
+        "type": {
+          "type": "string",
+          "description": "Exception type"
+        },
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string",
+          "description": "Error message"
+        }
+      }
+    }
+  },
+  "required": ["id", "process_id", "state"]
+}

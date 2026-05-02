@@ -1,0 +1,164 @@
+vocabulary:
+  name: Robocorp RPA Automation Vocabulary
+  description: >-
+    Domain vocabulary for the Robocorp platform covering RPA automation,
+    Control Room orchestration, workflow management, and Python-based
+    automation concepts.
+  version: "1.0.0"
+  created: "2026-05-02"
+
+terms:
+  - term: RPA
+    definition: >-
+      Robotic Process Automation — software technology that automates
+      repetitive, rule-based digital tasks by mimicking human interactions
+      with computer systems.
+    category: Technology Domain
+    relatedTerms:
+      - Robot
+      - Bot
+      - Automation
+
+  - term: Robot
+    definition: >-
+      An automated software process that executes tasks, also called a bot.
+      In Robocorp, robots are Python scripts using the RPA Framework libraries.
+    category: Automation Concept
+    relatedTerms:
+      - Process
+      - WorkItem
+
+  - term: ControlRoom
+    definition: >-
+      Robocorp's cloud-based orchestration platform for managing, scheduling,
+      monitoring, and scaling RPA automation processes.
+    category: Platform
+    relatedTerms:
+      - Process
+      - Worker
+      - WorkItem
+
+  - term: Process
+    definition: >-
+      A defined automation workflow in Control Room, consisting of steps,
+      schedules, worker assignments, and trigger configurations.
+    category: Platform Object
+    relatedTerms:
+      - ProcessRun
+      - Step
+      - WorkItem
+
+  - term: ProcessRun
+    definition: >-
+      A single execution instance of a Process, with a lifecycle from PENDING
+      through RUNNING to COMPLETED, FAILED, or STOPPED.
+    category: Platform Object
+    relatedTerms:
+      - Process
+      - StepRun
+      - WorkItem
+
+  - term: Worker
+    definition: >-
+      An agent machine (physical or virtual) that executes automation tasks
+      assigned by the Control Room.
+    category: Platform Object
+    relatedTerms:
+      - WorkerGroup
+      - Process
+
+  - term: WorkerGroup
+    definition: >-
+      A logical grouping of workers for organizing and assigning processes
+      to specific machines or environments.
+    category: Platform Object
+    relatedTerms:
+      - Worker
+
+  - term: WorkItem
+    definition: >-
+      A unit of work containing input data that flows through an automation
+      process. Work items enable producer-consumer automation patterns.
+    category: Platform Object
+    relatedTerms:
+      - Process
+      - Queue
+
+  - term: Queue
+    definition: >-
+      The ordered collection of work items waiting to be processed by a
+      robot. Enables parallel and distributed processing patterns.
+    category: Platform Concept
+    relatedTerms:
+      - WorkItem
+
+  - term: Vault
+    definition: >-
+      Secure credential storage in Control Room for managing secrets, API
+      keys, and passwords used by automation processes.
+    category: Security Feature
+    relatedTerms:
+      - Secret
+
+  - term: Secret
+    definition: >-
+      A named credential value stored in the Vault, accessible to authorized
+      processes without exposing the value in code.
+    category: Security Object
+    relatedTerms:
+      - Vault
+
+  - term: Asset
+    definition: >-
+      A named data store in Control Room for sharing files and data between
+      process runs and automation steps.
+    category: Platform Object
+
+  - term: TaskPackage
+    definition: >-
+      A deployable bundle containing robot code and dependencies, sourced
+      from a zip file, GitHub repository, or GitLab repository.
+    category: Deployment Object
+    relatedTerms:
+      - Process
+      - Worker
+
+  - term: Webhook
+    definition: >-
+      An HTTP callback configuration that sends notifications to external
+      systems when process events occur (e.g., run completed, run failed).
+    category: Integration Feature
+    relatedTerms:
+      - Process
+      - ProcessRun
+
+  - term: RPAFramework
+    definition: >-
+      An open-source Python library collection for RPA, providing specialized
+      modules for browser, desktop, Excel, email, PDF, and cloud automation.
+    category: Open Source Library
+    relatedTerms:
+      - Robot
+      - Python
+
+  - term: Python
+    definition: >-
+      The primary programming language for Robocorp automations, enabling
+      developers to use the full Python ecosystem in RPA bots.
+    category: Technology
+    relatedTerms:
+      - RPAFramework
+
+  - term: LinkToken
+    definition: >-
+      A one-time token used to connect a new worker agent machine to a
+      Control Room workspace.
+    category: Authentication Concept
+    relatedTerms:
+      - Worker
+
+  - term: Sema4AI
+    definition: >-
+      The commercial successor platform to Robocorp, hosting AI Actions and
+      data actions that extend automation with AI capabilities.
+    category: Platform Evolution

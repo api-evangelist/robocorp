@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://api-evangelist.github.io/robocorp/json-schema/robocorp-process-schema.json",
+  "title": "Robocorp Process",
+  "description": "Schema for a Robocorp Control Room automation process definition.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique process identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable process name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of what this process automates"
+    },
+    "state": {
+      "type": "string",
+      "description": "Current state of the process",
+      "enum": ["active", "disabled"]
+    },
+    "steps": {
+      "type": "array",
+      "description": "Ordered list of process execution steps",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "package_id": {
+            "type": "string",
+            "description": "Task package ID for this step"
+          },
+          "worker_group_id": {
+            "type": "string",
+            "description": "Worker group to run this step"
+          }
+        }
+      }
+    },
+    "schedules": {
+      "type": "array",
+      "description": "Scheduled triggers for automatic execution",
+      "items": {
+        "type": "object",
+        "properties": {
+          "cron": {
+            "type": "string",
+            "description": "Cron expression for scheduling"
+          },
+          "timezone": {
+            "type": "string",
+            "description": "Timezone for the schedule"
+          },
+          "enabled": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": ["id", "name"]
+}
