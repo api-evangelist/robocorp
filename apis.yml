@@ -125,9 +125,9 @@ common:
     url: https://robocorp.com/privacy-policy
   - type: TermsOfService
     url: https://robocorp.com/terms-of-service
-  - type: Status
+  - type: StatusPage
     url: https://status.robocorp.com
-  - type: Changelog
+  - type: ChangeLog
     url: https://robocorp.com/docs/changelog
   - type: JSONLDContext
     url: >-
