@@ -1,0 +1,221 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Robocorp Control Room API — Workers
+  description: 'Robocorp Control Room API — Workers. 5 operations. Lead operation: List Workers. Self-contained Naftiko capability
+    covering one Robocorp business surface.'
+  tags:
+  - Robocorp
+  - Workers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ROBOCORP_API_KEY: ROBOCORP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: control-room-workers
+    baseUri: https://cloud.robocorp.com/api/v1
+    description: Robocorp Control Room API — Workers business capability. Self-contained, no shared references.
+    resources:
+    - name: workspaces-workspace_id-workers
+      path: /workspaces/{workspace_id}/workers
+      operations:
+      - name: listworkers
+        method: GET
+        description: List Workers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of workers to return
+        - name: cursor
+          in: query
+          type: string
+          description: Pagination cursor
+    - name: workspaces-workspace_id-workers-link-tokens
+      path: /workspaces/{workspace_id}/workers/link-tokens
+      operations:
+      - name: createlinktoken
+        method: POST
+        description: Create Worker Link Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: workspaces-workspace_id-workers-worker_id
+      path: /workspaces/{workspace_id}/workers/{worker_id}
+      operations:
+      - name: getworker
+        method: GET
+        description: Get Worker
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateworker
+        method: POST
+        description: Update Worker
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteworker
+        method: DELETE
+        description: Delete Worker
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.ROBOCORP_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: control-room-workers-rest
+    port: 8080
+    description: REST adapter for Robocorp Control Room API — Workers. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/workspaces/{workspace-id}/workers
+      name: workspaces-workspace-id-workers
+      description: REST surface for workspaces-workspace_id-workers.
+      operations:
+      - method: GET
+        name: listworkers
+        description: List Workers
+        call: control-room-workers.listworkers
+        with:
+          limit: rest.limit
+          cursor: rest.cursor
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workspaces/{workspace-id}/workers/link-tokens
+      name: workspaces-workspace-id-workers-link-tokens
+      description: REST surface for workspaces-workspace_id-workers-link-tokens.
+      operations:
+      - method: POST
+        name: createlinktoken
+        description: Create Worker Link Token
+        call: control-room-workers.createlinktoken
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workspaces/{workspace-id}/workers/{worker-id}
+      name: workspaces-workspace-id-workers-worker-id
+      description: REST surface for workspaces-workspace_id-workers-worker_id.
+      operations:
+      - method: GET
+        name: getworker
+        description: Get Worker
+        call: control-room-workers.getworker
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: updateworker
+        description: Update Worker
+        call: control-room-workers.updateworker
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteworker
+        description: Delete Worker
+        call: control-room-workers.deleteworker
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: control-room-workers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Robocorp Control Room API — Workers. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-workers
+      description: List Workers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: control-room-workers.listworkers
+      with:
+        limit: tools.limit
+        cursor: tools.cursor
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-worker-link-token
+      description: Create Worker Link Token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: control-room-workers.createlinktoken
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-worker
+      description: Get Worker
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: control-room-workers.getworker
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-worker
+      description: Update Worker
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: control-room-workers.updateworker
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-worker
+      description: Delete Worker
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: control-room-workers.deleteworker
+      outputParameters:
+      - type: object
+        mapping: $.

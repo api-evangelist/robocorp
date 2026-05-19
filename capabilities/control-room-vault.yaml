@@ -1,0 +1,189 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Robocorp Control Room API — Vault
+  description: 'Robocorp Control Room API — Vault. 4 operations. Lead operation: List Secrets. Self-contained Naftiko capability
+    covering one Robocorp business surface.'
+  tags:
+  - Robocorp
+  - Vault
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ROBOCORP_API_KEY: ROBOCORP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: control-room-vault
+    baseUri: https://cloud.robocorp.com/api/v1
+    description: Robocorp Control Room API — Vault business capability. Self-contained, no shared references.
+    resources:
+    - name: workspaces-workspace_id-vault-secrets
+      path: /workspaces/{workspace_id}/vault/secrets
+      operations:
+      - name: listsecrets
+        method: GET
+        description: List Secrets
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createsecret
+        method: POST
+        description: Create Secret
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: workspaces-workspace_id-vault-secrets-secret_id
+      path: /workspaces/{workspace_id}/vault/secrets/{secret_id}
+      operations:
+      - name: updatesecret
+        method: POST
+        description: Update Secret
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: secret_id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletesecret
+        method: DELETE
+        description: Delete Secret
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: secret_id
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.ROBOCORP_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: control-room-vault-rest
+    port: 8080
+    description: REST adapter for Robocorp Control Room API — Vault. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/workspaces/{workspace-id}/vault/secrets
+      name: workspaces-workspace-id-vault-secrets
+      description: REST surface for workspaces-workspace_id-vault-secrets.
+      operations:
+      - method: GET
+        name: listsecrets
+        description: List Secrets
+        call: control-room-vault.listsecrets
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createsecret
+        description: Create Secret
+        call: control-room-vault.createsecret
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workspaces/{workspace-id}/vault/secrets/{secret-id}
+      name: workspaces-workspace-id-vault-secrets-secret-id
+      description: REST surface for workspaces-workspace_id-vault-secrets-secret_id.
+      operations:
+      - method: POST
+        name: updatesecret
+        description: Update Secret
+        call: control-room-vault.updatesecret
+        with:
+          secret_id: rest.secret_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletesecret
+        description: Delete Secret
+        call: control-room-vault.deletesecret
+        with:
+          secret_id: rest.secret_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: control-room-vault-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Robocorp Control Room API — Vault. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-secrets
+      description: List Secrets
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: control-room-vault.listsecrets
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-secret
+      description: Create Secret
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: control-room-vault.createsecret
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-secret
+      description: Update Secret
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: control-room-vault.updatesecret
+      with:
+        secret_id: tools.secret_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-secret
+      description: Delete Secret
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: control-room-vault.deletesecret
+      with:
+        secret_id: tools.secret_id
+      outputParameters:
+      - type: object
+        mapping: $.

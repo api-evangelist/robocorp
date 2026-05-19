@@ -1,0 +1,199 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Robocorp Control Room API — Worker Groups
+  description: 'Robocorp Control Room API — Worker Groups. 5 operations. Lead operation: List Worker Groups. Self-contained
+    Naftiko capability covering one Robocorp business surface.'
+  tags:
+  - Robocorp
+  - Worker Groups
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ROBOCORP_API_KEY: ROBOCORP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: control-room-worker-groups
+    baseUri: https://cloud.robocorp.com/api/v1
+    description: Robocorp Control Room API — Worker Groups business capability. Self-contained, no shared references.
+    resources:
+    - name: workspaces-workspace_id-worker-groups
+      path: /workspaces/{workspace_id}/worker-groups
+      operations:
+      - name: listworkergroups
+        method: GET
+        description: List Worker Groups
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createworkergroup
+        method: POST
+        description: Create Worker Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: workspaces-workspace_id-worker-groups-worker_group_id
+      path: /workspaces/{workspace_id}/worker-groups/{worker_group_id}
+      operations:
+      - name: getworkergroup
+        method: GET
+        description: Get Worker Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateworkergroup
+        method: POST
+        description: Update Worker Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteworkergroup
+        method: DELETE
+        description: Delete Worker Group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.ROBOCORP_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: control-room-worker-groups-rest
+    port: 8080
+    description: REST adapter for Robocorp Control Room API — Worker Groups. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/workspaces/{workspace-id}/worker-groups
+      name: workspaces-workspace-id-worker-groups
+      description: REST surface for workspaces-workspace_id-worker-groups.
+      operations:
+      - method: GET
+        name: listworkergroups
+        description: List Worker Groups
+        call: control-room-worker-groups.listworkergroups
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createworkergroup
+        description: Create Worker Group
+        call: control-room-worker-groups.createworkergroup
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workspaces/{workspace-id}/worker-groups/{worker-group-id}
+      name: workspaces-workspace-id-worker-groups-worker-group-id
+      description: REST surface for workspaces-workspace_id-worker-groups-worker_group_id.
+      operations:
+      - method: GET
+        name: getworkergroup
+        description: Get Worker Group
+        call: control-room-worker-groups.getworkergroup
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: updateworkergroup
+        description: Update Worker Group
+        call: control-room-worker-groups.updateworkergroup
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteworkergroup
+        description: Delete Worker Group
+        call: control-room-worker-groups.deleteworkergroup
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: control-room-worker-groups-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Robocorp Control Room API — Worker Groups. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-worker-groups
+      description: List Worker Groups
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: control-room-worker-groups.listworkergroups
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-worker-group
+      description: Create Worker Group
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: control-room-worker-groups.createworkergroup
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-worker-group
+      description: Get Worker Group
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: control-room-worker-groups.getworkergroup
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-worker-group
+      description: Update Worker Group
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: control-room-worker-groups.updateworkergroup
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-worker-group
+      description: Delete Worker Group
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: control-room-worker-groups.deleteworkergroup
+      outputParameters:
+      - type: object
+        mapping: $.

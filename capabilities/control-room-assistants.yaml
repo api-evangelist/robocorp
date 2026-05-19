@@ -1,0 +1,148 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Robocorp Control Room API — Assistants
+  description: 'Robocorp Control Room API — Assistants. 3 operations. Lead operation: List Assistants. Self-contained Naftiko
+    capability covering one Robocorp business surface.'
+  tags:
+  - Robocorp
+  - Assistants
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ROBOCORP_API_KEY: ROBOCORP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: control-room-assistants
+    baseUri: https://cloud.robocorp.com/api/v1
+    description: Robocorp Control Room API — Assistants business capability. Self-contained, no shared references.
+    resources:
+    - name: workspaces-workspace_id-assistants
+      path: /workspaces/{workspace_id}/assistants
+      operations:
+      - name: listassistants
+        method: GET
+        description: List Assistants
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createassistant
+        method: POST
+        description: Create Assistant
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: workspaces-workspace_id-assistants-assistant_id
+      path: /workspaces/{workspace_id}/assistants/{assistant_id}
+      operations:
+      - name: getassistant
+        method: GET
+        description: Get Assistant
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: assistant_id
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.ROBOCORP_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: control-room-assistants-rest
+    port: 8080
+    description: REST adapter for Robocorp Control Room API — Assistants. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/workspaces/{workspace-id}/assistants
+      name: workspaces-workspace-id-assistants
+      description: REST surface for workspaces-workspace_id-assistants.
+      operations:
+      - method: GET
+        name: listassistants
+        description: List Assistants
+        call: control-room-assistants.listassistants
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createassistant
+        description: Create Assistant
+        call: control-room-assistants.createassistant
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workspaces/{workspace-id}/assistants/{assistant-id}
+      name: workspaces-workspace-id-assistants-assistant-id
+      description: REST surface for workspaces-workspace_id-assistants-assistant_id.
+      operations:
+      - method: GET
+        name: getassistant
+        description: Get Assistant
+        call: control-room-assistants.getassistant
+        with:
+          assistant_id: rest.assistant_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: control-room-assistants-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Robocorp Control Room API — Assistants. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-assistants
+      description: List Assistants
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: control-room-assistants.listassistants
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-assistant
+      description: Create Assistant
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: control-room-assistants.createassistant
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-assistant
+      description: Get Assistant
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: control-room-assistants.getassistant
+      with:
+        assistant_id: tools.assistant_id
+      outputParameters:
+      - type: object
+        mapping: $.

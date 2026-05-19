@@ -1,0 +1,209 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Robocorp Control Room API — Process Runs
+  description: 'Robocorp Control Room API — Process Runs. 5 operations. Lead operation: List Process Runs. Self-contained
+    Naftiko capability covering one Robocorp business surface.'
+  tags:
+  - Robocorp
+  - Process Runs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ROBOCORP_API_KEY: ROBOCORP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: control-room-process-runs
+    baseUri: https://cloud.robocorp.com/api/v1
+    description: Robocorp Control Room API — Process Runs business capability. Self-contained, no shared references.
+    resources:
+    - name: workspaces-workspace_id-processes-process_id-runs
+      path: /workspaces/{workspace_id}/processes/{process_id}/runs
+      operations:
+      - name: listprocessruns
+        method: GET
+        description: List Process Runs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+        - name: cursor
+          in: query
+          type: string
+      - name: startprocessrun
+        method: POST
+        description: Start Process Run
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: workspaces-workspace_id-processes-process_id-runs-run_id
+      path: /workspaces/{workspace_id}/processes/{process_id}/runs/{run_id}
+      operations:
+      - name: getprocessrun
+        method: GET
+        description: Get Process Run
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: deleteprocessrun
+        method: DELETE
+        description: Delete Process Run
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: workspaces-workspace_id-processes-process_id-runs-run_id-stop
+      path: /workspaces/{workspace_id}/processes/{process_id}/runs/{run_id}/stop
+      operations:
+      - name: stopprocessrun
+        method: POST
+        description: Stop Process Run
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.ROBOCORP_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: control-room-process-runs-rest
+    port: 8080
+    description: REST adapter for Robocorp Control Room API — Process Runs. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/workspaces/{workspace-id}/processes/{process-id}/runs
+      name: workspaces-workspace-id-processes-process-id-runs
+      description: REST surface for workspaces-workspace_id-processes-process_id-runs.
+      operations:
+      - method: GET
+        name: listprocessruns
+        description: List Process Runs
+        call: control-room-process-runs.listprocessruns
+        with:
+          limit: rest.limit
+          cursor: rest.cursor
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: startprocessrun
+        description: Start Process Run
+        call: control-room-process-runs.startprocessrun
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workspaces/{workspace-id}/processes/{process-id}/runs/{run-id}
+      name: workspaces-workspace-id-processes-process-id-runs-run-id
+      description: REST surface for workspaces-workspace_id-processes-process_id-runs-run_id.
+      operations:
+      - method: GET
+        name: getprocessrun
+        description: Get Process Run
+        call: control-room-process-runs.getprocessrun
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteprocessrun
+        description: Delete Process Run
+        call: control-room-process-runs.deleteprocessrun
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workspaces/{workspace-id}/processes/{process-id}/runs/{run-id}/stop
+      name: workspaces-workspace-id-processes-process-id-runs-run-id-stop
+      description: REST surface for workspaces-workspace_id-processes-process_id-runs-run_id-stop.
+      operations:
+      - method: POST
+        name: stopprocessrun
+        description: Stop Process Run
+        call: control-room-process-runs.stopprocessrun
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: control-room-process-runs-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Robocorp Control Room API — Process Runs. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-process-runs
+      description: List Process Runs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: control-room-process-runs.listprocessruns
+      with:
+        limit: tools.limit
+        cursor: tools.cursor
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: start-process-run
+      description: Start Process Run
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: control-room-process-runs.startprocessrun
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-process-run
+      description: Get Process Run
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: control-room-process-runs.getprocessrun
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-process-run
+      description: Delete Process Run
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: control-room-process-runs.deleteprocessrun
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: stop-process-run
+      description: Stop Process Run
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: control-room-process-runs.stopprocessrun
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,157 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Robocorp Control Room API — Work Items
+  description: 'Robocorp Control Room API — Work Items. 3 operations. Lead operation: List Work Items. Self-contained Naftiko
+    capability covering one Robocorp business surface.'
+  tags:
+  - Robocorp
+  - Work Items
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ROBOCORP_API_KEY: ROBOCORP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: control-room-work-items
+    baseUri: https://cloud.robocorp.com/api/v1
+    description: Robocorp Control Room API — Work Items business capability. Self-contained, no shared references.
+    resources:
+    - name: workspaces-workspace_id-work-items
+      path: /workspaces/{workspace_id}/work-items
+      operations:
+      - name: listworkitems
+        method: GET
+        description: List Work Items
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: process_id
+          in: query
+          type: string
+        - name: state
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+      - name: createworkitem
+        method: POST
+        description: Create Work Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: workspaces-workspace_id-work-items-work_item_id
+      path: /workspaces/{workspace_id}/work-items/{work_item_id}
+      operations:
+      - name: getworkitem
+        method: GET
+        description: Get Work Item
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.ROBOCORP_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: control-room-work-items-rest
+    port: 8080
+    description: REST adapter for Robocorp Control Room API — Work Items. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/workspaces/{workspace-id}/work-items
+      name: workspaces-workspace-id-work-items
+      description: REST surface for workspaces-workspace_id-work-items.
+      operations:
+      - method: GET
+        name: listworkitems
+        description: List Work Items
+        call: control-room-work-items.listworkitems
+        with:
+          process_id: rest.process_id
+          state: rest.state
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createworkitem
+        description: Create Work Item
+        call: control-room-work-items.createworkitem
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workspaces/{workspace-id}/work-items/{work-item-id}
+      name: workspaces-workspace-id-work-items-work-item-id
+      description: REST surface for workspaces-workspace_id-work-items-work_item_id.
+      operations:
+      - method: GET
+        name: getworkitem
+        description: Get Work Item
+        call: control-room-work-items.getworkitem
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: control-room-work-items-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Robocorp Control Room API — Work Items. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-work-items
+      description: List Work Items
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: control-room-work-items.listworkitems
+      with:
+        process_id: tools.process_id
+        state: tools.state
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-work-item
+      description: Create Work Item
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: control-room-work-items.createworkitem
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-work-item
+      description: Get Work Item
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: control-room-work-items.getworkitem
+      outputParameters:
+      - type: object
+        mapping: $.

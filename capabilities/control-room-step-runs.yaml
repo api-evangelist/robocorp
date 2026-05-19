@@ -1,0 +1,113 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Robocorp Control Room API — Step Runs
+  description: 'Robocorp Control Room API — Step Runs. 2 operations. Lead operation: List Step Runs. Self-contained Naftiko
+    capability covering one Robocorp business surface.'
+  tags:
+  - Robocorp
+  - Step Runs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ROBOCORP_API_KEY: ROBOCORP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: control-room-step-runs
+    baseUri: https://cloud.robocorp.com/api/v1
+    description: Robocorp Control Room API — Step Runs business capability. Self-contained, no shared references.
+    resources:
+    - name: workspaces-workspace_id-processes-process_id-runs-run_id-step-runs
+      path: /workspaces/{workspace_id}/processes/{process_id}/runs/{run_id}/step-runs
+      operations:
+      - name: liststepruns
+        method: GET
+        description: List Step Runs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: workspaces-workspace_id-processes-process_id-runs-run_id-step-runs-step_run_id
+      path: /workspaces/{workspace_id}/processes/{process_id}/runs/{run_id}/step-runs/{step_run_id}
+      operations:
+      - name: getsteprun
+        method: GET
+        description: Get Step Run
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: step_run_id
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.ROBOCORP_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: control-room-step-runs-rest
+    port: 8080
+    description: REST adapter for Robocorp Control Room API — Step Runs. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/workspaces/{workspace-id}/processes/{process-id}/runs/{run-id}/step-runs
+      name: workspaces-workspace-id-processes-process-id-runs-run-id-step-runs
+      description: REST surface for workspaces-workspace_id-processes-process_id-runs-run_id-step-runs.
+      operations:
+      - method: GET
+        name: liststepruns
+        description: List Step Runs
+        call: control-room-step-runs.liststepruns
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workspaces/{workspace-id}/processes/{process-id}/runs/{run-id}/step-runs/{step-run-id}
+      name: workspaces-workspace-id-processes-process-id-runs-run-id-step-runs-step-run-id
+      description: REST surface for workspaces-workspace_id-processes-process_id-runs-run_id-step-runs-step_run_id.
+      operations:
+      - method: GET
+        name: getsteprun
+        description: Get Step Run
+        call: control-room-step-runs.getsteprun
+        with:
+          step_run_id: rest.step_run_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: control-room-step-runs-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Robocorp Control Room API — Step Runs. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-step-runs
+      description: List Step Runs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: control-room-step-runs.liststepruns
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-step-run
+      description: Get Step Run
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: control-room-step-runs.getsteprun
+      with:
+        step_run_id: tools.step_run_id
+      outputParameters:
+      - type: object
+        mapping: $.

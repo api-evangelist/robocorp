@@ -1,0 +1,182 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Robocorp Control Room API — Webhooks
+  description: 'Robocorp Control Room API — Webhooks. 4 operations. Lead operation: List Webhooks. Self-contained Naftiko
+    capability covering one Robocorp business surface.'
+  tags:
+  - Robocorp
+  - Webhooks
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ROBOCORP_API_KEY: ROBOCORP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: control-room-webhooks
+    baseUri: https://cloud.robocorp.com/api/v1
+    description: Robocorp Control Room API — Webhooks business capability. Self-contained, no shared references.
+    resources:
+    - name: workspaces-workspace_id-webhooks
+      path: /workspaces/{workspace_id}/webhooks
+      operations:
+      - name: listwebhooks
+        method: GET
+        description: List Webhooks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createwebhook
+        method: POST
+        description: Create Process Webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: workspaces-workspace_id-webhooks-webhook_id
+      path: /workspaces/{workspace_id}/webhooks/{webhook_id}
+      operations:
+      - name: getwebhook
+        method: GET
+        description: Get Webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: string
+          required: true
+      - name: deletewebhook
+        method: DELETE
+        description: Delete Webhook
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: webhook_id
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.ROBOCORP_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: control-room-webhooks-rest
+    port: 8080
+    description: REST adapter for Robocorp Control Room API — Webhooks. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/workspaces/{workspace-id}/webhooks
+      name: workspaces-workspace-id-webhooks
+      description: REST surface for workspaces-workspace_id-webhooks.
+      operations:
+      - method: GET
+        name: listwebhooks
+        description: List Webhooks
+        call: control-room-webhooks.listwebhooks
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createwebhook
+        description: Create Process Webhook
+        call: control-room-webhooks.createwebhook
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workspaces/{workspace-id}/webhooks/{webhook-id}
+      name: workspaces-workspace-id-webhooks-webhook-id
+      description: REST surface for workspaces-workspace_id-webhooks-webhook_id.
+      operations:
+      - method: GET
+        name: getwebhook
+        description: Get Webhook
+        call: control-room-webhooks.getwebhook
+        with:
+          webhook_id: rest.webhook_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletewebhook
+        description: Delete Webhook
+        call: control-room-webhooks.deletewebhook
+        with:
+          webhook_id: rest.webhook_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: control-room-webhooks-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Robocorp Control Room API — Webhooks. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-webhooks
+      description: List Webhooks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: control-room-webhooks.listwebhooks
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-process-webhook
+      description: Create Process Webhook
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: control-room-webhooks.createwebhook
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-webhook
+      description: Get Webhook
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: control-room-webhooks.getwebhook
+      with:
+        webhook_id: tools.webhook_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-webhook
+      description: Delete Webhook
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: control-room-webhooks.deletewebhook
+      with:
+        webhook_id: tools.webhook_id
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,223 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Robocorp Control Room API — Task Packages
+  description: 'Robocorp Control Room API — Task Packages. 5 operations. Lead operation: List Task Packages. Self-contained
+    Naftiko capability covering one Robocorp business surface.'
+  tags:
+  - Robocorp
+  - Task Packages
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    ROBOCORP_API_KEY: ROBOCORP_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: control-room-task-packages
+    baseUri: https://cloud.robocorp.com/api/v1
+    description: Robocorp Control Room API — Task Packages business capability. Self-contained, no shared references.
+    resources:
+    - name: workspaces-workspace_id-task-packages
+      path: /workspaces/{workspace_id}/task-packages
+      operations:
+      - name: listtaskpackages
+        method: GET
+        description: List Task Packages
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createtaskpackage
+        method: POST
+        description: Create Task Package
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: workspaces-workspace_id-task-packages-package_id
+      path: /workspaces/{workspace_id}/task-packages/{package_id}
+      operations:
+      - name: gettaskpackage
+        method: GET
+        description: Get Task Package
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: package_id
+          in: path
+          type: string
+          required: true
+      - name: updatetaskpackage
+        method: POST
+        description: Update Task Package
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: package_id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletetaskpackage
+        method: DELETE
+        description: Delete Task Package
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: package_id
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.ROBOCORP_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: control-room-task-packages-rest
+    port: 8080
+    description: REST adapter for Robocorp Control Room API — Task Packages. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/workspaces/{workspace-id}/task-packages
+      name: workspaces-workspace-id-task-packages
+      description: REST surface for workspaces-workspace_id-task-packages.
+      operations:
+      - method: GET
+        name: listtaskpackages
+        description: List Task Packages
+        call: control-room-task-packages.listtaskpackages
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createtaskpackage
+        description: Create Task Package
+        call: control-room-task-packages.createtaskpackage
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/workspaces/{workspace-id}/task-packages/{package-id}
+      name: workspaces-workspace-id-task-packages-package-id
+      description: REST surface for workspaces-workspace_id-task-packages-package_id.
+      operations:
+      - method: GET
+        name: gettaskpackage
+        description: Get Task Package
+        call: control-room-task-packages.gettaskpackage
+        with:
+          package_id: rest.package_id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: updatetaskpackage
+        description: Update Task Package
+        call: control-room-task-packages.updatetaskpackage
+        with:
+          package_id: rest.package_id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletetaskpackage
+        description: Delete Task Package
+        call: control-room-task-packages.deletetaskpackage
+        with:
+          package_id: rest.package_id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: control-room-task-packages-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Robocorp Control Room API — Task Packages. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-task-packages
+      description: List Task Packages
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: control-room-task-packages.listtaskpackages
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-task-package
+      description: Create Task Package
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: control-room-task-packages.createtaskpackage
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-task-package
+      description: Get Task Package
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: control-room-task-packages.gettaskpackage
+      with:
+        package_id: tools.package_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-task-package
+      description: Update Task Package
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: control-room-task-packages.updatetaskpackage
+      with:
+        package_id: tools.package_id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-task-package
+      description: Delete Task Package
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: control-room-task-packages.deletetaskpackage
+      with:
+        package_id: tools.package_id
+      outputParameters:
+      - type: object
+        mapping: $.
