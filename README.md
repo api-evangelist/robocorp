@@ -1,102 +1,91 @@
-# Robocorp
+# Robocorp (robocorp)
 
 Robocorp is an open source RPA and workflow automation platform for building Python-based automation bots. The platform provides the Control Room API for managing workspaces, workers, processes, work items, assets, vaults, webhooks, and task packages. Robocorp also provides the RPA Framework, an open-source collection of Python libraries for robotic process automation including browser, desktop, email, Excel, PDF, and cloud service automation. The platform has evolved toward Sema4 AI for AI-powered automation actions.
 
-**Website:** [https://robocorp.com](https://robocorp.com)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/apis.yml)
 
-**GitHub:** [https://github.com/robocorp](https://github.com/robocorp)
+## Scope
 
-**Documentation:** [https://robocorp.com/docs](https://robocorp.com/docs)
+- **Type:** Index
+
+## Tags
+
+- RPA
+- Workflow Automation
+- Python
+- Open Source
+- Automation
+
+## Timestamps
+
+- **Created:** 2026-03-27
+- **Modified:** 2026-05-19
 
 ## APIs
 
 ### Robocorp Control Room API
 
-The Robocorp Control Room API provides programmatic access to the orchestration platform for RPA automations. Authentication uses API keys with the `RC-WSKEY` prefix in the Authorization header.
+The Robocorp Control Room API provides programmatic access to the orchestration platform for RPA automations. It supports workspace management, worker lifecycle, worker group organization, process definition and execution, process run monitoring, step run outputs, work item management, asset storage, vault secrets, webhook configuration, and task package deployment. Authentication uses API keys with the RC-WSKEY prefix.
 
+- **Human URL:** [https://robocorp.com/api](https://robocorp.com/api)
 - **Base URL:** `https://cloud.robocorp.com/api/v1`
-- **Authentication:** API Key (`RC-WSKEY` prefix)
-- **Documentation:** [https://robocorp.com/api](https://robocorp.com/api)
-- **OpenAPI Spec:** [https://robocorp.com/api/openapi.json](https://robocorp.com/api/openapi.json)
 
-#### Resource Categories
+#### Tags
 
-| Category | Description |
-|----------|-------------|
-| Workspace | Workspace details and configuration |
-| Workers | Worker agent management and link token generation |
-| Worker Groups | Worker organization and group assignment |
-| Processes | Automation process definition and management |
-| Process Runs | Process execution monitoring and control |
-| Step Runs | Individual step output and artifact retrieval |
-| Work Items | Input/output queue management for producer-consumer patterns |
-| Assets | File and data asset storage |
-| Vault | Secure secret and credential management |
-| Webhooks | Process event notification configuration |
-| Task Packages | Robot code deployment from zip, GitHub, or GitLab |
-| Assistants | AI assistant management |
+- RPA
+- Automation
+- Orchestration
+- Workflow
+- Workers
+
+#### Properties
+
+- [Documentation](https://robocorp.com/api)
+- [Guide](https://robocorp.com/docs/control-room/apis-and-webhooks)
+- [OpenAPI](https://robocorp.com/api/openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/openapi/robocorp-control-room-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Spectral Rules](https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/rules/robocorp-control-room-rules.yml)
+- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-process-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-work-item-schema.json) — [JSON Schema](https://json-schema.org/specification)
+- [Postman Collection](collections/robocorp-control-room.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/robocorp-control-room.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### RPA Framework
 
-An open-source collection of Python libraries for robotic process automation.
+The RPA Framework is an open-source collection of Python libraries for robotic process automation designed for use with Robot Framework and Python. It includes libraries for browser automation, desktop automation, Excel, email, PDF, Windows UI, cloud service integrations, and more.
 
-- **Documentation:** [https://rpaframework.org/](https://rpaframework.org/)
-- **GitHub:** [https://github.com/robocorp/rpaframework](https://github.com/robocorp/rpaframework)
-- **PyPI:** [https://pypi.org/project/robocorp/](https://pypi.org/project/robocorp/)
+- **Human URL:** [https://rpaframework.org/](https://rpaframework.org/)
 
-## Artifacts
+#### Tags
 
-### OpenAPI Specifications
+- RPA
+- Python
+- Open Source
+- Libraries
 
-| Spec | Description |
-|------|-------------|
-| [openapi/robocorp-control-room-openapi.yml](openapi/robocorp-control-room-openapi.yml) | Control Room API — workers, processes, work items, vault, webhooks, task packages |
+#### Properties
 
-### Spectral Rules
+- [Documentation](https://rpaframework.org/)
+- [Git Hub](https://github.com/robocorp/rpaframework)
+- [Postman Collection](collections/robocorp-control-room.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/robocorp-control-room.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
-| Ruleset | Description |
-|---------|-------------|
-| [rules/robocorp-control-room-rules.yml](rules/robocorp-control-room-rules.yml) | Control Room API linting rules enforcing workspace ID patterns and RC-WSKEY auth |
+## Common Properties
 
-### Capabilities
+- [LinkedIn](https://www.linkedin.com/company/robocorp)
+- [Website](https://robocorp.com)
+- [Documentation](https://robocorp.com/docs)
+- [Git Hub](https://github.com/robocorp)
+- [Py P I](https://pypi.org/project/robocorp/)
+- [Blog](https://robocorp.com/blog)
+- [Privacy Policy](https://robocorp.com/privacy-policy)
+- [Terms of Service](https://robocorp.com/terms-of-service)
+- [Status Page](https://status.robocorp.com)
+- [Changelog](https://robocorp.com/docs/changelog)
+- [J S O N L D Context](https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-ld/robocorp-context.jsonld)
+- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/vocabulary/robocorp-vocabulary.yml)
 
-| Capability | Description |
-|------------|-------------|
-| [capabilities/automation-orchestration.yaml](capabilities/automation-orchestration.yaml) | Unified workflow for RPA automation orchestration |
-| [capabilities/shared/control-room.yaml](capabilities/shared/control-room.yaml) | Shared Control Room API consumed definition |
+## Maintainers
 
-### JSON Schemas
-
-| Schema | Description |
-|--------|-------------|
-| [json-schema/robocorp-process-schema.json](json-schema/robocorp-process-schema.json) | Automation process with steps and schedules |
-| [json-schema/robocorp-work-item-schema.json](json-schema/robocorp-work-item-schema.json) | Work item with state and payload |
-
-### JSON Structure
-
-| Structure | Description |
-|-----------|-------------|
-| [json-structure/robocorp-process-structure.json](json-structure/robocorp-process-structure.json) | Field documentation for the process object |
-
-### JSON-LD Context
-
-| Context | Description |
-|---------|-------------|
-| [json-ld/robocorp-context.jsonld](json-ld/robocorp-context.jsonld) | Linked data context mapping Robocorp terms to schema.org |
-
-### Examples
-
-| Example | Description |
-|---------|-------------|
-| [examples/robocorp-start-process-run-example.json](examples/robocorp-start-process-run-example.json) | Trigger a process execution run with variables |
-| [examples/robocorp-create-work-item-example.json](examples/robocorp-create-work-item-example.json) | Add a work item to a process queue |
-
-### Vocabulary
-
-| Vocabulary | Description |
-|------------|-------------|
-| [vocabulary/robocorp-vocabulary.yml](vocabulary/robocorp-vocabulary.yml) | RPA domain terms including Process, WorkItem, Worker, Vault, TaskPackage |
-
-## Tags
-
-RPA, Workflow Automation, Python, Open Source, Automation
+**FN:** Kin Lane
+**Email:** kin@apievangelist.com
