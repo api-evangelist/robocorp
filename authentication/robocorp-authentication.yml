@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/robocorp-control-room-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: API key with RC-WSKEY prefix (e.g., "RC-WSKEY your-api-key")
+  sources:
+  - openapi/robocorp-control-room-openapi.yml

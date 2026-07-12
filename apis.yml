@@ -99,6 +99,10 @@ apis:
       - url: https://github.com/robocorp/rpaframework
         type: GitHub
 common:
+  - type: DomainSecurity
+    url: security/robocorp-domain-security.yml
+  - type: Authentication
+    url: authentication/robocorp-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/robocorp
   - type: Website
