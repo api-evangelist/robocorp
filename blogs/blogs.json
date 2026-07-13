@@ -2,11 +2,13 @@
   "repo": "robocorp",
   "feeds": [
     {
-      "source": "https://robocorp.com/blog",
+      "source": "https://pypi.org/project/robocorp/",
+      "feed_url": "https://pypi.org/project/robocorp/",
+      "title": "",
       "saved": 0,
-      "error": "301 to sema4.ai/blog which returns 403 Forbidden"
+      "method": "none"
     }
   ],
   "post_count": 0,
-  "fetched": "2026-06-27T13:06:16Z"
+  "fetched": "2026-07-11T11:50:51Z"
 }
