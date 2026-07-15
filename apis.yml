@@ -99,6 +99,8 @@ apis:
       - url: https://github.com/robocorp/rpaframework
         type: GitHub
 common:
+  - type: AgenticAccess
+    url: agentic-access/robocorp-agentic-access.yml
   - type: DomainSecurity
     url: security/robocorp-domain-security.yml
   - type: Authentication
