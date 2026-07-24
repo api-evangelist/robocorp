@@ -1,0 +1,195 @@
+openapi: 3.0.3
+info:
+  title: Robocorp Control Room Assets Processes API
+  description: The Robocorp Control Room API provides programmatic access to the orchestration platform for RPA automations. It supports workspace management, worker lifecycle, worker group organization, process definition and execution, process run monitoring, step run output retrieval, work item management, asset storage, vault secrets, webhook configuration, and task package deployment. Authentication uses API keys with the RC-WSKEY prefix passed in the Authorization header.
+  version: v1
+  contact:
+    name: Robocorp Support
+    url: https://robocorp.com/docs
+  termsOfService: https://robocorp.com/terms-of-service
+  license:
+    name: Proprietary
+servers:
+- url: https://cloud.robocorp.com/api/v1
+  description: Robocorp Control Room API (non-SSO)
+- url: https://your-sso-subdomain.robocorp.com/api/v1
+  description: Robocorp Control Room API (SSO)
+tags:
+- name: Processes
+  description: Process definition and management
+paths:
+  /workspaces/{workspace_id}/processes:
+    get:
+      operationId: listProcesses
+      summary: List Processes
+      description: List all processes defined in a workspace.
+      tags:
+      - Processes
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      - name: cursor
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of processes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProcessList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createProcess
+      summary: Create Process
+      description: Create a new process with steps, schedules, triggers, and notifications.
+      tags:
+      - Processes
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProcessRequest'
+      responses:
+        '201':
+          description: Process created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Process'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /workspaces/{workspace_id}/processes/{process_id}:
+    get:
+      operationId: getProcess
+      summary: Get Process
+      description: Retrieve a specific process by ID.
+      tags:
+      - Processes
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      - $ref: '#/components/parameters/ProcessId'
+      responses:
+        '200':
+          description: Process details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Process'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    ProcessId:
+      name: process_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The process identifier
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The workspace identifier
+  schemas:
+    Process:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        state:
+          type: string
+        steps:
+          type: array
+          items:
+            type: object
+        schedules:
+          type: array
+          items:
+            type: object
+        created_at:
+          type: string
+          format: date-time
+    ProcessList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Process'
+        has_more:
+          type: boolean
+    CreateProcessRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        steps:
+          type: array
+          items:
+            type: object
+        schedules:
+          type: array
+          items:
+            type: object
+        triggers:
+          type: array
+          items:
+            type: object
+        notifications:
+          type: object
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: integer
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key with RC-WSKEY prefix (e.g., "RC-WSKEY your-api-key")

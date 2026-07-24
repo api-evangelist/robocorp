@@ -1,0 +1,158 @@
+openapi: 3.0.3
+info:
+  title: Robocorp Control Room Assets Assistants API
+  description: The Robocorp Control Room API provides programmatic access to the orchestration platform for RPA automations. It supports workspace management, worker lifecycle, worker group organization, process definition and execution, process run monitoring, step run output retrieval, work item management, asset storage, vault secrets, webhook configuration, and task package deployment. Authentication uses API keys with the RC-WSKEY prefix passed in the Authorization header.
+  version: v1
+  contact:
+    name: Robocorp Support
+    url: https://robocorp.com/docs
+  termsOfService: https://robocorp.com/terms-of-service
+  license:
+    name: Proprietary
+servers:
+- url: https://cloud.robocorp.com/api/v1
+  description: Robocorp Control Room API (non-SSO)
+- url: https://your-sso-subdomain.robocorp.com/api/v1
+  description: Robocorp Control Room API (SSO)
+tags:
+- name: Assistants
+  description: AI assistant management
+paths:
+  /workspaces/{workspace_id}/assistants:
+    get:
+      operationId: listAssistants
+      summary: List Assistants
+      description: List all AI assistants in a workspace.
+      tags:
+      - Assistants
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      responses:
+        '200':
+          description: List of assistants
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AssistantList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createAssistant
+      summary: Create Assistant
+      description: Create a new AI assistant.
+      tags:
+      - Assistants
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAssistantRequest'
+      responses:
+        '201':
+          description: Assistant created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Assistant'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /workspaces/{workspace_id}/assistants/{assistant_id}:
+    get:
+      operationId: getAssistant
+      summary: Get Assistant
+      description: Retrieve a specific AI assistant by ID.
+      tags:
+      - Assistants
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      - name: assistant_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Assistant details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Assistant'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    CreateAssistantRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    AssistantList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Assistant'
+    Assistant:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: integer
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The workspace identifier
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key with RC-WSKEY prefix (e.g., "RC-WSKEY your-api-key")

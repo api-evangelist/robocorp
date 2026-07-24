@@ -1,0 +1,186 @@
+openapi: 3.0.3
+info:
+  title: Robocorp Control Room Assets Vault API
+  description: The Robocorp Control Room API provides programmatic access to the orchestration platform for RPA automations. It supports workspace management, worker lifecycle, worker group organization, process definition and execution, process run monitoring, step run output retrieval, work item management, asset storage, vault secrets, webhook configuration, and task package deployment. Authentication uses API keys with the RC-WSKEY prefix passed in the Authorization header.
+  version: v1
+  contact:
+    name: Robocorp Support
+    url: https://robocorp.com/docs
+  termsOfService: https://robocorp.com/terms-of-service
+  license:
+    name: Proprietary
+servers:
+- url: https://cloud.robocorp.com/api/v1
+  description: Robocorp Control Room API (non-SSO)
+- url: https://your-sso-subdomain.robocorp.com/api/v1
+  description: Robocorp Control Room API (SSO)
+tags:
+- name: Vault
+  description: Secret management
+paths:
+  /workspaces/{workspace_id}/vault/secrets:
+    get:
+      operationId: listSecrets
+      summary: List Secrets
+      description: List all secrets in the workspace vault.
+      tags:
+      - Vault
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      responses:
+        '200':
+          description: List of secrets (names only, not values)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SecretList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createSecret
+      summary: Create Secret
+      description: Create a new secret in the workspace vault.
+      tags:
+      - Vault
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSecretRequest'
+      responses:
+        '201':
+          description: Secret created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Secret'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /workspaces/{workspace_id}/vault/secrets/{secret_id}:
+    post:
+      operationId: updateSecret
+      summary: Update Secret
+      description: Update an existing secret value in the vault.
+      tags:
+      - Vault
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      - name: secret_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSecretRequest'
+      responses:
+        '200':
+          description: Secret updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Secret'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteSecret
+      summary: Delete Secret
+      description: Remove a secret from the vault.
+      tags:
+      - Vault
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      - name: secret_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Secret deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    Secret:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: integer
+    SecretList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Secret'
+    CreateSecretRequest:
+      type: object
+      required:
+      - name
+      - value
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+          description: The secret value (write-only)
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The workspace identifier
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key with RC-WSKEY prefix (e.g., "RC-WSKEY your-api-key")

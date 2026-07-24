@@ -1,0 +1,191 @@
+openapi: 3.0.3
+info:
+  title: Robocorp Control Room Assets Webhooks API
+  description: The Robocorp Control Room API provides programmatic access to the orchestration platform for RPA automations. It supports workspace management, worker lifecycle, worker group organization, process definition and execution, process run monitoring, step run output retrieval, work item management, asset storage, vault secrets, webhook configuration, and task package deployment. Authentication uses API keys with the RC-WSKEY prefix passed in the Authorization header.
+  version: v1
+  contact:
+    name: Robocorp Support
+    url: https://robocorp.com/docs
+  termsOfService: https://robocorp.com/terms-of-service
+  license:
+    name: Proprietary
+servers:
+- url: https://cloud.robocorp.com/api/v1
+  description: Robocorp Control Room API (non-SSO)
+- url: https://your-sso-subdomain.robocorp.com/api/v1
+  description: Robocorp Control Room API (SSO)
+tags:
+- name: Webhooks
+  description: Webhook configuration
+paths:
+  /workspaces/{workspace_id}/webhooks:
+    get:
+      operationId: listWebhooks
+      summary: List Webhooks
+      description: List all webhooks configured in a workspace.
+      tags:
+      - Webhooks
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      responses:
+        '200':
+          description: List of webhooks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WebhookList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createWebhook
+      summary: Create Process Webhook
+      description: Create a new webhook for process event notifications.
+      tags:
+      - Webhooks
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWebhookRequest'
+      responses:
+        '201':
+          description: Webhook created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /workspaces/{workspace_id}/webhooks/{webhook_id}:
+    get:
+      operationId: getWebhook
+      summary: Get Webhook
+      description: Retrieve a specific webhook by ID.
+      tags:
+      - Webhooks
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      - name: webhook_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Webhook details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteWebhook
+      summary: Delete Webhook
+      description: Remove a webhook configuration.
+      tags:
+      - Webhooks
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      - name: webhook_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Webhook deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    CreateWebhookRequest:
+      type: object
+      required:
+      - process_id
+      - url
+      properties:
+        process_id:
+          type: string
+        url:
+          type: string
+          format: uri
+        events:
+          type: array
+          items:
+            type: string
+    Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        process_id:
+          type: string
+        url:
+          type: string
+          format: uri
+        events:
+          type: array
+          items:
+            type: string
+        created_at:
+          type: string
+          format: date-time
+    WebhookList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Webhook'
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: integer
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The workspace identifier
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key with RC-WSKEY prefix (e.g., "RC-WSKEY your-api-key")

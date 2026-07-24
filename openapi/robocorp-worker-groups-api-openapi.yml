@@ -1,0 +1,211 @@
+openapi: 3.0.3
+info:
+  title: Robocorp Control Room Assets Worker Groups API
+  description: The Robocorp Control Room API provides programmatic access to the orchestration platform for RPA automations. It supports workspace management, worker lifecycle, worker group organization, process definition and execution, process run monitoring, step run output retrieval, work item management, asset storage, vault secrets, webhook configuration, and task package deployment. Authentication uses API keys with the RC-WSKEY prefix passed in the Authorization header.
+  version: v1
+  contact:
+    name: Robocorp Support
+    url: https://robocorp.com/docs
+  termsOfService: https://robocorp.com/terms-of-service
+  license:
+    name: Proprietary
+servers:
+- url: https://cloud.robocorp.com/api/v1
+  description: Robocorp Control Room API (non-SSO)
+- url: https://your-sso-subdomain.robocorp.com/api/v1
+  description: Robocorp Control Room API (SSO)
+tags:
+- name: Worker Groups
+  description: Worker group organization
+paths:
+  /workspaces/{workspace_id}/worker-groups:
+    get:
+      operationId: listWorkerGroups
+      summary: List Worker Groups
+      description: List all worker groups in a workspace.
+      tags:
+      - Worker Groups
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      responses:
+        '200':
+          description: List of worker groups
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkerGroupList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createWorkerGroup
+      summary: Create Worker Group
+      description: Create a new worker group for organizing workers.
+      tags:
+      - Worker Groups
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWorkerGroupRequest'
+      responses:
+        '201':
+          description: Worker group created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkerGroup'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /workspaces/{workspace_id}/worker-groups/{worker_group_id}:
+    get:
+      operationId: getWorkerGroup
+      summary: Get Worker Group
+      description: Retrieve a specific worker group by ID.
+      tags:
+      - Worker Groups
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      - $ref: '#/components/parameters/WorkerGroupId'
+      responses:
+        '200':
+          description: Worker group details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkerGroup'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: updateWorkerGroup
+      summary: Update Worker Group
+      description: Modify worker group details.
+      tags:
+      - Worker Groups
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      - $ref: '#/components/parameters/WorkerGroupId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateWorkerGroupRequest'
+      responses:
+        '200':
+          description: Worker group updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkerGroup'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteWorkerGroup
+      summary: Delete Worker Group
+      description: Delete a worker group from the workspace.
+      tags:
+      - Worker Groups
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      - $ref: '#/components/parameters/WorkerGroupId'
+      responses:
+        '204':
+          description: Worker group deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    WorkerGroupId:
+      name: worker_group_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The worker group identifier
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The workspace identifier
+  schemas:
+    WorkerGroupList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkerGroup'
+        has_more:
+          type: boolean
+    CreateWorkerGroupRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    WorkerGroup:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        worker_count:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: integer
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key with RC-WSKEY prefix (e.g., "RC-WSKEY your-api-key")

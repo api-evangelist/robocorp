@@ -1,0 +1,226 @@
+openapi: 3.0.3
+info:
+  title: Robocorp Control Room Assets Task Packages API
+  description: The Robocorp Control Room API provides programmatic access to the orchestration platform for RPA automations. It supports workspace management, worker lifecycle, worker group organization, process definition and execution, process run monitoring, step run output retrieval, work item management, asset storage, vault secrets, webhook configuration, and task package deployment. Authentication uses API keys with the RC-WSKEY prefix passed in the Authorization header.
+  version: v1
+  contact:
+    name: Robocorp Support
+    url: https://robocorp.com/docs
+  termsOfService: https://robocorp.com/terms-of-service
+  license:
+    name: Proprietary
+servers:
+- url: https://cloud.robocorp.com/api/v1
+  description: Robocorp Control Room API (non-SSO)
+- url: https://your-sso-subdomain.robocorp.com/api/v1
+  description: Robocorp Control Room API (SSO)
+tags:
+- name: Task Packages
+  description: Task package deployment
+paths:
+  /workspaces/{workspace_id}/task-packages:
+    get:
+      operationId: listTaskPackages
+      summary: List Task Packages
+      description: List all task packages in a workspace.
+      tags:
+      - Task Packages
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      responses:
+        '200':
+          description: List of task packages
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskPackageList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createTaskPackage
+      summary: Create Task Package
+      description: Create a new task package from a zip file, GitHub, or GitLab source.
+      tags:
+      - Task Packages
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTaskPackageRequest'
+      responses:
+        '201':
+          description: Task package created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskPackage'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /workspaces/{workspace_id}/task-packages/{package_id}:
+    get:
+      operationId: getTaskPackage
+      summary: Get Task Package
+      description: Retrieve a specific task package by ID.
+      tags:
+      - Task Packages
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      - name: package_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Task package details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskPackage'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: updateTaskPackage
+      summary: Update Task Package
+      description: Update a task package source configuration.
+      tags:
+      - Task Packages
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      - name: package_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTaskPackageRequest'
+      responses:
+        '200':
+          description: Task package updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaskPackage'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteTaskPackage
+      summary: Delete Task Package
+      description: Remove a task package from the workspace.
+      tags:
+      - Task Packages
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      - name: package_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Task package deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    TaskPackage:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        source_type:
+          type: string
+          enum:
+          - zip
+          - github
+          - gitlab
+        created_at:
+          type: string
+          format: date-time
+    TaskPackageList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaskPackage'
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: integer
+    CreateTaskPackageRequest:
+      type: object
+      required:
+      - name
+      - source_type
+      properties:
+        name:
+          type: string
+        source_type:
+          type: string
+          enum:
+          - zip
+          - github
+          - gitlab
+        source_url:
+          type: string
+          format: uri
+        branch:
+          type: string
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The workspace identifier
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key with RC-WSKEY prefix (e.g., "RC-WSKEY your-api-key")

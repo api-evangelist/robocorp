@@ -1,0 +1,244 @@
+openapi: 3.0.3
+info:
+  title: Robocorp Control Room Assets Workers API
+  description: The Robocorp Control Room API provides programmatic access to the orchestration platform for RPA automations. It supports workspace management, worker lifecycle, worker group organization, process definition and execution, process run monitoring, step run output retrieval, work item management, asset storage, vault secrets, webhook configuration, and task package deployment. Authentication uses API keys with the RC-WSKEY prefix passed in the Authorization header.
+  version: v1
+  contact:
+    name: Robocorp Support
+    url: https://robocorp.com/docs
+  termsOfService: https://robocorp.com/terms-of-service
+  license:
+    name: Proprietary
+servers:
+- url: https://cloud.robocorp.com/api/v1
+  description: Robocorp Control Room API (non-SSO)
+- url: https://your-sso-subdomain.robocorp.com/api/v1
+  description: Robocorp Control Room API (SSO)
+tags:
+- name: Workers
+  description: Worker agent management
+paths:
+  /workspaces/{workspace_id}/workers:
+    get:
+      operationId: listWorkers
+      summary: List Workers
+      description: List all workers in a workspace.
+      tags:
+      - Workers
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      - name: limit
+        in: query
+        schema:
+          type: integer
+        description: Maximum number of workers to return
+      - name: cursor
+        in: query
+        schema:
+          type: string
+        description: Pagination cursor
+      responses:
+        '200':
+          description: List of workers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkerList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /workspaces/{workspace_id}/workers/link-tokens:
+    post:
+      operationId: createLinkToken
+      summary: Create Worker Link Token
+      description: Generate a link token to connect a new worker to the workspace.
+      tags:
+      - Workers
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateLinkTokenRequest'
+      responses:
+        '200':
+          description: Link token created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LinkToken'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /workspaces/{workspace_id}/workers/{worker_id}:
+    get:
+      operationId: getWorker
+      summary: Get Worker
+      description: Retrieve a specific worker by ID.
+      tags:
+      - Workers
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      - $ref: '#/components/parameters/WorkerId'
+      responses:
+        '200':
+          description: Worker details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Worker'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: updateWorker
+      summary: Update Worker
+      description: Modify worker details such as name and group assignment.
+      tags:
+      - Workers
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      - $ref: '#/components/parameters/WorkerId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateWorkerRequest'
+      responses:
+        '200':
+          description: Worker updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Worker'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteWorker
+      summary: Delete Worker
+      description: Remove a worker from the workspace.
+      tags:
+      - Workers
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      - $ref: '#/components/parameters/WorkerId'
+      responses:
+        '204':
+          description: Worker deleted
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The workspace identifier
+    WorkerId:
+      name: worker_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The worker identifier
+  schemas:
+    CreateLinkTokenRequest:
+      type: object
+      properties:
+        worker_group_id:
+          type: string
+        expires_in:
+          type: integer
+          description: Token expiry in seconds
+    UpdateWorkerRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        worker_group_id:
+          type: string
+    WorkerList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Worker'
+        has_more:
+          type: boolean
+        next:
+          type: string
+    Worker:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+          enum:
+          - ONLINE
+          - OFFLINE
+          - BUSY
+        worker_group_id:
+          type: string
+        last_seen:
+          type: string
+          format: date-time
+        created_at:
+          type: string
+          format: date-time
+    LinkToken:
+      type: object
+      properties:
+        token:
+          type: string
+        expires_at:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: integer
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key with RC-WSKEY prefix (e.g., "RC-WSKEY your-api-key")

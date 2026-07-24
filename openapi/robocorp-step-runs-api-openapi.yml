@@ -1,0 +1,151 @@
+openapi: 3.0.3
+info:
+  title: Robocorp Control Room Assets Step Runs API
+  description: The Robocorp Control Room API provides programmatic access to the orchestration platform for RPA automations. It supports workspace management, worker lifecycle, worker group organization, process definition and execution, process run monitoring, step run output retrieval, work item management, asset storage, vault secrets, webhook configuration, and task package deployment. Authentication uses API keys with the RC-WSKEY prefix passed in the Authorization header.
+  version: v1
+  contact:
+    name: Robocorp Support
+    url: https://robocorp.com/docs
+  termsOfService: https://robocorp.com/terms-of-service
+  license:
+    name: Proprietary
+servers:
+- url: https://cloud.robocorp.com/api/v1
+  description: Robocorp Control Room API (non-SSO)
+- url: https://your-sso-subdomain.robocorp.com/api/v1
+  description: Robocorp Control Room API (SSO)
+tags:
+- name: Step Runs
+  description: Individual step execution details
+paths:
+  /workspaces/{workspace_id}/processes/{process_id}/runs/{run_id}/step-runs:
+    get:
+      operationId: listStepRuns
+      summary: List Step Runs
+      description: List all step runs within a process run.
+      tags:
+      - Step Runs
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      - $ref: '#/components/parameters/ProcessId'
+      - $ref: '#/components/parameters/RunId'
+      responses:
+        '200':
+          description: List of step runs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StepRunList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /workspaces/{workspace_id}/processes/{process_id}/runs/{run_id}/step-runs/{step_run_id}:
+    get:
+      operationId: getStepRun
+      summary: Get Step Run
+      description: Retrieve details for a specific step run.
+      tags:
+      - Step Runs
+      security:
+      - ApiKeyAuth: []
+      parameters:
+      - $ref: '#/components/parameters/WorkspaceId'
+      - $ref: '#/components/parameters/ProcessId'
+      - $ref: '#/components/parameters/RunId'
+      - name: step_run_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Step run details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StepRun'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    ProcessId:
+      name: process_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The process identifier
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The workspace identifier
+    RunId:
+      name: run_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The process run identifier
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    StepRun:
+      type: object
+      properties:
+        id:
+          type: string
+        process_run_id:
+          type: string
+        step_name:
+          type: string
+        state:
+          type: string
+        started_at:
+          type: string
+          format: date-time
+        completed_at:
+          type: string
+          format: date-time
+        artifacts:
+          type: array
+          items:
+            type: object
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: integer
+    StepRunList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/StepRun'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: API key with RC-WSKEY prefix (e.g., "RC-WSKEY your-api-key")
