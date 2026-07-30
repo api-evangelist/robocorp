@@ -7,7 +7,20 @@ description: >-
   for robotic process automation including browser, desktop, email, Excel, PDF, and cloud service automation. The
   platform has evolved toward Sema4 AI for AI-powered automation actions.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/robocorp.png
 tags:
   - RPA
   - Workflow Automation
@@ -19,86 +32,302 @@ created: '2026-03-27'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: robocorp:control-room-api
-    name: Robocorp Control Room API
-    description: >-
-      The Robocorp Control Room API provides programmatic access to the orchestration platform for RPA automations. It
-      supports workspace management, worker lifecycle, worker group organization, process definition and execution,
-      process run monitoring, step run outputs, work item management, asset storage, vault secrets, webhook
-      configuration, and task package deployment. Authentication uses API keys with the RC-WSKEY prefix.
-    humanURL: https://robocorp.com/api
-    baseURL: https://cloud.robocorp.com/api/v1
-    tags:
-      - RPA
-      - Automation
-      - Orchestration
-      - Workflow
-      - Workers
-    properties:
-      - url: https://robocorp.com/api
-        type: Documentation
-      - url: https://robocorp.com/docs/control-room/apis-and-webhooks
-        type: Guide
-      - url: https://robocorp.com/api/openapi.json
-        type: OpenAPI
-      - url: >-
-          https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/openapi/robocorp-control-room-openapi.yml
-        type: OpenAPI
-      - url: >-
-          https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/rules/robocorp-control-room-rules.yml
-        type: SpectralRules
-      - url: >-
-          https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-process-schema.json
-        type: JSONSchema
-      - url: >-
-          https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-work-item-schema.json
-        type: JSONSchema
-    contact:
-      - FN: Robocorp Support
-        url: https://robocorp.com/docs
-    features:
-      - Workspace Management
-      - Worker Management
-      - Worker Group Management
-      - Process Definition
-      - Process Execution
-      - Process Run Monitoring
-      - Step Run Outputs
-      - Work Item Management
-      - Asset Storage
-      - Vault Secrets
-      - Webhook Configuration
-      - Task Package Deployment
-      - Link Token Generation
-    useCases:
-      - RPA bot orchestration
-      - Automation workflow scheduling
-      - Work item queue management
-      - Secret credential management
-      - Process monitoring and debugging
-      - CI/CD pipeline integration
-    solutions:
-      - RPA Orchestration
-      - Workflow Automation
-      - Bot Management
-  - aid: robocorp:rpa-framework
-    name: RPA Framework
-    description: >-
-      The RPA Framework is an open-source collection of Python libraries for robotic process automation designed for use
-      with Robot Framework and Python. It includes libraries for browser automation, desktop automation, Excel, email,
-      PDF, Windows UI, cloud service integrations, and more.
-    humanURL: https://rpaframework.org/
-    tags:
-      - RPA
-      - Python
-      - Open Source
-      - Libraries
-    properties:
-      - url: https://rpaframework.org/
-        type: Documentation
-      - url: https://github.com/robocorp/rpaframework
-        type: GitHub
+- aid: robocorp:rpa-framework
+  name: RPA Framework
+  description: >-
+    The RPA Framework is an open-source collection of Python libraries for robotic process automation
+    designed for use with Robot Framework and Python. It includes libraries for browser automation, desktop
+    automation, Excel, email, PDF, Windows UI, cloud service integrations, and more.
+  humanURL: https://rpaframework.org/
+  tags:
+  - RPA
+  - Python
+  - Open Source
+  - Libraries
+  properties:
+  - url: https://rpaframework.org/
+    type: Documentation
+  - url: https://github.com/robocorp/rpaframework
+    type: GitHub
+- aid: robocorp:robocorp-assets-api
+  name: Robocorp Assets API
+  description: Asset storage management
+  humanURL: https://robocorp.com/api
+  baseURL: https://cloud.robocorp.com/api/v1
+  tags:
+  - Assets
+  properties:
+  - type: OpenAPI
+    url: openapi/robocorp-assets-api-openapi.yml
+  - type: Documentation
+    url: https://robocorp.com/api
+  - type: Guide
+    url: https://robocorp.com/docs/control-room/apis-and-webhooks
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/rules/robocorp-control-room-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-process-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-work-item-schema.json
+- aid: robocorp:robocorp-assistants-api
+  name: Robocorp Assistants API
+  description: AI assistant management
+  humanURL: https://robocorp.com/api
+  baseURL: https://cloud.robocorp.com/api/v1
+  tags:
+  - Assistants
+  properties:
+  - type: OpenAPI
+    url: openapi/robocorp-assistants-api-openapi.yml
+  - type: Documentation
+    url: https://robocorp.com/api
+  - type: Guide
+    url: https://robocorp.com/docs/control-room/apis-and-webhooks
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/rules/robocorp-control-room-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-process-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-work-item-schema.json
+- aid: robocorp:robocorp-process-runs-api
+  name: Robocorp Process Runs API
+  description: Process execution and monitoring
+  humanURL: https://robocorp.com/api
+  baseURL: https://cloud.robocorp.com/api/v1
+  tags:
+  - Process Runs
+  properties:
+  - type: OpenAPI
+    url: openapi/robocorp-process-runs-api-openapi.yml
+  - type: Documentation
+    url: https://robocorp.com/api
+  - type: Guide
+    url: https://robocorp.com/docs/control-room/apis-and-webhooks
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/rules/robocorp-control-room-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-process-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-work-item-schema.json
+- aid: robocorp:robocorp-processes-api
+  name: Robocorp Processes API
+  description: Process definition and management
+  humanURL: https://robocorp.com/api
+  baseURL: https://cloud.robocorp.com/api/v1
+  tags:
+  - Processes
+  properties:
+  - type: OpenAPI
+    url: openapi/robocorp-processes-api-openapi.yml
+  - type: Documentation
+    url: https://robocorp.com/api
+  - type: Guide
+    url: https://robocorp.com/docs/control-room/apis-and-webhooks
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/rules/robocorp-control-room-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-process-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-work-item-schema.json
+- aid: robocorp:robocorp-step-runs-api
+  name: Robocorp Step Runs API
+  description: Individual step execution details
+  humanURL: https://robocorp.com/api
+  baseURL: https://cloud.robocorp.com/api/v1
+  tags:
+  - Step Runs
+  properties:
+  - type: OpenAPI
+    url: openapi/robocorp-step-runs-api-openapi.yml
+  - type: Documentation
+    url: https://robocorp.com/api
+  - type: Guide
+    url: https://robocorp.com/docs/control-room/apis-and-webhooks
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/rules/robocorp-control-room-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-process-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-work-item-schema.json
+- aid: robocorp:robocorp-task-packages-api
+  name: Robocorp Task Packages API
+  description: Task package deployment
+  humanURL: https://robocorp.com/api
+  baseURL: https://cloud.robocorp.com/api/v1
+  tags:
+  - Task Packages
+  properties:
+  - type: OpenAPI
+    url: openapi/robocorp-task-packages-api-openapi.yml
+  - type: Documentation
+    url: https://robocorp.com/api
+  - type: Guide
+    url: https://robocorp.com/docs/control-room/apis-and-webhooks
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/rules/robocorp-control-room-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-process-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-work-item-schema.json
+- aid: robocorp:robocorp-vault-api
+  name: Robocorp Vault API
+  description: Secret management
+  humanURL: https://robocorp.com/api
+  baseURL: https://cloud.robocorp.com/api/v1
+  tags:
+  - Vault
+  properties:
+  - type: OpenAPI
+    url: openapi/robocorp-vault-api-openapi.yml
+  - type: Documentation
+    url: https://robocorp.com/api
+  - type: Guide
+    url: https://robocorp.com/docs/control-room/apis-and-webhooks
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/rules/robocorp-control-room-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-process-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-work-item-schema.json
+- aid: robocorp:robocorp-webhooks-api
+  name: Robocorp Webhooks API
+  description: Webhook configuration
+  humanURL: https://robocorp.com/api
+  baseURL: https://cloud.robocorp.com/api/v1
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/robocorp-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://robocorp.com/api
+  - type: Guide
+    url: https://robocorp.com/docs/control-room/apis-and-webhooks
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/rules/robocorp-control-room-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-process-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-work-item-schema.json
+- aid: robocorp:robocorp-work-items-api
+  name: Robocorp Work Items API
+  description: Work item queue management
+  humanURL: https://robocorp.com/api
+  baseURL: https://cloud.robocorp.com/api/v1
+  tags:
+  - Work Items
+  properties:
+  - type: OpenAPI
+    url: openapi/robocorp-work-items-api-openapi.yml
+  - type: Documentation
+    url: https://robocorp.com/api
+  - type: Guide
+    url: https://robocorp.com/docs/control-room/apis-and-webhooks
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/rules/robocorp-control-room-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-process-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-work-item-schema.json
+- aid: robocorp:robocorp-worker-groups-api
+  name: Robocorp Worker Groups API
+  description: Worker group organization
+  humanURL: https://robocorp.com/api
+  baseURL: https://cloud.robocorp.com/api/v1
+  tags:
+  - Worker Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/robocorp-worker-groups-api-openapi.yml
+  - type: Documentation
+    url: https://robocorp.com/api
+  - type: Guide
+    url: https://robocorp.com/docs/control-room/apis-and-webhooks
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/rules/robocorp-control-room-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-process-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-work-item-schema.json
+- aid: robocorp:robocorp-workers-api
+  name: Robocorp Workers API
+  description: Worker agent management
+  humanURL: https://robocorp.com/api
+  baseURL: https://cloud.robocorp.com/api/v1
+  tags:
+  - Workers
+  properties:
+  - type: OpenAPI
+    url: openapi/robocorp-workers-api-openapi.yml
+  - type: Documentation
+    url: https://robocorp.com/api
+  - type: Guide
+    url: https://robocorp.com/docs/control-room/apis-and-webhooks
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/rules/robocorp-control-room-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-process-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-work-item-schema.json
+- aid: robocorp:robocorp-workspace-api
+  name: Robocorp Workspace API
+  description: Workspace information
+  humanURL: https://robocorp.com/api
+  baseURL: https://cloud.robocorp.com/api/v1
+  tags:
+  - Workspace
+  properties:
+  - type: OpenAPI
+    url: openapi/robocorp-workspace-api-openapi.yml
+  - type: Documentation
+    url: https://robocorp.com/api
+  - type: Guide
+    url: https://robocorp.com/docs/control-room/apis-and-webhooks
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/rules/robocorp-control-room-rules.yml
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-process-schema.json
+  - type: JSONSchema
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-work-item-schema.json
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/robocorp/overview
   - type: AgenticAccess
     url: agentic-access/robocorp-agentic-access.yml
   - type: DomainSecurity
