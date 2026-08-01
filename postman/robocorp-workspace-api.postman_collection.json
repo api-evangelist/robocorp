@@ -1,0 +1,242 @@
+{
+  "info": {
+    "_postman_id": "ce0fb7f4-e3b7-4c19-843f-2a4acd52def2",
+    "name": "Robocorp Control Room Assets Workspace API",
+    "description": "The Robocorp Control Room API provides programmatic access to the orchestration platform for RPA automations. It supports workspace management, worker lifecycle, worker group organization, process definition and execution, process run monitoring, step run output retrieval, work item management, asset storage, vault secrets, webhook configuration, and task package deployment. Authentication uses API keys with the RC-WSKEY prefix passed in the Authorization header.\n\nContact Support:\n Name: Robocorp Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:48:59.000Z",
+    "updatedAt": "2026-07-28T02:49:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ce0fb7f4-e3b7-4c19-843f-2a4acd52def2"
+  },
+  "item": [
+    {
+      "name": "workspaces",
+      "item": [
+        {
+          "name": "{workspace_id}",
+          "item": [
+            {
+              "name": "Get Workspace",
+              "id": "d80c13fb-a536-4e97-ad31-16c37575c4ce",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "Authorization",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "header",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/workspaces/:workspace_id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "workspaces",
+                    ":workspace_id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "a7d20ac2-415d-4a66-ac2c-22858901530b",
+                      "key": "workspace_id",
+                      "value": "<string>",
+                      "description": "(Required) The workspace identifier"
+                    }
+                  ]
+                },
+                "description": "Retrieve workspace details by workspace ID."
+              },
+              "response": [
+                {
+                  "id": "74bbbcd7-f089-4071-b2aa-e4965b486e9a",
+                  "name": "Workspace details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workspaces/:workspace_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workspaces",
+                        ":workspace_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "workspace_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-07-28T02:49:00.000Z",
+                  "updatedAt": "2026-07-28T02:49:00.000Z",
+                  "uid": "35240-74bbbcd7-f089-4071-b2aa-e4965b486e9a"
+                },
+                {
+                  "id": "69e05e92-5856-4aa2-b7cf-2865befcdf88",
+                  "name": "Authentication failed",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workspaces/:workspace_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workspaces",
+                        ":workspace_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "workspace_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:49:00.000Z",
+                  "updatedAt": "2026-07-28T02:49:00.000Z",
+                  "uid": "35240-69e05e92-5856-4aa2-b7cf-2865befcdf88"
+                },
+                {
+                  "id": "2f5a911a-4889-4ee6-b671-6410d97e18cb",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Authorization",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workspaces/:workspace_id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workspaces",
+                        ":workspace_id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "workspace_id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T02:49:00.000Z",
+                  "updatedAt": "2026-07-28T02:49:00.000Z",
+                  "uid": "35240-2f5a911a-4889-4ee6-b671-6410d97e18cb"
+                }
+              ],
+              "createdAt": "2026-07-28T02:49:00.000Z",
+              "updatedAt": "2026-07-28T02:49:00.000Z",
+              "uid": "35240-d80c13fb-a536-4e97-ad31-16c37575c4ce"
+            }
+          ],
+          "id": "fb3db4f0-154f-4fb0-b7b1-77d042f82f72",
+          "createdAt": "2026-07-28T02:49:00.000Z",
+          "updatedAt": "2026-07-28T02:49:00.000Z",
+          "uid": "35240-fb3db4f0-154f-4fb0-b7b1-77d042f82f72"
+        }
+      ],
+      "id": "ee76d68d-7b34-45ad-9700-8965f613fdfd",
+      "createdAt": "2026-07-28T02:49:00.000Z",
+      "updatedAt": "2026-07-28T02:49:00.000Z",
+      "uid": "35240-ee76d68d-7b34-45ad-9700-8965f613fdfd"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://cloud.robocorp.com/api/v1"
+    }
+  ]
+}

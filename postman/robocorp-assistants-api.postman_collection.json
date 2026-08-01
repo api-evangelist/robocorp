@@ -1,0 +1,643 @@
+{
+  "info": {
+    "_postman_id": "e2b2b7a1-5bf8-41c3-b63c-55581c49f2ef",
+    "name": "Robocorp Control Room Assets Assistants API",
+    "description": "The Robocorp Control Room API provides programmatic access to the orchestration platform for RPA automations. It supports workspace management, worker lifecycle, worker group organization, process definition and execution, process run monitoring, step run output retrieval, work item management, asset storage, vault secrets, webhook configuration, and task package deployment. Authentication uses API keys with the RC-WSKEY prefix passed in the Authorization header.\n\nContact Support:\n Name: Robocorp Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:48:41.000Z",
+    "updatedAt": "2026-07-28T02:48:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e2b2b7a1-5bf8-41c3-b63c-55581c49f2ef"
+  },
+  "item": [
+    {
+      "name": "workspaces",
+      "item": [
+        {
+          "name": "{workspace_id}",
+          "item": [
+            {
+              "name": "assistants",
+              "item": [
+                {
+                  "name": "{assistant_id}",
+                  "item": [
+                    {
+                      "name": "Get Assistant",
+                      "id": "af6b9f7b-e7ab-49fc-ab15-00d3b721a334",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/assistants/:assistant_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "assistants",
+                            ":assistant_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "320d90e5-bac6-46a2-b2cc-cacd9cc4371d",
+                              "key": "workspace_id",
+                              "value": "<string>",
+                              "description": "(Required) The workspace identifier"
+                            },
+                            {
+                              "id": "df2f3bbf-bcdf-41f0-adc9-4c007be55753",
+                              "key": "assistant_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a specific AI assistant by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "e6264e3b-a2a6-4582-a737-b7709fcb5070",
+                          "name": "Assistant details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/assistants/:assistant_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "assistants",
+                                ":assistant_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "assistant_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:48:42.000Z",
+                          "updatedAt": "2026-07-28T02:48:42.000Z",
+                          "uid": "35240-e6264e3b-a2a6-4582-a737-b7709fcb5070"
+                        },
+                        {
+                          "id": "1145e0a9-c5bd-4ef6-8f03-3377883d7369",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/assistants/:assistant_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "assistants",
+                                ":assistant_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "assistant_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:48:42.000Z",
+                          "updatedAt": "2026-07-28T02:48:42.000Z",
+                          "uid": "35240-1145e0a9-c5bd-4ef6-8f03-3377883d7369"
+                        },
+                        {
+                          "id": "a6d2847e-7bca-4339-a54a-7fca7a416967",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/assistants/:assistant_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "assistants",
+                                ":assistant_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "assistant_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:48:42.000Z",
+                          "updatedAt": "2026-07-28T02:48:42.000Z",
+                          "uid": "35240-a6d2847e-7bca-4339-a54a-7fca7a416967"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:48:42.000Z",
+                      "updatedAt": "2026-07-28T02:48:42.000Z",
+                      "uid": "35240-af6b9f7b-e7ab-49fc-ab15-00d3b721a334"
+                    }
+                  ],
+                  "id": "6d0e3f3a-962a-4bbf-821a-318b17b1f221",
+                  "createdAt": "2026-07-28T02:48:42.000Z",
+                  "updatedAt": "2026-07-28T02:48:42.000Z",
+                  "uid": "35240-6d0e3f3a-962a-4bbf-821a-318b17b1f221"
+                },
+                {
+                  "name": "List Assistants",
+                  "id": "40f26815-c48c-4d35-82b5-036ae29d22f8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workspaces/:workspace_id/assistants",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workspaces",
+                        ":workspace_id",
+                        "assistants"
+                      ],
+                      "variable": [
+                        {
+                          "id": "2005d742-66dd-4f37-a82d-ff96f1d50a68",
+                          "key": "workspace_id",
+                          "value": "<string>",
+                          "description": "(Required) The workspace identifier"
+                        }
+                      ]
+                    },
+                    "description": "List all AI assistants in a workspace."
+                  },
+                  "response": [
+                    {
+                      "id": "abb15e93-5dc0-4cd3-9d3f-2446517fd223",
+                      "name": "List of assistants",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/assistants",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "assistants"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:48:42.000Z",
+                      "updatedAt": "2026-07-28T02:48:42.000Z",
+                      "uid": "35240-abb15e93-5dc0-4cd3-9d3f-2446517fd223"
+                    },
+                    {
+                      "id": "6ea4bacc-9b40-49b9-9c55-eb8bcc3ced78",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/assistants",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "assistants"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:48:42.000Z",
+                      "updatedAt": "2026-07-28T02:48:42.000Z",
+                      "uid": "35240-6ea4bacc-9b40-49b9-9c55-eb8bcc3ced78"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:48:42.000Z",
+                  "updatedAt": "2026-07-28T02:48:42.000Z",
+                  "uid": "35240-40f26815-c48c-4d35-82b5-036ae29d22f8"
+                },
+                {
+                  "name": "Create Assistant",
+                  "id": "d93c1c03-02fa-4c7f-8a52-c6b9106e1f21",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/workspaces/:workspace_id/assistants",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workspaces",
+                        ":workspace_id",
+                        "assistants"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7e700db4-74f0-470e-915c-2725bbbb1bce",
+                          "key": "workspace_id",
+                          "value": "<string>",
+                          "description": "(Required) The workspace identifier"
+                        }
+                      ]
+                    },
+                    "description": "Create a new AI assistant."
+                  },
+                  "response": [
+                    {
+                      "id": "71ab1c13-98b3-4db2-94d2-5c6fb0fd05ce",
+                      "name": "Assistant created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/assistants",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "assistants"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:48:42.000Z",
+                      "updatedAt": "2026-07-28T02:48:42.000Z",
+                      "uid": "35240-71ab1c13-98b3-4db2-94d2-5c6fb0fd05ce"
+                    },
+                    {
+                      "id": "a001ff31-dfe5-47ae-9a45-fa09b7c680a5",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/assistants",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "assistants"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:48:42.000Z",
+                      "updatedAt": "2026-07-28T02:48:42.000Z",
+                      "uid": "35240-a001ff31-dfe5-47ae-9a45-fa09b7c680a5"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:48:42.000Z",
+                  "updatedAt": "2026-07-28T02:48:42.000Z",
+                  "uid": "35240-d93c1c03-02fa-4c7f-8a52-c6b9106e1f21"
+                }
+              ],
+              "id": "eb0605bc-4d11-4cc9-bb9c-05e7cfc1e92c",
+              "createdAt": "2026-07-28T02:48:42.000Z",
+              "updatedAt": "2026-07-28T02:48:42.000Z",
+              "uid": "35240-eb0605bc-4d11-4cc9-bb9c-05e7cfc1e92c"
+            }
+          ],
+          "id": "7beeb4e2-bedd-4562-b3a4-4c6e268cbf03",
+          "createdAt": "2026-07-28T02:48:42.000Z",
+          "updatedAt": "2026-07-28T02:48:42.000Z",
+          "uid": "35240-7beeb4e2-bedd-4562-b3a4-4c6e268cbf03"
+        }
+      ],
+      "id": "3a3fdf00-436a-4dd3-8f21-6ba4d80d8528",
+      "createdAt": "2026-07-28T02:48:42.000Z",
+      "updatedAt": "2026-07-28T02:48:42.000Z",
+      "uid": "35240-3a3fdf00-436a-4dd3-8f21-6ba4d80d8528"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://cloud.robocorp.com/api/v1"
+    }
+  ]
+}

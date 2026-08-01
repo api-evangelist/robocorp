@@ -1,0 +1,673 @@
+{
+  "info": {
+    "_postman_id": "5c5e839b-3668-48ee-a1de-1bfb4641909b",
+    "name": "Robocorp Control Room Assets Processes API",
+    "description": "The Robocorp Control Room API provides programmatic access to the orchestration platform for RPA automations. It supports workspace management, worker lifecycle, worker group organization, process definition and execution, process run monitoring, step run output retrieval, work item management, asset storage, vault secrets, webhook configuration, and task package deployment. Authentication uses API keys with the RC-WSKEY prefix passed in the Authorization header.\n\nContact Support:\n Name: Robocorp Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:48:43.000Z",
+    "updatedAt": "2026-07-28T02:48:43.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5c5e839b-3668-48ee-a1de-1bfb4641909b"
+  },
+  "item": [
+    {
+      "name": "workspaces",
+      "item": [
+        {
+          "name": "{workspace_id}",
+          "item": [
+            {
+              "name": "processes",
+              "item": [
+                {
+                  "name": "{process_id}",
+                  "item": [
+                    {
+                      "name": "Get Process",
+                      "id": "d8e022ee-da80-4112-85f2-6741e07bd9ba",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/processes/:process_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "processes",
+                            ":process_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "25b12d64-c85f-49de-9fcb-ee22796d653e",
+                              "key": "workspace_id",
+                              "value": "<string>",
+                              "description": "(Required) The workspace identifier"
+                            },
+                            {
+                              "id": "38224742-08c0-4a2e-83b1-3a0bb424f9a4",
+                              "key": "process_id",
+                              "value": "<string>",
+                              "description": "(Required) The process identifier"
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a specific process by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "c8a1ea59-bda6-46ef-93f9-9c550911ed60",
+                          "name": "Process details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/processes/:process_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "processes",
+                                ":process_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "process_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"state\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:48:44.000Z",
+                          "updatedAt": "2026-07-28T02:48:44.000Z",
+                          "uid": "35240-c8a1ea59-bda6-46ef-93f9-9c550911ed60"
+                        },
+                        {
+                          "id": "f8542a32-8af6-4b58-8946-48d8deaf7eb3",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/processes/:process_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "processes",
+                                ":process_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "process_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:48:44.000Z",
+                          "updatedAt": "2026-07-28T02:48:44.000Z",
+                          "uid": "35240-f8542a32-8af6-4b58-8946-48d8deaf7eb3"
+                        },
+                        {
+                          "id": "7b7b7f59-825d-4b5b-940e-88a7cff1f6e3",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/processes/:process_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "processes",
+                                ":process_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "process_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:48:44.000Z",
+                          "updatedAt": "2026-07-28T02:48:44.000Z",
+                          "uid": "35240-7b7b7f59-825d-4b5b-940e-88a7cff1f6e3"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:48:44.000Z",
+                      "updatedAt": "2026-07-28T02:48:44.000Z",
+                      "uid": "35240-d8e022ee-da80-4112-85f2-6741e07bd9ba"
+                    }
+                  ],
+                  "id": "62902a4f-d2e8-4eb7-9d6a-c2e6d8d6e770",
+                  "createdAt": "2026-07-28T02:48:44.000Z",
+                  "updatedAt": "2026-07-28T02:48:44.000Z",
+                  "uid": "35240-62902a4f-d2e8-4eb7-9d6a-c2e6d8d6e770"
+                },
+                {
+                  "name": "List Processes",
+                  "id": "fce4cd60-ecb7-488e-ad91-cf28f620ab29",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workspaces/:workspace_id/processes?limit=<integer>&cursor=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workspaces",
+                        ":workspace_id",
+                        "processes"
+                      ],
+                      "query": [
+                        {
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "cursor",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "02836f4a-2e69-47b0-951f-5ba12717d572",
+                          "key": "workspace_id",
+                          "value": "<string>",
+                          "description": "(Required) The workspace identifier"
+                        }
+                      ]
+                    },
+                    "description": "List all processes defined in a workspace."
+                  },
+                  "response": [
+                    {
+                      "id": "4e057b51-0e5b-404c-9257-0b165cb1a144",
+                      "name": "List of processes",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/processes?limit=<integer>&cursor=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "processes"
+                          ],
+                          "query": [
+                            {
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "key": "cursor",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"state\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"state\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    }\n  ],\n  \"has_more\": \"<boolean>\"\n}",
+                      "createdAt": "2026-07-28T02:48:44.000Z",
+                      "updatedAt": "2026-07-28T02:48:44.000Z",
+                      "uid": "35240-4e057b51-0e5b-404c-9257-0b165cb1a144"
+                    },
+                    {
+                      "id": "a2974485-07ef-4269-bc16-62448332efb3",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/processes?limit=<integer>&cursor=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "processes"
+                          ],
+                          "query": [
+                            {
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "key": "cursor",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:48:44.000Z",
+                      "updatedAt": "2026-07-28T02:48:44.000Z",
+                      "uid": "35240-a2974485-07ef-4269-bc16-62448332efb3"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:48:44.000Z",
+                  "updatedAt": "2026-07-28T02:48:44.000Z",
+                  "uid": "35240-fce4cd60-ecb7-488e-ad91-cf28f620ab29"
+                },
+                {
+                  "name": "Create Process",
+                  "id": "a10c12dc-7ec9-45f3-aedd-7ace1356c3dd",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"notifications\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/workspaces/:workspace_id/processes",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workspaces",
+                        ":workspace_id",
+                        "processes"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f789e55b-234b-49ce-80df-5a714390f503",
+                          "key": "workspace_id",
+                          "value": "<string>",
+                          "description": "(Required) The workspace identifier"
+                        }
+                      ]
+                    },
+                    "description": "Create a new process with steps, schedules, triggers, and notifications."
+                  },
+                  "response": [
+                    {
+                      "id": "efded5f2-594a-40bd-8f3e-aa3f217045ae",
+                      "name": "Process created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"notifications\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/processes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "processes"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"state\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:48:44.000Z",
+                      "updatedAt": "2026-07-28T02:48:44.000Z",
+                      "uid": "35240-efded5f2-594a-40bd-8f3e-aa3f217045ae"
+                    },
+                    {
+                      "id": "974605e4-2f91-4e83-8bdd-95ec8c29b7d2",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"notifications\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/processes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "processes"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:48:44.000Z",
+                      "updatedAt": "2026-07-28T02:48:44.000Z",
+                      "uid": "35240-974605e4-2f91-4e83-8bdd-95ec8c29b7d2"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:48:44.000Z",
+                  "updatedAt": "2026-07-28T02:48:44.000Z",
+                  "uid": "35240-a10c12dc-7ec9-45f3-aedd-7ace1356c3dd"
+                }
+              ],
+              "id": "7c2b3031-b308-4161-a22b-a72a37896d5c",
+              "createdAt": "2026-07-28T02:48:44.000Z",
+              "updatedAt": "2026-07-28T02:48:44.000Z",
+              "uid": "35240-7c2b3031-b308-4161-a22b-a72a37896d5c"
+            }
+          ],
+          "id": "2a8c914d-f8d2-41c7-ac21-61f7f5c1f6c1",
+          "createdAt": "2026-07-28T02:48:44.000Z",
+          "updatedAt": "2026-07-28T02:48:44.000Z",
+          "uid": "35240-2a8c914d-f8d2-41c7-ac21-61f7f5c1f6c1"
+        }
+      ],
+      "id": "677c45d8-2548-4254-aa18-b82bba70f917",
+      "createdAt": "2026-07-28T02:48:44.000Z",
+      "updatedAt": "2026-07-28T02:48:44.000Z",
+      "uid": "35240-677c45d8-2548-4254-aa18-b82bba70f917"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://cloud.robocorp.com/api/v1"
+    }
+  ]
+}

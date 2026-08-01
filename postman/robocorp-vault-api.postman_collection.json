@@ -1,0 +1,940 @@
+{
+  "info": {
+    "_postman_id": "f2514207-369c-4ded-a250-c58c6b5a78ff",
+    "name": "Robocorp Control Room Assets Vault API",
+    "description": "The Robocorp Control Room API provides programmatic access to the orchestration platform for RPA automations. It supports workspace management, worker lifecycle, worker group organization, process definition and execution, process run monitoring, step run output retrieval, work item management, asset storage, vault secrets, webhook configuration, and task package deployment. Authentication uses API keys with the RC-WSKEY prefix passed in the Authorization header.\n\nContact Support:\n Name: Robocorp Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:48:46.000Z",
+    "updatedAt": "2026-07-28T02:48:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f2514207-369c-4ded-a250-c58c6b5a78ff"
+  },
+  "item": [
+    {
+      "name": "workspaces",
+      "item": [
+        {
+          "name": "{workspace_id}",
+          "item": [
+            {
+              "name": "vault",
+              "item": [
+                {
+                  "name": "secrets",
+                  "item": [
+                    {
+                      "name": "{secret_id}",
+                      "item": [
+                        {
+                          "name": "Update Secret",
+                          "id": "84a696f0-5600-427d-88f0-32d6167c64db",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "Authorization",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/vault/secrets/:secret_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "vault",
+                                "secrets",
+                                ":secret_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "009666dd-5f7e-4668-80c4-56594b229d7d",
+                                  "key": "workspace_id",
+                                  "value": "<string>",
+                                  "description": "(Required) The workspace identifier"
+                                },
+                                {
+                                  "id": "5ec56767-9f6b-4842-bf0a-a560ad381c40",
+                                  "key": "secret_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Update an existing secret value in the vault."
+                          },
+                          "response": [
+                            {
+                              "id": "8f9fc193-309b-4a41-9d9e-956f893c7f71",
+                              "name": "Secret updated",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/workspaces/:workspace_id/vault/secrets/:secret_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "workspaces",
+                                    ":workspace_id",
+                                    "vault",
+                                    "secrets",
+                                    ":secret_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace_id"
+                                    },
+                                    {
+                                      "key": "secret_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-07-28T02:48:47.000Z",
+                              "updatedAt": "2026-07-28T02:48:47.000Z",
+                              "uid": "35240-8f9fc193-309b-4a41-9d9e-956f893c7f71"
+                            },
+                            {
+                              "id": "0d8eb678-fa4b-4858-b534-0ee8b5a54400",
+                              "name": "Authentication failed",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/workspaces/:workspace_id/vault/secrets/:secret_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "workspaces",
+                                    ":workspace_id",
+                                    "vault",
+                                    "secrets",
+                                    ":secret_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace_id"
+                                    },
+                                    {
+                                      "key": "secret_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:48:47.000Z",
+                              "updatedAt": "2026-07-28T02:48:47.000Z",
+                              "uid": "35240-0d8eb678-fa4b-4858-b534-0ee8b5a54400"
+                            },
+                            {
+                              "id": "ab2f5041-3a94-42a3-8502-2e2573e9348c",
+                              "name": "Resource not found",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"name\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/workspaces/:workspace_id/vault/secrets/:secret_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "workspaces",
+                                    ":workspace_id",
+                                    "vault",
+                                    "secrets",
+                                    ":secret_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace_id"
+                                    },
+                                    {
+                                      "key": "secret_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:48:47.000Z",
+                              "updatedAt": "2026-07-28T02:48:47.000Z",
+                              "uid": "35240-ab2f5041-3a94-42a3-8502-2e2573e9348c"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:48:47.000Z",
+                          "updatedAt": "2026-07-28T02:48:47.000Z",
+                          "uid": "35240-84a696f0-5600-427d-88f0-32d6167c64db"
+                        },
+                        {
+                          "name": "Delete Secret",
+                          "id": "50644bcf-6635-4a91-85ec-5800cb615b14",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "auth": {
+                              "type": "apikey",
+                              "apikey": [
+                                {
+                                  "key": "key",
+                                  "value": "Authorization",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "value",
+                                  "value": "{{apiKey}}",
+                                  "type": "string"
+                                },
+                                {
+                                  "key": "in",
+                                  "value": "header",
+                                  "type": "string"
+                                }
+                              ]
+                            },
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/vault/secrets/:secret_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "vault",
+                                "secrets",
+                                ":secret_id"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "6956cef7-f032-4948-8cd0-47d437ba4213",
+                                  "key": "workspace_id",
+                                  "value": "<string>",
+                                  "description": "(Required) The workspace identifier"
+                                },
+                                {
+                                  "id": "f963890f-b2f1-44bf-82e5-9782cae4c877",
+                                  "key": "secret_id",
+                                  "value": "<string>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Remove a secret from the vault."
+                          },
+                          "response": [
+                            {
+                              "id": "784dbf04-8853-4ec8-b21f-bab7789925c1",
+                              "name": "Secret deleted",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/workspaces/:workspace_id/vault/secrets/:secret_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "workspaces",
+                                    ":workspace_id",
+                                    "vault",
+                                    "secrets",
+                                    ":secret_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace_id"
+                                    },
+                                    {
+                                      "key": "secret_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T02:48:47.000Z",
+                              "updatedAt": "2026-07-28T02:48:47.000Z",
+                              "uid": "35240-784dbf04-8853-4ec8-b21f-bab7789925c1"
+                            },
+                            {
+                              "id": "f587a563-cd4d-45e2-b25a-1478d79a58d9",
+                              "name": "Authentication failed",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/workspaces/:workspace_id/vault/secrets/:secret_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "workspaces",
+                                    ":workspace_id",
+                                    "vault",
+                                    "secrets",
+                                    ":secret_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace_id"
+                                    },
+                                    {
+                                      "key": "secret_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:48:47.000Z",
+                              "updatedAt": "2026-07-28T02:48:47.000Z",
+                              "uid": "35240-f587a563-cd4d-45e2-b25a-1478d79a58d9"
+                            },
+                            {
+                              "id": "f28f56c3-22aa-441f-a087-8d905347c936",
+                              "name": "Resource not found",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Authorization",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/workspaces/:workspace_id/vault/secrets/:secret_id",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "workspaces",
+                                    ":workspace_id",
+                                    "vault",
+                                    "secrets",
+                                    ":secret_id"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "workspace_id"
+                                    },
+                                    {
+                                      "key": "secret_id"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                              "createdAt": "2026-07-28T02:48:47.000Z",
+                              "updatedAt": "2026-07-28T02:48:47.000Z",
+                              "uid": "35240-f28f56c3-22aa-441f-a087-8d905347c936"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T02:48:47.000Z",
+                          "updatedAt": "2026-07-28T02:48:47.000Z",
+                          "uid": "35240-50644bcf-6635-4a91-85ec-5800cb615b14"
+                        }
+                      ],
+                      "id": "1bf7edef-ced8-4cbb-be9e-ec88b91e5cef",
+                      "createdAt": "2026-07-28T02:48:47.000Z",
+                      "updatedAt": "2026-07-28T02:48:47.000Z",
+                      "uid": "35240-1bf7edef-ced8-4cbb-be9e-ec88b91e5cef"
+                    },
+                    {
+                      "name": "List Secrets",
+                      "id": "abea1f59-3060-4f55-a006-52a42852c7e8",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/vault/secrets",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "vault",
+                            "secrets"
+                          ],
+                          "variable": [
+                            {
+                              "id": "843e1303-9228-4a7d-b456-fc24cac33076",
+                              "key": "workspace_id",
+                              "value": "<string>",
+                              "description": "(Required) The workspace identifier"
+                            }
+                          ]
+                        },
+                        "description": "List all secrets in the workspace vault."
+                      },
+                      "response": [
+                        {
+                          "id": "506baedc-9acc-4650-ad91-ba20e5d9650d",
+                          "name": "List of secrets (names only, not values)",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/vault/secrets",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "vault",
+                                "secrets"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"created_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T02:48:47.000Z",
+                          "updatedAt": "2026-07-28T02:48:47.000Z",
+                          "uid": "35240-506baedc-9acc-4650-ad91-ba20e5d9650d"
+                        },
+                        {
+                          "id": "8772e592-5aec-4bdb-bddc-5a52ae1be393",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/vault/secrets",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "vault",
+                                "secrets"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:48:47.000Z",
+                          "updatedAt": "2026-07-28T02:48:47.000Z",
+                          "uid": "35240-8772e592-5aec-4bdb-bddc-5a52ae1be393"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:48:47.000Z",
+                      "updatedAt": "2026-07-28T02:48:47.000Z",
+                      "uid": "35240-abea1f59-3060-4f55-a006-52a42852c7e8"
+                    },
+                    {
+                      "name": "Create Secret",
+                      "id": "17da3220-c14f-469a-acce-869c5804c02f",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/vault/secrets",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "vault",
+                            "secrets"
+                          ],
+                          "variable": [
+                            {
+                              "id": "7548f77d-ff82-4de2-9900-cf37f0d9ba16",
+                              "key": "workspace_id",
+                              "value": "<string>",
+                              "description": "(Required) The workspace identifier"
+                            }
+                          ]
+                        },
+                        "description": "Create a new secret in the workspace vault."
+                      },
+                      "response": [
+                        {
+                          "id": "f51974f8-f13d-4bae-8a74-a2aab3b5c2f4",
+                          "name": "Secret created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/vault/secrets",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "vault",
+                                "secrets"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:48:47.000Z",
+                          "updatedAt": "2026-07-28T02:48:47.000Z",
+                          "uid": "35240-f51974f8-f13d-4bae-8a74-a2aab3b5c2f4"
+                        },
+                        {
+                          "id": "c12d29a0-0270-4c87-b169-2ac6483e8554",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"value\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/vault/secrets",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "vault",
+                                "secrets"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:48:47.000Z",
+                          "updatedAt": "2026-07-28T02:48:47.000Z",
+                          "uid": "35240-c12d29a0-0270-4c87-b169-2ac6483e8554"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:48:47.000Z",
+                      "updatedAt": "2026-07-28T02:48:47.000Z",
+                      "uid": "35240-17da3220-c14f-469a-acce-869c5804c02f"
+                    }
+                  ],
+                  "id": "c2a08ec6-da95-48d4-886b-b45801c5349c",
+                  "createdAt": "2026-07-28T02:48:47.000Z",
+                  "updatedAt": "2026-07-28T02:48:47.000Z",
+                  "uid": "35240-c2a08ec6-da95-48d4-886b-b45801c5349c"
+                }
+              ],
+              "id": "f400323b-f6c0-4550-a41b-6c36843cc7cf",
+              "createdAt": "2026-07-28T02:48:47.000Z",
+              "updatedAt": "2026-07-28T02:48:47.000Z",
+              "uid": "35240-f400323b-f6c0-4550-a41b-6c36843cc7cf"
+            }
+          ],
+          "id": "dfca69bf-781a-4039-9f89-60548549757d",
+          "createdAt": "2026-07-28T02:48:47.000Z",
+          "updatedAt": "2026-07-28T02:48:47.000Z",
+          "uid": "35240-dfca69bf-781a-4039-9f89-60548549757d"
+        }
+      ],
+      "id": "c1de8c26-95a7-49c8-8e49-036c3e5480ca",
+      "createdAt": "2026-07-28T02:48:47.000Z",
+      "updatedAt": "2026-07-28T02:48:47.000Z",
+      "uid": "35240-c1de8c26-95a7-49c8-8e49-036c3e5480ca"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://cloud.robocorp.com/api/v1"
+    }
+  ]
+}

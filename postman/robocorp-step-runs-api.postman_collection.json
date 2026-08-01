@@ -1,0 +1,560 @@
+{
+  "info": {
+    "_postman_id": "44764cf4-6efa-4739-9ee2-75cc22de20a9",
+    "name": "Robocorp Control Room Assets Step Runs API",
+    "description": "The Robocorp Control Room API provides programmatic access to the orchestration platform for RPA automations. It supports workspace management, worker lifecycle, worker group organization, process definition and execution, process run monitoring, step run output retrieval, work item management, asset storage, vault secrets, webhook configuration, and task package deployment. Authentication uses API keys with the RC-WSKEY prefix passed in the Authorization header.\n\nContact Support:\n Name: Robocorp Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:48:44.000Z",
+    "updatedAt": "2026-07-28T02:48:44.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-44764cf4-6efa-4739-9ee2-75cc22de20a9"
+  },
+  "item": [
+    {
+      "name": "workspaces",
+      "item": [
+        {
+          "name": "{workspace_id}",
+          "item": [
+            {
+              "name": "processes",
+              "item": [
+                {
+                  "name": "{process_id}",
+                  "item": [
+                    {
+                      "name": "runs",
+                      "item": [
+                        {
+                          "name": "{run_id}",
+                          "item": [
+                            {
+                              "name": "step-runs",
+                              "item": [
+                                {
+                                  "name": "{step_run_id}",
+                                  "item": [
+                                    {
+                                      "name": "Get Step Run",
+                                      "id": "d242cffd-0957-44a6-a575-372b28cf4362",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "auth": {
+                                          "type": "apikey",
+                                          "apikey": [
+                                            {
+                                              "key": "key",
+                                              "value": "Authorization",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "value",
+                                              "value": "{{apiKey}}",
+                                              "type": "string"
+                                            },
+                                            {
+                                              "key": "in",
+                                              "value": "header",
+                                              "type": "string"
+                                            }
+                                          ]
+                                        },
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/workspaces/:workspace_id/processes/:process_id/runs/:run_id/step-runs/:step_run_id",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "workspaces",
+                                            ":workspace_id",
+                                            "processes",
+                                            ":process_id",
+                                            "runs",
+                                            ":run_id",
+                                            "step-runs",
+                                            ":step_run_id"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "34711b66-2ae0-44a9-a16e-ab1aa5240c67",
+                                              "key": "workspace_id",
+                                              "value": "<string>",
+                                              "description": "(Required) The workspace identifier"
+                                            },
+                                            {
+                                              "id": "88d8837d-ef99-4aaa-b68b-dd3bdff32b30",
+                                              "key": "process_id",
+                                              "value": "<string>",
+                                              "description": "(Required) The process identifier"
+                                            },
+                                            {
+                                              "id": "333d22f7-13b3-4aeb-af0c-b7a5631c467e",
+                                              "key": "run_id",
+                                              "value": "<string>",
+                                              "description": "(Required) The process run identifier"
+                                            },
+                                            {
+                                              "id": "f6d3b981-cd68-4757-997a-da467907d36f",
+                                              "key": "step_run_id",
+                                              "value": "<string>",
+                                              "description": "(Required) "
+                                            }
+                                          ]
+                                        },
+                                        "description": "Retrieve details for a specific step run."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "6a42a716-c13f-48e9-b887-e5279cb7db42",
+                                          "name": "Step run details",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "Authorization",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/workspaces/:workspace_id/processes/:process_id/runs/:run_id/step-runs/:step_run_id",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "workspaces",
+                                                ":workspace_id",
+                                                "processes",
+                                                ":process_id",
+                                                "runs",
+                                                ":run_id",
+                                                "step-runs",
+                                                ":step_run_id"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "workspace_id"
+                                                },
+                                                {
+                                                  "key": "process_id"
+                                                },
+                                                {
+                                                  "key": "run_id"
+                                                },
+                                                {
+                                                  "key": "step_run_id"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"id\": \"<string>\",\n  \"process_run_id\": \"<string>\",\n  \"step_name\": \"<string>\",\n  \"state\": \"<string>\",\n  \"started_at\": \"<dateTime>\",\n  \"completed_at\": \"<dateTime>\"\n}",
+                                          "createdAt": "2026-07-28T02:48:45.000Z",
+                                          "updatedAt": "2026-07-28T02:48:45.000Z",
+                                          "uid": "35240-6a42a716-c13f-48e9-b887-e5279cb7db42"
+                                        },
+                                        {
+                                          "id": "23d5bea6-9808-48ae-b72a-49fb2ff1bb46",
+                                          "name": "Authentication failed",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "Authorization",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/workspaces/:workspace_id/processes/:process_id/runs/:run_id/step-runs/:step_run_id",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "workspaces",
+                                                ":workspace_id",
+                                                "processes",
+                                                ":process_id",
+                                                "runs",
+                                                ":run_id",
+                                                "step-runs",
+                                                ":step_run_id"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "workspace_id"
+                                                },
+                                                {
+                                                  "key": "process_id"
+                                                },
+                                                {
+                                                  "key": "run_id"
+                                                },
+                                                {
+                                                  "key": "step_run_id"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                                          "createdAt": "2026-07-28T02:48:45.000Z",
+                                          "updatedAt": "2026-07-28T02:48:45.000Z",
+                                          "uid": "35240-23d5bea6-9808-48ae-b72a-49fb2ff1bb46"
+                                        },
+                                        {
+                                          "id": "c7fe2961-26ec-4c25-bd9d-634a71d87279",
+                                          "name": "Resource not found",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: apikey",
+                                                "key": "Authorization",
+                                                "value": "<API Key>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/workspaces/:workspace_id/processes/:process_id/runs/:run_id/step-runs/:step_run_id",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "workspaces",
+                                                ":workspace_id",
+                                                "processes",
+                                                ":process_id",
+                                                "runs",
+                                                ":run_id",
+                                                "step-runs",
+                                                ":step_run_id"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "workspace_id"
+                                                },
+                                                {
+                                                  "key": "process_id"
+                                                },
+                                                {
+                                                  "key": "run_id"
+                                                },
+                                                {
+                                                  "key": "step_run_id"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Not Found",
+                                          "code": 404,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                                          "createdAt": "2026-07-28T02:48:45.000Z",
+                                          "updatedAt": "2026-07-28T02:48:45.000Z",
+                                          "uid": "35240-c7fe2961-26ec-4c25-bd9d-634a71d87279"
+                                        }
+                                      ],
+                                      "createdAt": "2026-07-28T02:48:45.000Z",
+                                      "updatedAt": "2026-07-28T02:48:45.000Z",
+                                      "uid": "35240-d242cffd-0957-44a6-a575-372b28cf4362"
+                                    }
+                                  ],
+                                  "id": "25c1759f-29e1-4f1c-886f-b66a708ea539",
+                                  "createdAt": "2026-07-28T02:48:45.000Z",
+                                  "updatedAt": "2026-07-28T02:48:45.000Z",
+                                  "uid": "35240-25c1759f-29e1-4f1c-886f-b66a708ea539"
+                                },
+                                {
+                                  "name": "List Step Runs",
+                                  "id": "8774771f-2e71-407d-b7c2-0272457e562f",
+                                  "protocolProfileBehavior": {
+                                    "disableBodyPruning": true
+                                  },
+                                  "request": {
+                                    "auth": {
+                                      "type": "apikey",
+                                      "apikey": [
+                                        {
+                                          "key": "key",
+                                          "value": "Authorization",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "value",
+                                          "value": "{{apiKey}}",
+                                          "type": "string"
+                                        },
+                                        {
+                                          "key": "in",
+                                          "value": "header",
+                                          "type": "string"
+                                        }
+                                      ]
+                                    },
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/workspaces/:workspace_id/processes/:process_id/runs/:run_id/step-runs",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "workspaces",
+                                        ":workspace_id",
+                                        "processes",
+                                        ":process_id",
+                                        "runs",
+                                        ":run_id",
+                                        "step-runs"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "id": "d9c41f04-7c16-4a60-932b-e77c55c21f9a",
+                                          "key": "workspace_id",
+                                          "value": "<string>",
+                                          "description": "(Required) The workspace identifier"
+                                        },
+                                        {
+                                          "id": "9a3d434c-3d72-4b32-bda0-0070d9a1b6bf",
+                                          "key": "process_id",
+                                          "value": "<string>",
+                                          "description": "(Required) The process identifier"
+                                        },
+                                        {
+                                          "id": "bf3740a9-d46a-4977-b173-3e9a3d7b1a5a",
+                                          "key": "run_id",
+                                          "value": "<string>",
+                                          "description": "(Required) The process run identifier"
+                                        }
+                                      ]
+                                    },
+                                    "description": "List all step runs within a process run."
+                                  },
+                                  "response": [
+                                    {
+                                      "id": "d741c54d-6146-404d-a5d3-8303a9ba4391",
+                                      "name": "List of step runs",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "Authorization",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/workspaces/:workspace_id/processes/:process_id/runs/:run_id/step-runs",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "workspaces",
+                                            ":workspace_id",
+                                            "processes",
+                                            ":process_id",
+                                            "runs",
+                                            ":run_id",
+                                            "step-runs"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "workspace_id"
+                                            },
+                                            {
+                                              "key": "process_id"
+                                            },
+                                            {
+                                              "key": "run_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "OK",
+                                      "code": 200,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"process_run_id\": \"<string>\",\n      \"step_name\": \"<string>\",\n      \"state\": \"<string>\",\n      \"started_at\": \"<dateTime>\",\n      \"completed_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"process_run_id\": \"<string>\",\n      \"step_name\": \"<string>\",\n      \"state\": \"<string>\",\n      \"started_at\": \"<dateTime>\",\n      \"completed_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                                      "createdAt": "2026-07-28T02:48:45.000Z",
+                                      "updatedAt": "2026-07-28T02:48:45.000Z",
+                                      "uid": "35240-d741c54d-6146-404d-a5d3-8303a9ba4391"
+                                    },
+                                    {
+                                      "id": "5bc77e15-6e83-4637-8ba6-fdef87791747",
+                                      "name": "Authentication failed",
+                                      "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          },
+                                          {
+                                            "description": "Added as a part of security scheme: apikey",
+                                            "key": "Authorization",
+                                            "value": "<API Key>"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/workspaces/:workspace_id/processes/:process_id/runs/:run_id/step-runs",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "workspaces",
+                                            ":workspace_id",
+                                            "processes",
+                                            ":process_id",
+                                            "runs",
+                                            ":run_id",
+                                            "step-runs"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "key": "workspace_id"
+                                            },
+                                            {
+                                              "key": "process_id"
+                                            },
+                                            {
+                                              "key": "run_id"
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "status": "Unauthorized",
+                                      "code": 401,
+                                      "_postman_previewlanguage": "json",
+                                      "header": [
+                                        {
+                                          "key": "Content-Type",
+                                          "value": "application/json"
+                                        }
+                                      ],
+                                      "cookie": [],
+                                      "responseTime": null,
+                                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                                      "createdAt": "2026-07-28T02:48:45.000Z",
+                                      "updatedAt": "2026-07-28T02:48:45.000Z",
+                                      "uid": "35240-5bc77e15-6e83-4637-8ba6-fdef87791747"
+                                    }
+                                  ],
+                                  "createdAt": "2026-07-28T02:48:45.000Z",
+                                  "updatedAt": "2026-07-28T02:48:45.000Z",
+                                  "uid": "35240-8774771f-2e71-407d-b7c2-0272457e562f"
+                                }
+                              ],
+                              "id": "97ba3640-6192-4cb7-9c66-226b049be14f",
+                              "createdAt": "2026-07-28T02:48:45.000Z",
+                              "updatedAt": "2026-07-28T02:48:45.000Z",
+                              "uid": "35240-97ba3640-6192-4cb7-9c66-226b049be14f"
+                            }
+                          ],
+                          "id": "24e70269-7438-431e-b9be-5f0605a4bca6",
+                          "createdAt": "2026-07-28T02:48:45.000Z",
+                          "updatedAt": "2026-07-28T02:48:45.000Z",
+                          "uid": "35240-24e70269-7438-431e-b9be-5f0605a4bca6"
+                        }
+                      ],
+                      "id": "a0ce21f0-cb7e-4b4e-94d7-6e7eda5365fa",
+                      "createdAt": "2026-07-28T02:48:45.000Z",
+                      "updatedAt": "2026-07-28T02:48:45.000Z",
+                      "uid": "35240-a0ce21f0-cb7e-4b4e-94d7-6e7eda5365fa"
+                    }
+                  ],
+                  "id": "7bb77b4a-d4e5-4e83-9a4b-c6a01f02ab68",
+                  "createdAt": "2026-07-28T02:48:45.000Z",
+                  "updatedAt": "2026-07-28T02:48:45.000Z",
+                  "uid": "35240-7bb77b4a-d4e5-4e83-9a4b-c6a01f02ab68"
+                }
+              ],
+              "id": "e09a4eaa-b0d2-4118-813a-95488d472fa4",
+              "createdAt": "2026-07-28T02:48:45.000Z",
+              "updatedAt": "2026-07-28T02:48:45.000Z",
+              "uid": "35240-e09a4eaa-b0d2-4118-813a-95488d472fa4"
+            }
+          ],
+          "id": "fa8d586a-2d31-4a3f-a6af-74e9c98c0771",
+          "createdAt": "2026-07-28T02:48:45.000Z",
+          "updatedAt": "2026-07-28T02:48:45.000Z",
+          "uid": "35240-fa8d586a-2d31-4a3f-a6af-74e9c98c0771"
+        }
+      ],
+      "id": "e75d3d37-4167-43e3-b55c-f578ff71c4a0",
+      "createdAt": "2026-07-28T02:48:45.000Z",
+      "updatedAt": "2026-07-28T02:48:45.000Z",
+      "uid": "35240-e75d3d37-4167-43e3-b55c-f578ff71c4a0"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://cloud.robocorp.com/api/v1"
+    }
+  ]
+}

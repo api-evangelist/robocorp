@@ -1,0 +1,861 @@
+{
+  "info": {
+    "_postman_id": "c507611d-7cbc-4e89-93e7-05001e18fb42",
+    "name": "Robocorp Control Room Assets Webhooks API",
+    "description": "The Robocorp Control Room API provides programmatic access to the orchestration platform for RPA automations. It supports workspace management, worker lifecycle, worker group organization, process definition and execution, process run monitoring, step run output retrieval, work item management, asset storage, vault secrets, webhook configuration, and task package deployment. Authentication uses API keys with the RC-WSKEY prefix passed in the Authorization header.\n\nContact Support:\n Name: Robocorp Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:48:55.000Z",
+    "updatedAt": "2026-07-28T02:48:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c507611d-7cbc-4e89-93e7-05001e18fb42"
+  },
+  "item": [
+    {
+      "name": "workspaces",
+      "item": [
+        {
+          "name": "{workspace_id}",
+          "item": [
+            {
+              "name": "webhooks",
+              "item": [
+                {
+                  "name": "{webhook_id}",
+                  "item": [
+                    {
+                      "name": "Get Webhook",
+                      "id": "5cfd58bb-48f7-4bf9-add1-821c5f018abc",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/webhooks/:webhook_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "webhooks",
+                            ":webhook_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "9bbb56b1-2751-47db-bbb4-0d2768822b11",
+                              "key": "workspace_id",
+                              "value": "<string>",
+                              "description": "(Required) The workspace identifier"
+                            },
+                            {
+                              "id": "cfa9160a-83bb-40d7-836a-7bace6a7e019",
+                              "key": "webhook_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a specific webhook by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "6da5c192-4c47-4a7d-b825-f53d98f4f50c",
+                          "name": "Webhook details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/webhooks/:webhook_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "webhooks",
+                                ":webhook_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "webhook_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"process_id\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:48:56.000Z",
+                          "updatedAt": "2026-07-28T02:48:56.000Z",
+                          "uid": "35240-6da5c192-4c47-4a7d-b825-f53d98f4f50c"
+                        },
+                        {
+                          "id": "92845c6a-ce52-4223-a28c-ce3f4b45ff00",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/webhooks/:webhook_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "webhooks",
+                                ":webhook_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "webhook_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:48:56.000Z",
+                          "updatedAt": "2026-07-28T02:48:56.000Z",
+                          "uid": "35240-92845c6a-ce52-4223-a28c-ce3f4b45ff00"
+                        },
+                        {
+                          "id": "fbbdab79-072f-414b-a2ef-fc5673259155",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/webhooks/:webhook_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "webhooks",
+                                ":webhook_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "webhook_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:48:56.000Z",
+                          "updatedAt": "2026-07-28T02:48:56.000Z",
+                          "uid": "35240-fbbdab79-072f-414b-a2ef-fc5673259155"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:48:56.000Z",
+                      "updatedAt": "2026-07-28T02:48:56.000Z",
+                      "uid": "35240-5cfd58bb-48f7-4bf9-add1-821c5f018abc"
+                    },
+                    {
+                      "name": "Delete Webhook",
+                      "id": "6155869e-7484-4a83-b26c-6284870d0d33",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/webhooks/:webhook_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "webhooks",
+                            ":webhook_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "fd3c9c05-f3bd-4b99-8849-06bd71bc4544",
+                              "key": "workspace_id",
+                              "value": "<string>",
+                              "description": "(Required) The workspace identifier"
+                            },
+                            {
+                              "id": "fb03196c-1934-4b4f-8b97-863bcb9d6d21",
+                              "key": "webhook_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Remove a webhook configuration."
+                      },
+                      "response": [
+                        {
+                          "id": "bd899d3b-73cd-4320-abb7-f71efc61241d",
+                          "name": "Webhook deleted",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/webhooks/:webhook_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "webhooks",
+                                ":webhook_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "webhook_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:48:56.000Z",
+                          "updatedAt": "2026-07-28T02:48:56.000Z",
+                          "uid": "35240-bd899d3b-73cd-4320-abb7-f71efc61241d"
+                        },
+                        {
+                          "id": "7dfb0d91-2946-4a0b-b1fe-8b735a9808d2",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/webhooks/:webhook_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "webhooks",
+                                ":webhook_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "webhook_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:48:56.000Z",
+                          "updatedAt": "2026-07-28T02:48:56.000Z",
+                          "uid": "35240-7dfb0d91-2946-4a0b-b1fe-8b735a9808d2"
+                        },
+                        {
+                          "id": "9c5a6204-ed4b-4e81-985b-3bd307916e9c",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/webhooks/:webhook_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "webhooks",
+                                ":webhook_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "webhook_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:48:56.000Z",
+                          "updatedAt": "2026-07-28T02:48:56.000Z",
+                          "uid": "35240-9c5a6204-ed4b-4e81-985b-3bd307916e9c"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:48:56.000Z",
+                      "updatedAt": "2026-07-28T02:48:56.000Z",
+                      "uid": "35240-6155869e-7484-4a83-b26c-6284870d0d33"
+                    }
+                  ],
+                  "id": "76e9314c-0f89-4d97-b555-e4b5fd4da173",
+                  "createdAt": "2026-07-28T02:48:56.000Z",
+                  "updatedAt": "2026-07-28T02:48:56.000Z",
+                  "uid": "35240-76e9314c-0f89-4d97-b555-e4b5fd4da173"
+                },
+                {
+                  "name": "List Webhooks",
+                  "id": "4a49f9be-e760-4716-a7d7-95c057de395d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workspaces/:workspace_id/webhooks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workspaces",
+                        ":workspace_id",
+                        "webhooks"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f57eef5e-3186-41f1-afda-0a35f581d1a9",
+                          "key": "workspace_id",
+                          "value": "<string>",
+                          "description": "(Required) The workspace identifier"
+                        }
+                      ]
+                    },
+                    "description": "List all webhooks configured in a workspace."
+                  },
+                  "response": [
+                    {
+                      "id": "259453ab-6aa4-4f10-8895-e187877e3325",
+                      "name": "List of webhooks",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/webhooks",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "webhooks"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"process_id\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"process_id\": \"<string>\",\n      \"url\": \"<uri>\",\n      \"events\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"created_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:48:56.000Z",
+                      "updatedAt": "2026-07-28T02:48:56.000Z",
+                      "uid": "35240-259453ab-6aa4-4f10-8895-e187877e3325"
+                    },
+                    {
+                      "id": "2c46564e-fce3-48fd-98d6-e9a51d3678c7",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/webhooks",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "webhooks"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:48:56.000Z",
+                      "updatedAt": "2026-07-28T02:48:56.000Z",
+                      "uid": "35240-2c46564e-fce3-48fd-98d6-e9a51d3678c7"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:48:56.000Z",
+                  "updatedAt": "2026-07-28T02:48:56.000Z",
+                  "uid": "35240-4a49f9be-e760-4716-a7d7-95c057de395d"
+                },
+                {
+                  "name": "Create Process Webhook",
+                  "id": "2d070c2c-ee1b-459c-9695-6736c9c3a427",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"process_id\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/workspaces/:workspace_id/webhooks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workspaces",
+                        ":workspace_id",
+                        "webhooks"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8389aaee-3ca5-411f-be5c-153303f97431",
+                          "key": "workspace_id",
+                          "value": "<string>",
+                          "description": "(Required) The workspace identifier"
+                        }
+                      ]
+                    },
+                    "description": "Create a new webhook for process event notifications."
+                  },
+                  "response": [
+                    {
+                      "id": "31952157-6612-4551-af78-f35cdd7eee0a",
+                      "name": "Webhook created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"process_id\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/webhooks",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "webhooks"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"process_id\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:48:56.000Z",
+                      "updatedAt": "2026-07-28T02:48:56.000Z",
+                      "uid": "35240-31952157-6612-4551-af78-f35cdd7eee0a"
+                    },
+                    {
+                      "id": "6e352ea0-ce84-4ae5-a538-56008cb32681",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"process_id\": \"<string>\",\n  \"url\": \"<uri>\",\n  \"events\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/webhooks",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "webhooks"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:48:56.000Z",
+                      "updatedAt": "2026-07-28T02:48:56.000Z",
+                      "uid": "35240-6e352ea0-ce84-4ae5-a538-56008cb32681"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:48:56.000Z",
+                  "updatedAt": "2026-07-28T02:48:56.000Z",
+                  "uid": "35240-2d070c2c-ee1b-459c-9695-6736c9c3a427"
+                }
+              ],
+              "id": "820bfcf9-9b42-4a29-a292-1dcc152220a0",
+              "createdAt": "2026-07-28T02:48:56.000Z",
+              "updatedAt": "2026-07-28T02:48:56.000Z",
+              "uid": "35240-820bfcf9-9b42-4a29-a292-1dcc152220a0"
+            }
+          ],
+          "id": "28037f21-030d-4c91-878d-1e0bca4aa803",
+          "createdAt": "2026-07-28T02:48:56.000Z",
+          "updatedAt": "2026-07-28T02:48:56.000Z",
+          "uid": "35240-28037f21-030d-4c91-878d-1e0bca4aa803"
+        }
+      ],
+      "id": "b9cd67cf-677e-4616-bcd6-0f657d415f85",
+      "createdAt": "2026-07-28T02:48:56.000Z",
+      "updatedAt": "2026-07-28T02:48:56.000Z",
+      "uid": "35240-b9cd67cf-677e-4616-bcd6-0f657d415f85"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://cloud.robocorp.com/api/v1"
+    }
+  ]
+}

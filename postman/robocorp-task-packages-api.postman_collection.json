@@ -1,0 +1,1144 @@
+{
+  "info": {
+    "_postman_id": "b8edfdaf-1772-4eea-8293-888f8203d7f0",
+    "name": "Robocorp Control Room Assets Task Packages API",
+    "description": "The Robocorp Control Room API provides programmatic access to the orchestration platform for RPA automations. It supports workspace management, worker lifecycle, worker group organization, process definition and execution, process run monitoring, step run output retrieval, work item management, asset storage, vault secrets, webhook configuration, and task package deployment. Authentication uses API keys with the RC-WSKEY prefix passed in the Authorization header.\n\nContact Support:\n Name: Robocorp Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:48:45.000Z",
+    "updatedAt": "2026-07-28T02:48:45.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b8edfdaf-1772-4eea-8293-888f8203d7f0"
+  },
+  "item": [
+    {
+      "name": "workspaces",
+      "item": [
+        {
+          "name": "{workspace_id}",
+          "item": [
+            {
+              "name": "task-packages",
+              "item": [
+                {
+                  "name": "{package_id}",
+                  "item": [
+                    {
+                      "name": "Get Task Package",
+                      "id": "49886494-38de-4dac-9efc-21ed49919246",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/task-packages/:package_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "task-packages",
+                            ":package_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "a7a4e8ee-16f6-4eaa-b1be-7e0315b8fa69",
+                              "key": "workspace_id",
+                              "value": "<string>",
+                              "description": "(Required) The workspace identifier"
+                            },
+                            {
+                              "id": "11435ee3-d535-42eb-8593-366a271cd898",
+                              "key": "package_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a specific task package by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "3de0d495-de68-4876-91f9-01abf813703d",
+                          "name": "Task package details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/task-packages/:package_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "task-packages",
+                                ":package_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "package_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"source_type\": \"zip\",\n  \"created_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:48:46.000Z",
+                          "updatedAt": "2026-07-28T02:48:46.000Z",
+                          "uid": "35240-3de0d495-de68-4876-91f9-01abf813703d"
+                        },
+                        {
+                          "id": "bbe27d4e-5ad2-442a-b87e-b160d8e253f0",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/task-packages/:package_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "task-packages",
+                                ":package_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "package_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:48:46.000Z",
+                          "updatedAt": "2026-07-28T02:48:46.000Z",
+                          "uid": "35240-bbe27d4e-5ad2-442a-b87e-b160d8e253f0"
+                        },
+                        {
+                          "id": "7cd63512-6458-426f-8211-9a1b37bbe3ed",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/task-packages/:package_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "task-packages",
+                                ":package_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "package_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:48:46.000Z",
+                          "updatedAt": "2026-07-28T02:48:46.000Z",
+                          "uid": "35240-7cd63512-6458-426f-8211-9a1b37bbe3ed"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:48:46.000Z",
+                      "updatedAt": "2026-07-28T02:48:46.000Z",
+                      "uid": "35240-49886494-38de-4dac-9efc-21ed49919246"
+                    },
+                    {
+                      "name": "Update Task Package",
+                      "id": "0e39dc3c-bc94-4dda-8675-0c6fd26ce0b4",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"source_type\": \"zip\",\n  \"source_url\": \"<uri>\",\n  \"branch\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/task-packages/:package_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "task-packages",
+                            ":package_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "0c42d498-46b4-472f-87d1-3225c981f145",
+                              "key": "workspace_id",
+                              "value": "<string>",
+                              "description": "(Required) The workspace identifier"
+                            },
+                            {
+                              "id": "25c029a5-ab7b-47b1-aa76-cc5efd029ebc",
+                              "key": "package_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Update a task package source configuration."
+                      },
+                      "response": [
+                        {
+                          "id": "5e9fb41f-a4da-40b2-a390-cd531bcb452f",
+                          "name": "Task package updated",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"source_type\": \"zip\",\n  \"source_url\": \"<uri>\",\n  \"branch\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/task-packages/:package_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "task-packages",
+                                ":package_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "package_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"source_type\": \"zip\",\n  \"created_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:48:46.000Z",
+                          "updatedAt": "2026-07-28T02:48:46.000Z",
+                          "uid": "35240-5e9fb41f-a4da-40b2-a390-cd531bcb452f"
+                        },
+                        {
+                          "id": "531f5ba1-53c4-4b4f-a0b5-e2d4faa679bf",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"source_type\": \"zip\",\n  \"source_url\": \"<uri>\",\n  \"branch\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/task-packages/:package_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "task-packages",
+                                ":package_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "package_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:48:46.000Z",
+                          "updatedAt": "2026-07-28T02:48:46.000Z",
+                          "uid": "35240-531f5ba1-53c4-4b4f-a0b5-e2d4faa679bf"
+                        },
+                        {
+                          "id": "b3158fe5-481b-4393-b6ec-dc762c8747d8",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"source_type\": \"zip\",\n  \"source_url\": \"<uri>\",\n  \"branch\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/task-packages/:package_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "task-packages",
+                                ":package_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "package_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:48:46.000Z",
+                          "updatedAt": "2026-07-28T02:48:46.000Z",
+                          "uid": "35240-b3158fe5-481b-4393-b6ec-dc762c8747d8"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:48:46.000Z",
+                      "updatedAt": "2026-07-28T02:48:46.000Z",
+                      "uid": "35240-0e39dc3c-bc94-4dda-8675-0c6fd26ce0b4"
+                    },
+                    {
+                      "name": "Delete Task Package",
+                      "id": "339f657f-a2a2-4aed-9528-e5b59a6c994d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/task-packages/:package_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "task-packages",
+                            ":package_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "22cddc88-8310-4ea1-87b2-07b26435e002",
+                              "key": "workspace_id",
+                              "value": "<string>",
+                              "description": "(Required) The workspace identifier"
+                            },
+                            {
+                              "id": "1366c539-e0bd-4f1e-89e7-47c03366927a",
+                              "key": "package_id",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Remove a task package from the workspace."
+                      },
+                      "response": [
+                        {
+                          "id": "ac5d5508-5bd8-4b14-9e24-e9019faf6b4b",
+                          "name": "Task package deleted",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/task-packages/:package_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "task-packages",
+                                ":package_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "package_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:48:46.000Z",
+                          "updatedAt": "2026-07-28T02:48:46.000Z",
+                          "uid": "35240-ac5d5508-5bd8-4b14-9e24-e9019faf6b4b"
+                        },
+                        {
+                          "id": "2ff65ae6-1f2a-45ec-bc84-b54257da03eb",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/task-packages/:package_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "task-packages",
+                                ":package_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "package_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:48:46.000Z",
+                          "updatedAt": "2026-07-28T02:48:46.000Z",
+                          "uid": "35240-2ff65ae6-1f2a-45ec-bc84-b54257da03eb"
+                        },
+                        {
+                          "id": "305ea24a-e0a8-4986-be98-857a2e057335",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/task-packages/:package_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "task-packages",
+                                ":package_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "package_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:48:46.000Z",
+                          "updatedAt": "2026-07-28T02:48:46.000Z",
+                          "uid": "35240-305ea24a-e0a8-4986-be98-857a2e057335"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:48:46.000Z",
+                      "updatedAt": "2026-07-28T02:48:46.000Z",
+                      "uid": "35240-339f657f-a2a2-4aed-9528-e5b59a6c994d"
+                    }
+                  ],
+                  "id": "ed3bd241-abbe-4c3d-bba3-c1e9c34d9280",
+                  "createdAt": "2026-07-28T02:48:46.000Z",
+                  "updatedAt": "2026-07-28T02:48:46.000Z",
+                  "uid": "35240-ed3bd241-abbe-4c3d-bba3-c1e9c34d9280"
+                },
+                {
+                  "name": "List Task Packages",
+                  "id": "abfd5da7-f211-4077-bac6-271d52330d73",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workspaces/:workspace_id/task-packages",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workspaces",
+                        ":workspace_id",
+                        "task-packages"
+                      ],
+                      "variable": [
+                        {
+                          "id": "972fe430-f3ce-4389-baa2-436a67f1a8a0",
+                          "key": "workspace_id",
+                          "value": "<string>",
+                          "description": "(Required) The workspace identifier"
+                        }
+                      ]
+                    },
+                    "description": "List all task packages in a workspace."
+                  },
+                  "response": [
+                    {
+                      "id": "fb447ef0-fe64-40b5-bd44-c554d332786a",
+                      "name": "List of task packages",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/task-packages",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "task-packages"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"source_type\": \"zip\",\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"source_type\": \"github\",\n      \"created_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:48:46.000Z",
+                      "updatedAt": "2026-07-28T02:48:46.000Z",
+                      "uid": "35240-fb447ef0-fe64-40b5-bd44-c554d332786a"
+                    },
+                    {
+                      "id": "02263d41-7db6-4bf1-b914-caf0591ee8dd",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/task-packages",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "task-packages"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:48:46.000Z",
+                      "updatedAt": "2026-07-28T02:48:46.000Z",
+                      "uid": "35240-02263d41-7db6-4bf1-b914-caf0591ee8dd"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:48:46.000Z",
+                  "updatedAt": "2026-07-28T02:48:46.000Z",
+                  "uid": "35240-abfd5da7-f211-4077-bac6-271d52330d73"
+                },
+                {
+                  "name": "Create Task Package",
+                  "id": "2d7df1b6-82f1-4051-b68c-532b2ca4dcdf",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"source_type\": \"zip\",\n  \"source_url\": \"<uri>\",\n  \"branch\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/workspaces/:workspace_id/task-packages",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workspaces",
+                        ":workspace_id",
+                        "task-packages"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8fe8239e-fcd5-45b6-be2a-55ce410c0cdf",
+                          "key": "workspace_id",
+                          "value": "<string>",
+                          "description": "(Required) The workspace identifier"
+                        }
+                      ]
+                    },
+                    "description": "Create a new task package from a zip file, GitHub, or GitLab source."
+                  },
+                  "response": [
+                    {
+                      "id": "e7221f59-d5a1-4d59-b65f-68d9f8f74808",
+                      "name": "Task package created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"source_type\": \"zip\",\n  \"source_url\": \"<uri>\",\n  \"branch\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/task-packages",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "task-packages"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"source_type\": \"zip\",\n  \"created_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:48:46.000Z",
+                      "updatedAt": "2026-07-28T02:48:46.000Z",
+                      "uid": "35240-e7221f59-d5a1-4d59-b65f-68d9f8f74808"
+                    },
+                    {
+                      "id": "211853ff-e976-4e4b-9c11-71f45ba827cd",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"source_type\": \"zip\",\n  \"source_url\": \"<uri>\",\n  \"branch\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/task-packages",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "task-packages"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:48:46.000Z",
+                      "updatedAt": "2026-07-28T02:48:46.000Z",
+                      "uid": "35240-211853ff-e976-4e4b-9c11-71f45ba827cd"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:48:46.000Z",
+                  "updatedAt": "2026-07-28T02:48:46.000Z",
+                  "uid": "35240-2d7df1b6-82f1-4051-b68c-532b2ca4dcdf"
+                }
+              ],
+              "id": "784f0fe3-0378-4707-8e71-54cc4b4cbbf6",
+              "createdAt": "2026-07-28T02:48:46.000Z",
+              "updatedAt": "2026-07-28T02:48:46.000Z",
+              "uid": "35240-784f0fe3-0378-4707-8e71-54cc4b4cbbf6"
+            }
+          ],
+          "id": "9c23431f-ab64-4d8b-adb9-6b392405f69f",
+          "createdAt": "2026-07-28T02:48:46.000Z",
+          "updatedAt": "2026-07-28T02:48:46.000Z",
+          "uid": "35240-9c23431f-ab64-4d8b-adb9-6b392405f69f"
+        }
+      ],
+      "id": "3681e042-bdd9-448a-8254-5e50542862f6",
+      "createdAt": "2026-07-28T02:48:46.000Z",
+      "updatedAt": "2026-07-28T02:48:46.000Z",
+      "uid": "35240-3681e042-bdd9-448a-8254-5e50542862f6"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://cloud.robocorp.com/api/v1"
+    }
+  ]
+}

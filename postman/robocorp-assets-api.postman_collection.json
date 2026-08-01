@@ -1,0 +1,861 @@
+{
+  "info": {
+    "_postman_id": "3b691665-f8fe-4837-b154-1d8818928cd8",
+    "name": "Robocorp Control Room Assets API",
+    "description": "The Robocorp Control Room API provides programmatic access to the orchestration platform for RPA automations. It supports workspace management, worker lifecycle, worker group organization, process definition and execution, process run monitoring, step run output retrieval, work item management, asset storage, vault secrets, webhook configuration, and task package deployment. Authentication uses API keys with the RC-WSKEY prefix passed in the Authorization header.\n\nContact Support:\n Name: Robocorp Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:48:37.000Z",
+    "updatedAt": "2026-07-28T02:48:38.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3b691665-f8fe-4837-b154-1d8818928cd8"
+  },
+  "item": [
+    {
+      "name": "workspaces",
+      "item": [
+        {
+          "name": "{workspace_id}",
+          "item": [
+            {
+              "name": "assets",
+              "item": [
+                {
+                  "name": "{asset_id}",
+                  "item": [
+                    {
+                      "name": "Get Asset",
+                      "id": "3949582b-e793-4efd-9d30-c89c4346556a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/assets/:asset_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "assets",
+                            ":asset_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "0cb9f730-358c-44da-8f03-a564276eb5b8",
+                              "key": "workspace_id",
+                              "value": "<string>",
+                              "description": "(Required) The workspace identifier"
+                            },
+                            {
+                              "id": "059e6584-642c-4d6c-8c64-dfa1aa6df55d",
+                              "key": "asset_id",
+                              "value": "<string>",
+                              "description": "(Required) The asset identifier"
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a specific asset by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "9c418432-82ca-4c57-b6ff-82bd2af184e9",
+                          "name": "Asset details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/assets/:asset_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "assets",
+                                ":asset_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "asset_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"content_type\": \"<string>\",\n  \"size\": \"<integer>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:48:38.000Z",
+                          "updatedAt": "2026-07-28T02:48:38.000Z",
+                          "uid": "35240-9c418432-82ca-4c57-b6ff-82bd2af184e9"
+                        },
+                        {
+                          "id": "ec22ae0d-5402-4ffe-8cd0-c003d573be79",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/assets/:asset_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "assets",
+                                ":asset_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "asset_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:48:38.000Z",
+                          "updatedAt": "2026-07-28T02:48:38.000Z",
+                          "uid": "35240-ec22ae0d-5402-4ffe-8cd0-c003d573be79"
+                        },
+                        {
+                          "id": "0fc8fee3-d259-47ab-a236-3885f2bfb458",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/assets/:asset_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "assets",
+                                ":asset_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "asset_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:48:38.000Z",
+                          "updatedAt": "2026-07-28T02:48:38.000Z",
+                          "uid": "35240-0fc8fee3-d259-47ab-a236-3885f2bfb458"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:48:38.000Z",
+                      "updatedAt": "2026-07-28T02:48:38.000Z",
+                      "uid": "35240-3949582b-e793-4efd-9d30-c89c4346556a"
+                    },
+                    {
+                      "name": "Delete Asset",
+                      "id": "63e3b37c-ddaa-45cc-bfc6-07327d635556",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/assets/:asset_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "assets",
+                            ":asset_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "9ca2cb86-d798-4288-8652-618c65a47edf",
+                              "key": "workspace_id",
+                              "value": "<string>",
+                              "description": "(Required) The workspace identifier"
+                            },
+                            {
+                              "id": "69215abd-282c-4224-8202-05922206e0b6",
+                              "key": "asset_id",
+                              "value": "<string>",
+                              "description": "(Required) The asset identifier"
+                            }
+                          ]
+                        },
+                        "description": "Remove an asset from storage."
+                      },
+                      "response": [
+                        {
+                          "id": "92318844-06a5-4de7-adf4-254b91383f76",
+                          "name": "Asset deleted",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/assets/:asset_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "assets",
+                                ":asset_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "asset_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:48:38.000Z",
+                          "updatedAt": "2026-07-28T02:48:38.000Z",
+                          "uid": "35240-92318844-06a5-4de7-adf4-254b91383f76"
+                        },
+                        {
+                          "id": "1f49df4f-bad3-47b0-8f12-6df26f8df401",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/assets/:asset_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "assets",
+                                ":asset_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "asset_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:48:38.000Z",
+                          "updatedAt": "2026-07-28T02:48:38.000Z",
+                          "uid": "35240-1f49df4f-bad3-47b0-8f12-6df26f8df401"
+                        },
+                        {
+                          "id": "b9fdc8c1-8d3c-4bee-9074-a2f104be8a87",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/assets/:asset_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "assets",
+                                ":asset_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "asset_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:48:38.000Z",
+                          "updatedAt": "2026-07-28T02:48:38.000Z",
+                          "uid": "35240-b9fdc8c1-8d3c-4bee-9074-a2f104be8a87"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:48:38.000Z",
+                      "updatedAt": "2026-07-28T02:48:38.000Z",
+                      "uid": "35240-63e3b37c-ddaa-45cc-bfc6-07327d635556"
+                    }
+                  ],
+                  "id": "0ff2941b-9da8-4a4d-b5a9-c78f12e4b85a",
+                  "createdAt": "2026-07-28T02:48:38.000Z",
+                  "updatedAt": "2026-07-28T02:48:38.000Z",
+                  "uid": "35240-0ff2941b-9da8-4a4d-b5a9-c78f12e4b85a"
+                },
+                {
+                  "name": "List Assets",
+                  "id": "5ec15312-8c5e-43d5-ac4b-c605859594cc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workspaces/:workspace_id/assets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workspaces",
+                        ":workspace_id",
+                        "assets"
+                      ],
+                      "variable": [
+                        {
+                          "id": "fe83daf0-7f23-45cc-9beb-abde228ff73d",
+                          "key": "workspace_id",
+                          "value": "<string>",
+                          "description": "(Required) The workspace identifier"
+                        }
+                      ]
+                    },
+                    "description": "List all assets in a workspace."
+                  },
+                  "response": [
+                    {
+                      "id": "7676f08f-796c-424f-9d01-3bed878f9a57",
+                      "name": "List of assets",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/assets",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "assets"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"content_type\": \"<string>\",\n      \"size\": \"<integer>\",\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"content_type\": \"<string>\",\n      \"size\": \"<integer>\",\n      \"created_at\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T02:48:38.000Z",
+                      "updatedAt": "2026-07-28T02:48:38.000Z",
+                      "uid": "35240-7676f08f-796c-424f-9d01-3bed878f9a57"
+                    },
+                    {
+                      "id": "a9e915b0-8582-4af7-a0a0-468fe948fa0b",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/assets",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "assets"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:48:38.000Z",
+                      "updatedAt": "2026-07-28T02:48:38.000Z",
+                      "uid": "35240-a9e915b0-8582-4af7-a0a0-468fe948fa0b"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:48:38.000Z",
+                  "updatedAt": "2026-07-28T02:48:38.000Z",
+                  "uid": "35240-5ec15312-8c5e-43d5-ac4b-c605859594cc"
+                },
+                {
+                  "name": "Create Asset",
+                  "id": "8ec5bbaa-13ce-46fd-bbba-6e5dbabf58f4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"content_type\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/workspaces/:workspace_id/assets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workspaces",
+                        ":workspace_id",
+                        "assets"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ba096d6b-769d-43ad-91bc-14fc79c16a8c",
+                          "key": "workspace_id",
+                          "value": "<string>",
+                          "description": "(Required) The workspace identifier"
+                        }
+                      ]
+                    },
+                    "description": "Create a new asset in storage."
+                  },
+                  "response": [
+                    {
+                      "id": "f963e455-5b71-44d3-8387-1f020f37b899",
+                      "name": "Asset created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"content_type\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/assets",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "assets"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"content_type\": \"<string>\",\n  \"size\": \"<integer>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T02:48:38.000Z",
+                      "updatedAt": "2026-07-28T02:48:38.000Z",
+                      "uid": "35240-f963e455-5b71-44d3-8387-1f020f37b899"
+                    },
+                    {
+                      "id": "cb925fee-8316-4ca0-be4f-b567c92f000e",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"content_type\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/assets",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "assets"
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:48:38.000Z",
+                      "updatedAt": "2026-07-28T02:48:38.000Z",
+                      "uid": "35240-cb925fee-8316-4ca0-be4f-b567c92f000e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:48:38.000Z",
+                  "updatedAt": "2026-07-28T02:48:38.000Z",
+                  "uid": "35240-8ec5bbaa-13ce-46fd-bbba-6e5dbabf58f4"
+                }
+              ],
+              "id": "d42c3643-82ed-4671-bb90-75b269468766",
+              "createdAt": "2026-07-28T02:48:38.000Z",
+              "updatedAt": "2026-07-28T02:48:38.000Z",
+              "uid": "35240-d42c3643-82ed-4671-bb90-75b269468766"
+            }
+          ],
+          "id": "2c4d7542-9b74-466c-922e-8d87039c2192",
+          "createdAt": "2026-07-28T02:48:38.000Z",
+          "updatedAt": "2026-07-28T02:48:38.000Z",
+          "uid": "35240-2c4d7542-9b74-466c-922e-8d87039c2192"
+        }
+      ],
+      "id": "7cb9f3c3-c484-4be3-9113-d395cb56b381",
+      "createdAt": "2026-07-28T02:48:38.000Z",
+      "updatedAt": "2026-07-28T02:48:38.000Z",
+      "uid": "35240-7cb9f3c3-c484-4be3-9113-d395cb56b381"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://cloud.robocorp.com/api/v1"
+    }
+  ]
+}

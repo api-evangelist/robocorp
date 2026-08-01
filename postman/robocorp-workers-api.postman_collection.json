@@ -1,0 +1,1192 @@
+{
+  "info": {
+    "_postman_id": "5ab76e0c-30b8-4b9f-a070-1c4fb63e0584",
+    "name": "Robocorp Control Room Assets Workers API",
+    "description": "The Robocorp Control Room API provides programmatic access to the orchestration platform for RPA automations. It supports workspace management, worker lifecycle, worker group organization, process definition and execution, process run monitoring, step run output retrieval, work item management, asset storage, vault secrets, webhook configuration, and task package deployment. Authentication uses API keys with the RC-WSKEY prefix passed in the Authorization header.\n\nContact Support:\n Name: Robocorp Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:48:58.000Z",
+    "updatedAt": "2026-07-28T02:48:59.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5ab76e0c-30b8-4b9f-a070-1c4fb63e0584"
+  },
+  "item": [
+    {
+      "name": "workspaces",
+      "item": [
+        {
+          "name": "{workspace_id}",
+          "item": [
+            {
+              "name": "workers",
+              "item": [
+                {
+                  "name": "link-tokens",
+                  "item": [
+                    {
+                      "name": "Create Worker Link Token",
+                      "id": "95380bc3-1501-4193-a149-bcbf5b8b1cbd",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"worker_group_id\": \"<string>\",\n  \"expires_in\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/workers/link-tokens",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "workers",
+                            "link-tokens"
+                          ],
+                          "variable": [
+                            {
+                              "id": "9956ceaf-aac0-48f1-a6bc-3f3ed1a8a341",
+                              "key": "workspace_id",
+                              "value": "<string>",
+                              "description": "(Required) The workspace identifier"
+                            }
+                          ]
+                        },
+                        "description": "Generate a link token to connect a new worker to the workspace."
+                      },
+                      "response": [
+                        {
+                          "id": "e5c1525b-3a41-4c12-8ab9-11df0f9d9ea4",
+                          "name": "Link token created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"worker_group_id\": \"<string>\",\n  \"expires_in\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/workers/link-tokens",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "workers",
+                                "link-tokens"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"token\": \"<string>\",\n  \"expires_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:48:59.000Z",
+                          "updatedAt": "2026-07-28T02:48:59.000Z",
+                          "uid": "35240-e5c1525b-3a41-4c12-8ab9-11df0f9d9ea4"
+                        },
+                        {
+                          "id": "2c3f3665-9cba-493e-9e9e-5bda0401767e",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"worker_group_id\": \"<string>\",\n  \"expires_in\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/workers/link-tokens",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "workers",
+                                "link-tokens"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:48:59.000Z",
+                          "updatedAt": "2026-07-28T02:48:59.000Z",
+                          "uid": "35240-2c3f3665-9cba-493e-9e9e-5bda0401767e"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:48:59.000Z",
+                      "updatedAt": "2026-07-28T02:48:59.000Z",
+                      "uid": "35240-95380bc3-1501-4193-a149-bcbf5b8b1cbd"
+                    }
+                  ],
+                  "id": "e6ae6196-4c10-4ba5-932a-ec54d80201f8",
+                  "createdAt": "2026-07-28T02:48:59.000Z",
+                  "updatedAt": "2026-07-28T02:48:59.000Z",
+                  "uid": "35240-e6ae6196-4c10-4ba5-932a-ec54d80201f8"
+                },
+                {
+                  "name": "{worker_id}",
+                  "item": [
+                    {
+                      "name": "Get Worker",
+                      "id": "8aa52610-3894-4bd7-bc91-e89903c8f0c2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/workers/:worker_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "workers",
+                            ":worker_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "63f345c9-20ca-4a7c-ab77-e393a0cb0c68",
+                              "key": "workspace_id",
+                              "value": "<string>",
+                              "description": "(Required) The workspace identifier"
+                            },
+                            {
+                              "id": "38cbf656-0025-40b0-b092-60cd32c8378d",
+                              "key": "worker_id",
+                              "value": "<string>",
+                              "description": "(Required) The worker identifier"
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a specific worker by ID."
+                      },
+                      "response": [
+                        {
+                          "id": "6a7109a3-6cc2-4123-8b09-69e6ded4c85e",
+                          "name": "Worker details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/workers/:worker_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "workers",
+                                ":worker_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "worker_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"status\": \"BUSY\",\n  \"worker_group_id\": \"<string>\",\n  \"last_seen\": \"<dateTime>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:48:59.000Z",
+                          "updatedAt": "2026-07-28T02:48:59.000Z",
+                          "uid": "35240-6a7109a3-6cc2-4123-8b09-69e6ded4c85e"
+                        },
+                        {
+                          "id": "2fd109f7-91fc-4e87-adf8-109e5c12b966",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/workers/:worker_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "workers",
+                                ":worker_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "worker_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:48:59.000Z",
+                          "updatedAt": "2026-07-28T02:48:59.000Z",
+                          "uid": "35240-2fd109f7-91fc-4e87-adf8-109e5c12b966"
+                        },
+                        {
+                          "id": "daea2024-a171-4f42-a788-31a48a787334",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/workers/:worker_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "workers",
+                                ":worker_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "worker_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:48:59.000Z",
+                          "updatedAt": "2026-07-28T02:48:59.000Z",
+                          "uid": "35240-daea2024-a171-4f42-a788-31a48a787334"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:48:59.000Z",
+                      "updatedAt": "2026-07-28T02:48:59.000Z",
+                      "uid": "35240-8aa52610-3894-4bd7-bc91-e89903c8f0c2"
+                    },
+                    {
+                      "name": "Update Worker",
+                      "id": "99b467f5-82dd-4442-9f87-89cd297b04e6",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"worker_group_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/workers/:worker_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "workers",
+                            ":worker_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "fb0a5530-fa27-4491-9a98-c4c29ff40bc1",
+                              "key": "workspace_id",
+                              "value": "<string>",
+                              "description": "(Required) The workspace identifier"
+                            },
+                            {
+                              "id": "7845a8ce-8a22-46d5-91bf-2075f1a50e66",
+                              "key": "worker_id",
+                              "value": "<string>",
+                              "description": "(Required) The worker identifier"
+                            }
+                          ]
+                        },
+                        "description": "Modify worker details such as name and group assignment."
+                      },
+                      "response": [
+                        {
+                          "id": "d982e582-6911-4541-80cb-a74e7b8973b2",
+                          "name": "Worker updated",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"worker_group_id\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/workers/:worker_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "workers",
+                                ":worker_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "worker_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"status\": \"BUSY\",\n  \"worker_group_id\": \"<string>\",\n  \"last_seen\": \"<dateTime>\",\n  \"created_at\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-07-28T02:48:59.000Z",
+                          "updatedAt": "2026-07-28T02:48:59.000Z",
+                          "uid": "35240-d982e582-6911-4541-80cb-a74e7b8973b2"
+                        },
+                        {
+                          "id": "c121bc6f-1f2e-4054-b848-3ef2130d7685",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"worker_group_id\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/workers/:worker_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "workers",
+                                ":worker_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "worker_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:48:59.000Z",
+                          "updatedAt": "2026-07-28T02:48:59.000Z",
+                          "uid": "35240-c121bc6f-1f2e-4054-b848-3ef2130d7685"
+                        },
+                        {
+                          "id": "cf09d680-83b4-462e-b7e2-581563f247db",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"worker_group_id\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/workers/:worker_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "workers",
+                                ":worker_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "worker_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:48:59.000Z",
+                          "updatedAt": "2026-07-28T02:48:59.000Z",
+                          "uid": "35240-cf09d680-83b4-462e-b7e2-581563f247db"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:48:59.000Z",
+                      "updatedAt": "2026-07-28T02:48:59.000Z",
+                      "uid": "35240-99b467f5-82dd-4442-9f87-89cd297b04e6"
+                    },
+                    {
+                      "name": "Delete Worker",
+                      "id": "b627898a-1a47-4798-9b74-b2b52bc641a2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "apikey",
+                          "apikey": [
+                            {
+                              "key": "key",
+                              "value": "Authorization",
+                              "type": "string"
+                            },
+                            {
+                              "key": "value",
+                              "value": "{{apiKey}}",
+                              "type": "string"
+                            },
+                            {
+                              "key": "in",
+                              "value": "header",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/workers/:worker_id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "workers",
+                            ":worker_id"
+                          ],
+                          "variable": [
+                            {
+                              "id": "2bd7448a-ea53-45b6-8f81-d7323a1f142d",
+                              "key": "workspace_id",
+                              "value": "<string>",
+                              "description": "(Required) The workspace identifier"
+                            },
+                            {
+                              "id": "4349752c-9b66-4816-a5e1-0c4353fba1dd",
+                              "key": "worker_id",
+                              "value": "<string>",
+                              "description": "(Required) The worker identifier"
+                            }
+                          ]
+                        },
+                        "description": "Remove a worker from the workspace."
+                      },
+                      "response": [
+                        {
+                          "id": "e067c0f2-7618-42ff-b9b2-18ab4b2c3e16",
+                          "name": "Worker deleted",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/workers/:worker_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "workers",
+                                ":worker_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "worker_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T02:48:59.000Z",
+                          "updatedAt": "2026-07-28T02:48:59.000Z",
+                          "uid": "35240-e067c0f2-7618-42ff-b9b2-18ab4b2c3e16"
+                        },
+                        {
+                          "id": "2eff7c86-a153-4fe2-b5e1-923eea67c603",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/workers/:worker_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "workers",
+                                ":worker_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "worker_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:48:59.000Z",
+                          "updatedAt": "2026-07-28T02:48:59.000Z",
+                          "uid": "35240-2eff7c86-a153-4fe2-b5e1-923eea67c603"
+                        },
+                        {
+                          "id": "152f46c3-c6b1-4dce-bf55-5bbeea66103e",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Authorization",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/workspaces/:workspace_id/workers/:worker_id",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "workspaces",
+                                ":workspace_id",
+                                "workers",
+                                ":worker_id"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workspace_id"
+                                },
+                                {
+                                  "key": "worker_id"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T02:48:59.000Z",
+                          "updatedAt": "2026-07-28T02:48:59.000Z",
+                          "uid": "35240-152f46c3-c6b1-4dce-bf55-5bbeea66103e"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T02:48:59.000Z",
+                      "updatedAt": "2026-07-28T02:48:59.000Z",
+                      "uid": "35240-b627898a-1a47-4798-9b74-b2b52bc641a2"
+                    }
+                  ],
+                  "id": "50076677-9324-47cc-b8f5-2bfb8375efde",
+                  "createdAt": "2026-07-28T02:48:59.000Z",
+                  "updatedAt": "2026-07-28T02:48:59.000Z",
+                  "uid": "35240-50076677-9324-47cc-b8f5-2bfb8375efde"
+                },
+                {
+                  "name": "List Workers",
+                  "id": "1d273d92-4f5f-499a-b4f3-d694aa8e0c3f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "apikey",
+                      "apikey": [
+                        {
+                          "key": "key",
+                          "value": "Authorization",
+                          "type": "string"
+                        },
+                        {
+                          "key": "value",
+                          "value": "{{apiKey}}",
+                          "type": "string"
+                        },
+                        {
+                          "key": "in",
+                          "value": "header",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/workspaces/:workspace_id/workers?limit=<integer>&cursor=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "workspaces",
+                        ":workspace_id",
+                        "workers"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of workers to return",
+                          "key": "limit",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Pagination cursor",
+                          "key": "cursor",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "c8264620-1e13-41e8-8eb2-4e25db2feb99",
+                          "key": "workspace_id",
+                          "value": "<string>",
+                          "description": "(Required) The workspace identifier"
+                        }
+                      ]
+                    },
+                    "description": "List all workers in a workspace."
+                  },
+                  "response": [
+                    {
+                      "id": "3b0c8b20-0e27-496a-8dbe-ca58ae1593f4",
+                      "name": "List of workers",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/workers?limit=<integer>&cursor=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "workers"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of workers to return",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Pagination cursor",
+                              "key": "cursor",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"status\": \"BUSY\",\n      \"worker_group_id\": \"<string>\",\n      \"last_seen\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"status\": \"BUSY\",\n      \"worker_group_id\": \"<string>\",\n      \"last_seen\": \"<dateTime>\",\n      \"created_at\": \"<dateTime>\"\n    }\n  ],\n  \"has_more\": \"<boolean>\",\n  \"next\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T02:48:59.000Z",
+                      "updatedAt": "2026-07-28T02:48:59.000Z",
+                      "uid": "35240-3b0c8b20-0e27-496a-8dbe-ca58ae1593f4"
+                    },
+                    {
+                      "id": "7e300182-6fb9-4a9b-995f-d6daf33b3a68",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Authorization",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/workspaces/:workspace_id/workers?limit=<integer>&cursor=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "workspaces",
+                            ":workspace_id",
+                            "workers"
+                          ],
+                          "query": [
+                            {
+                              "description": "Maximum number of workers to return",
+                              "key": "limit",
+                              "value": "<integer>"
+                            },
+                            {
+                              "description": "Pagination cursor",
+                              "key": "cursor",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "workspace_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T02:48:59.000Z",
+                      "updatedAt": "2026-07-28T02:48:59.000Z",
+                      "uid": "35240-7e300182-6fb9-4a9b-995f-d6daf33b3a68"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T02:48:59.000Z",
+                  "updatedAt": "2026-07-28T02:48:59.000Z",
+                  "uid": "35240-1d273d92-4f5f-499a-b4f3-d694aa8e0c3f"
+                }
+              ],
+              "id": "3f043963-8351-4ded-9b22-28d1f3e2fb90",
+              "createdAt": "2026-07-28T02:48:59.000Z",
+              "updatedAt": "2026-07-28T02:48:59.000Z",
+              "uid": "35240-3f043963-8351-4ded-9b22-28d1f3e2fb90"
+            }
+          ],
+          "id": "47bf6559-fc70-4331-a2d9-136ecf3e8d3f",
+          "createdAt": "2026-07-28T02:48:59.000Z",
+          "updatedAt": "2026-07-28T02:48:59.000Z",
+          "uid": "35240-47bf6559-fc70-4331-a2d9-136ecf3e8d3f"
+        }
+      ],
+      "id": "59d6d86c-0ceb-4b37-ba1a-d6fa5bdf2c01",
+      "createdAt": "2026-07-28T02:48:59.000Z",
+      "updatedAt": "2026-07-28T02:48:59.000Z",
+      "uid": "35240-59d6d86c-0ceb-4b37-ba1a-d6fa5bdf2c01"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://cloud.robocorp.com/api/v1"
+    }
+  ]
+}

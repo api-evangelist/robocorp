@@ -1,0 +1,36 @@
+{
+  "provider": "robocorp",
+  "sources": [
+    "robocorp-assets-api-openapi.yml",
+    "robocorp-assistants-api-openapi.yml",
+    "robocorp-process-runs-api-openapi.yml",
+    "robocorp-processes-api-openapi.yml",
+    "robocorp-step-runs-api-openapi.yml",
+    "robocorp-task-packages-api-openapi.yml",
+    "robocorp-vault-api-openapi.yml",
+    "robocorp-webhooks-api-openapi.yml",
+    "robocorp-work-items-api-openapi.yml",
+    "robocorp-worker-groups-api-openapi.yml",
+    "robocorp-workers-api-openapi.yml",
+    "robocorp-workspace-api-openapi.yml"
+  ],
+  "outputs": [
+    "robocorp-assets-api-openapi.yml",
+    "robocorp-assistants-api-openapi.yml",
+    "robocorp-process-runs-api-openapi.yml",
+    "robocorp-processes-api-openapi.yml",
+    "robocorp-step-runs-api-openapi.yml",
+    "robocorp-task-packages-api-openapi.yml",
+    "robocorp-vault-api-openapi.yml",
+    "robocorp-webhooks-api-openapi.yml",
+    "robocorp-work-items-api-openapi.yml",
+    "robocorp-worker-groups-api-openapi.yml",
+    "robocorp-workers-api-openapi.yml",
+    "robocorp-workspace-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
