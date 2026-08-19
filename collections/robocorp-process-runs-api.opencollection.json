@@ -1,0 +1,205 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Robocorp Control Room Assets Process Runs API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Process Runs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Process Runs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.robocorp.com/api/v1/workspaces/:workspace_id/processes/:process_id/runs",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The workspace identifier"
+              },
+              {
+                "name": "process_id",
+                "value": "",
+                "type": "path",
+                "description": "The process identifier"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List all runs for a specific process."
+        },
+        {
+          "info": {
+            "name": "Start Process Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.robocorp.com/api/v1/workspaces/:workspace_id/processes/:process_id/runs",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The workspace identifier"
+              },
+              {
+                "name": "process_id",
+                "value": "",
+                "type": "path",
+                "description": "The process identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Start a new execution run for a process."
+        },
+        {
+          "info": {
+            "name": "Get Process Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.robocorp.com/api/v1/workspaces/:workspace_id/processes/:process_id/runs/:run_id",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The workspace identifier"
+              },
+              {
+                "name": "process_id",
+                "value": "",
+                "type": "path",
+                "description": "The process identifier"
+              },
+              {
+                "name": "run_id",
+                "value": "",
+                "type": "path",
+                "description": "The process run identifier"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve details for a specific process run."
+        },
+        {
+          "info": {
+            "name": "Delete Process Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud.robocorp.com/api/v1/workspaces/:workspace_id/processes/:process_id/runs/:run_id",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The workspace identifier"
+              },
+              {
+                "name": "process_id",
+                "value": "",
+                "type": "path",
+                "description": "The process identifier"
+              },
+              {
+                "name": "run_id",
+                "value": "",
+                "type": "path",
+                "description": "The process run identifier"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Delete a process run record."
+        },
+        {
+          "info": {
+            "name": "Stop Process Run",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.robocorp.com/api/v1/workspaces/:workspace_id/processes/:process_id/runs/:run_id/stop",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The workspace identifier"
+              },
+              {
+                "name": "process_id",
+                "value": "",
+                "type": "path",
+                "description": "The process identifier"
+              },
+              {
+                "name": "run_id",
+                "value": "",
+                "type": "path",
+                "description": "The process run identifier"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Stop an active process run execution."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

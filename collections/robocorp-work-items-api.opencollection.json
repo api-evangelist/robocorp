@@ -1,0 +1,118 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Robocorp Control Room Assets Work Items API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Work Items",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Work Items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.robocorp.com/api/v1/workspaces/:workspace_id/work-items",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The workspace identifier"
+              },
+              {
+                "name": "process_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List all work items in a workspace."
+        },
+        {
+          "info": {
+            "name": "Create Work Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.robocorp.com/api/v1/workspaces/:workspace_id/work-items",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The workspace identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new work item in the queue."
+        },
+        {
+          "info": {
+            "name": "Get Work Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.robocorp.com/api/v1/workspaces/:workspace_id/work-items/:work_item_id",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The workspace identifier"
+              },
+              {
+                "name": "work_item_id",
+                "value": "",
+                "type": "path",
+                "description": "The work item identifier"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve a specific work item by ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

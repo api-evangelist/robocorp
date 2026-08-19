@@ -1,0 +1,136 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Robocorp Control Room Assets Vault API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Vault",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Secrets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.robocorp.com/api/v1/workspaces/:workspace_id/vault/secrets",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The workspace identifier"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List all secrets in the workspace vault."
+        },
+        {
+          "info": {
+            "name": "Create Secret",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.robocorp.com/api/v1/workspaces/:workspace_id/vault/secrets",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The workspace identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new secret in the workspace vault."
+        },
+        {
+          "info": {
+            "name": "Update Secret",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.robocorp.com/api/v1/workspaces/:workspace_id/vault/secrets/:secret_id",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The workspace identifier"
+              },
+              {
+                "name": "secret_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update an existing secret value in the vault."
+        },
+        {
+          "info": {
+            "name": "Delete Secret",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud.robocorp.com/api/v1/workspaces/:workspace_id/vault/secrets/:secret_id",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The workspace identifier"
+              },
+              {
+                "name": "secret_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Remove a secret from the vault."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

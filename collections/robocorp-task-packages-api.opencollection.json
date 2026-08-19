@@ -1,0 +1,166 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Robocorp Control Room Assets Task Packages API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Task Packages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Task Packages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.robocorp.com/api/v1/workspaces/:workspace_id/task-packages",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The workspace identifier"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List all task packages in a workspace."
+        },
+        {
+          "info": {
+            "name": "Create Task Package",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.robocorp.com/api/v1/workspaces/:workspace_id/task-packages",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The workspace identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new task package from a zip file, GitHub, or GitLab source."
+        },
+        {
+          "info": {
+            "name": "Get Task Package",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.robocorp.com/api/v1/workspaces/:workspace_id/task-packages/:package_id",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The workspace identifier"
+              },
+              {
+                "name": "package_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve a specific task package by ID."
+        },
+        {
+          "info": {
+            "name": "Update Task Package",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.robocorp.com/api/v1/workspaces/:workspace_id/task-packages/:package_id",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The workspace identifier"
+              },
+              {
+                "name": "package_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Update a task package source configuration."
+        },
+        {
+          "info": {
+            "name": "Delete Task Package",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://cloud.robocorp.com/api/v1/workspaces/:workspace_id/task-packages/:package_id",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The workspace identifier"
+              },
+              {
+                "name": "package_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Remove a task package from the workspace."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,102 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Robocorp Control Room Assets Assistants API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Assistants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Assistants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.robocorp.com/api/v1/workspaces/:workspace_id/assistants",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The workspace identifier"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "List all AI assistants in a workspace."
+        },
+        {
+          "info": {
+            "name": "Create Assistant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://cloud.robocorp.com/api/v1/workspaces/:workspace_id/assistants",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The workspace identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Create a new AI assistant."
+        },
+        {
+          "info": {
+            "name": "Get Assistant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://cloud.robocorp.com/api/v1/workspaces/:workspace_id/assistants/:assistant_id",
+            "params": [
+              {
+                "name": "workspace_id",
+                "value": "",
+                "type": "path",
+                "description": "The workspace identifier"
+              },
+              {
+                "name": "assistant_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "Authorization",
+              "value": "{{Authorization}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Retrieve a specific AI assistant by ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
