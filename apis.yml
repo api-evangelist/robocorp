@@ -103,6 +103,8 @@ apis:
   humanURL: https://robocorp.com/api
   baseURL: https://cloud.robocorp.com/api/v1
   tags:
+  - Assistant
+  tags_raw:
   - Assistants
   properties:
   - type: OpenAPI
