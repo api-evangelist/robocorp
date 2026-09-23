@@ -1,18 +1,7 @@
 {
   "provider": "robocorp",
   "sources": [
-    "robocorp-assets-api-openapi.yml",
-    "robocorp-assistants-api-openapi.yml",
-    "robocorp-process-runs-api-openapi.yml",
-    "robocorp-processes-api-openapi.yml",
-    "robocorp-step-runs-api-openapi.yml",
-    "robocorp-task-packages-api-openapi.yml",
-    "robocorp-vault-api-openapi.yml",
-    "robocorp-webhooks-api-openapi.yml",
-    "robocorp-work-items-api-openapi.yml",
-    "robocorp-worker-groups-api-openapi.yml",
-    "robocorp-workers-api-openapi.yml",
-    "robocorp-workspace-api-openapi.yml"
+    "_original/robocorp-control-room-openapi.yml"
   ],
   "outputs": [
     "robocorp-assets-api-openapi.yml",
@@ -31,6 +20,23 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "robocorp-control-room-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "robocorp-assets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "robocorp-assistants-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "robocorp-process-runs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "robocorp-processes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "robocorp-step-runs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "robocorp-task-packages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "robocorp-vault-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "robocorp-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "robocorp-work-items-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "robocorp-worker-groups-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "robocorp-workers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "robocorp-workspace-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

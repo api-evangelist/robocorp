@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Robocorp Control Room Assets API
   description: The Robocorp Control Room API provides programmatic access to the orchestration platform for RPA automations. It supports workspace management, worker lifecycle, worker group organization, process definition and execution, process run monitoring, step run output retrieval, work item management, asset storage, vault secrets, webhook configuration, and task package deployment. Authentication uses API keys with the RC-WSKEY prefix passed in the Authorization header.
@@ -105,46 +105,19 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  schemas:
-    Asset:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        content_type:
-          type: string
-        size:
-          type: integer
-        created_at:
-          type: string
-          format: date-time
-    CreateAssetRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        content_type:
-          type: string
-    AssetList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Asset'
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        status:
-          type: integer
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     AssetId:
       name: asset_id
@@ -160,19 +133,46 @@ components:
       schema:
         type: string
       description: The workspace identifier
-  responses:
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+  schemas:
+    CreateAssetRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        content_type:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: integer
+    Asset:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        content_type:
+          type: string
+        size:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+    AssetList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Asset'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -1,0 +1,32 @@
+# Front Door AI Index — robocorp — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: robocorp
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: robocorp.com
+  final_host: sema4.ai
+  ownership: inherited
+  owner: robocorp
+  shares_host_with: null
+  inherited_from: sema4.ai
+  verdict: scored
+  score: null
+  host_score: 52
+  density: null
+  words: 880
+  tiers:
+    agentic: 20
+    core: 30
+    model: 2
+  ambiguous: 55
+  top_terms:
+    agent: 48
+    AI: 27
+    AI agent: 20
+    automation: 4
+    LLMs: 3
+    intelligence: 3
+    Bedrock: 1
+    OpenAI: 1
