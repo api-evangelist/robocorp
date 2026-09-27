@@ -120,6 +120,22 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: integer
+    SecretList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Secret'
     CreateSecretRequest:
       type: object
       required:
@@ -131,22 +147,6 @@ components:
         value:
           type: string
           description: The secret value (write-only)
-    SecretList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Secret'
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        status:
-          type: integer
     Secret:
       type: object
       properties:
@@ -157,6 +157,14 @@ components:
         created_at:
           type: string
           format: date-time
+  parameters:
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The workspace identifier
   responses:
     NotFound:
       description: Resource not found
@@ -170,14 +178,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    WorkspaceId:
-      name: workspace_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The workspace identifier
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

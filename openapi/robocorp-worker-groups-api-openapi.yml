@@ -134,20 +134,15 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    WorkerGroup:
+    Error:
       type: object
       properties:
-        id:
+        error:
           type: string
-        name:
+        message:
           type: string
-        description:
-          type: string
-        worker_count:
+        status:
           type: integer
-        created_at:
-          type: string
-          format: date-time
     CreateWorkerGroupRequest:
       type: object
       required:
@@ -166,15 +161,35 @@ components:
             $ref: '#/components/schemas/WorkerGroup'
         has_more:
           type: boolean
-    Error:
+    WorkerGroup:
       type: object
       properties:
-        error:
+        id:
           type: string
-        message:
+        name:
           type: string
-        status:
+        description:
+          type: string
+        worker_count:
           type: integer
+        created_at:
+          type: string
+          format: date-time
+  parameters:
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The workspace identifier
+    WorkerGroupId:
+      name: worker_group_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The worker group identifier
   responses:
     NotFound:
       description: Resource not found
@@ -188,21 +203,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    WorkerGroupId:
-      name: worker_group_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The worker group identifier
-    WorkspaceId:
-      name: workspace_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The workspace identifier
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

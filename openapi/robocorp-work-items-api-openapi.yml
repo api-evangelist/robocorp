@@ -104,44 +104,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    WorkItemId:
-      name: work_item_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The work item identifier
-    WorkspaceId:
-      name: workspace_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The workspace identifier
   schemas:
-    CreateWorkItemRequest:
-      type: object
-      properties:
-        process_id:
-          type: string
-          description: Process to assign the work item to
-        payload:
-          type: object
-          additionalProperties: true
     Error:
       type: object
       properties:
@@ -151,15 +114,15 @@ components:
           type: string
         status:
           type: integer
-    WorkItemList:
+    CreateWorkItemRequest:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/WorkItem'
-        has_more:
-          type: boolean
+        process_id:
+          type: string
+          description: Process to assign the work item to
+        payload:
+          type: object
+          additionalProperties: true
     WorkItem:
       type: object
       properties:
@@ -180,6 +143,43 @@ components:
         created_at:
           type: string
           format: date-time
+    WorkItemList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkItem'
+        has_more:
+          type: boolean
+  parameters:
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The workspace identifier
+    WorkItemId:
+      name: work_item_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The work item identifier
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

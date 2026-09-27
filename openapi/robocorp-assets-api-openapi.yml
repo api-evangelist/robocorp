@@ -105,44 +105,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    AssetId:
-      name: asset_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The asset identifier
-    WorkspaceId:
-      name: workspace_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The workspace identifier
   schemas:
-    CreateAssetRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        content_type:
-          type: string
     Error:
       type: object
       properties:
@@ -173,6 +136,43 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Asset'
+    CreateAssetRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        content_type:
+          type: string
+  parameters:
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The workspace identifier
+    AssetId:
+      name: asset_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The asset identifier
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

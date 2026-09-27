@@ -9,15 +9,19 @@ description: >-
 type: Index
 deliveryModel:
   model: saas
-  open_source: false
+  license_evidence:
+    not_product:
+    - robocorp/rpaframework
+  open_source: unknown
   commercial: true
   callable_host: true
   label: Hosted service · you call their endpoint
-  confidence: high
+  confidence: low
   source:
   - openapi
   - pricing
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: freemium
@@ -37,9 +41,9 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/robocorp.png
 tags:
   - RPA
-  - Workflow-Automation
+  - Workflow Automation
   - Python
-  - Open-Source
+  - Open Source
   - Automation
 tags_raw:
   - RPA
@@ -47,6 +51,8 @@ tags_raw:
   - Python
   - Open Source
   - Automation
+  - Workflow-Automation
+  - Open-Source
 url: https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/apis.yml
 created: '2026-03-27'
 modified: '2026-05-19'
@@ -62,13 +68,14 @@ apis:
   tags:
   - RPA
   - Python
-  - Open-Source
-  - Libraries
+  - Open Source
+  - Library
   tags_raw:
   - RPA
   - Python
   - Open Source
   - Libraries
+  - Open-Source
   properties:
   - url: https://rpaframework.org/
     type: Documentation

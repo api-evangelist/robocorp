@@ -95,20 +95,16 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: integer
     ProcessList:
       type: object
       properties:
@@ -163,23 +159,7 @@ components:
             type: object
         notifications:
           type: object
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        status:
-          type: integer
   parameters:
-    ProcessId:
-      name: process_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The process identifier
     WorkspaceId:
       name: workspace_id
       in: path
@@ -187,6 +167,26 @@ components:
       schema:
         type: string
       description: The workspace identifier
+    ProcessId:
+      name: process_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The process identifier
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

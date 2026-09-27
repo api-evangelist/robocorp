@@ -144,6 +144,15 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: integer
     CreateLinkTokenRequest:
       type: object
       properties:
@@ -199,15 +208,21 @@ components:
         expires_at:
           type: string
           format: date-time
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        status:
-          type: integer
+  parameters:
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The workspace identifier
+    WorkerId:
+      name: worker_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The worker identifier
   responses:
     NotFound:
       description: Resource not found
@@ -221,21 +236,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-  parameters:
-    WorkerId:
-      name: worker_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The worker identifier
-    WorkspaceId:
-      name: workspace_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The workspace identifier
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
