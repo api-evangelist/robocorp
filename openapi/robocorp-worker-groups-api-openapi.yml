@@ -133,48 +133,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        status:
-          type: integer
-    CreateWorkerGroupRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-    WorkerGroupList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/WorkerGroup'
-        has_more:
-          type: boolean
-    WorkerGroup:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        worker_count:
-          type: integer
-        created_at:
-          type: string
-          format: date-time
   parameters:
     WorkspaceId:
       name: workspace_id
@@ -203,6 +161,48 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  schemas:
+    WorkerGroupList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkerGroup'
+        has_more:
+          type: boolean
+    WorkerGroup:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        worker_count:
+          type: integer
+        created_at:
+          type: string
+          format: date-time
+    CreateWorkerGroupRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: integer
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

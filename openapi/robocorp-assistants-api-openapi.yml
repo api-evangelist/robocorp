@@ -91,16 +91,15 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The workspace identifier
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        status:
-          type: integer
     AssistantList:
       type: object
       properties:
@@ -117,6 +116,15 @@ components:
           type: string
         description:
           type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: integer
     Assistant:
       type: object
       properties:
@@ -129,14 +137,6 @@ components:
         created_at:
           type: string
           format: date-time
-  parameters:
-    WorkspaceId:
-      name: workspace_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The workspace identifier
   responses:
     NotFound:
       description: Resource not found

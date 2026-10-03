@@ -137,25 +137,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        status:
-          type: integer
-    StartProcessRunRequest:
-      type: object
-      properties:
-        variables:
-          type: object
-          additionalProperties: true
-        work_item_ids:
-          type: array
-          items:
-            type: string
     ProcessRunList:
       type: object
       properties:
@@ -186,6 +167,25 @@ components:
         completed_at:
           type: string
           format: date-time
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: integer
+    StartProcessRunRequest:
+      type: object
+      properties:
+        variables:
+          type: object
+          additionalProperties: true
+        work_item_ids:
+          type: array
+          items:
+            type: string
   parameters:
     WorkspaceId:
       name: workspace_id

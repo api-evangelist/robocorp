@@ -70,44 +70,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        status:
-          type: integer
-    StepRun:
-      type: object
-      properties:
-        id:
-          type: string
-        process_run_id:
-          type: string
-        step_name:
-          type: string
-        state:
-          type: string
-        started_at:
-          type: string
-          format: date-time
-        completed_at:
-          type: string
-          format: date-time
-        artifacts:
-          type: array
-          items:
-            type: object
-    StepRunList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/StepRun'
   parameters:
     WorkspaceId:
       name: workspace_id
@@ -143,6 +105,44 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  schemas:
+    StepRunList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/StepRun'
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: integer
+    StepRun:
+      type: object
+      properties:
+        id:
+          type: string
+        process_run_id:
+          type: string
+        step_name:
+          type: string
+        state:
+          type: string
+        started_at:
+          type: string
+          format: date-time
+        completed_at:
+          type: string
+          format: date-time
+        artifacts:
+          type: array
+          items:
+            type: object
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

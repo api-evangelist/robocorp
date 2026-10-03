@@ -144,34 +144,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        status:
-          type: integer
-    CreateLinkTokenRequest:
-      type: object
-      properties:
-        worker_group_id:
-          type: string
-        expires_in:
-          type: integer
-          description: Token expiry in seconds
-    WorkerList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Worker'
-        has_more:
-          type: boolean
-        next:
-          type: string
     UpdateWorkerRequest:
       type: object
       properties:
@@ -200,6 +172,14 @@ components:
         created_at:
           type: string
           format: date-time
+    CreateLinkTokenRequest:
+      type: object
+      properties:
+        worker_group_id:
+          type: string
+        expires_in:
+          type: integer
+          description: Token expiry in seconds
     LinkToken:
       type: object
       properties:
@@ -208,6 +188,26 @@ components:
         expires_at:
           type: string
           format: date-time
+    WorkerList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Worker'
+        has_more:
+          type: boolean
+        next:
+          type: string
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: integer
   parameters:
     WorkspaceId:
       name: workspace_id

@@ -95,70 +95,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        status:
-          type: integer
-    ProcessList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Process'
-        has_more:
-          type: boolean
-    Process:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        state:
-          type: string
-        steps:
-          type: array
-          items:
-            type: object
-        schedules:
-          type: array
-          items:
-            type: object
-        created_at:
-          type: string
-          format: date-time
-    CreateProcessRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
-        steps:
-          type: array
-          items:
-            type: object
-        schedules:
-          type: array
-          items:
-            type: object
-        triggers:
-          type: array
-          items:
-            type: object
-        notifications:
-          type: object
   parameters:
     WorkspaceId:
       name: workspace_id
@@ -187,6 +123,70 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  schemas:
+    ProcessList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Process'
+        has_more:
+          type: boolean
+    CreateProcessRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        steps:
+          type: array
+          items:
+            type: object
+        schedules:
+          type: array
+          items:
+            type: object
+        triggers:
+          type: array
+          items:
+            type: object
+        notifications:
+          type: object
+    Process:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        state:
+          type: string
+        steps:
+          type: array
+          items:
+            type: object
+        schedules:
+          type: array
+          items:
+            type: object
+        created_at:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: integer
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -145,16 +145,44 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The workspace identifier
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
+    TaskPackage:
       type: object
       properties:
-        error:
+        id:
           type: string
-        message:
+        name:
           type: string
-        status:
-          type: integer
+        source_type:
+          type: string
+          enum:
+          - zip
+          - github
+          - gitlab
+        created_at:
+          type: string
+          format: date-time
     CreateTaskPackageRequest:
       type: object
       required:
@@ -181,43 +209,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TaskPackage'
-    TaskPackage:
+    Error:
       type: object
       properties:
-        id:
+        error:
           type: string
-        name:
+        message:
           type: string
-        source_type:
-          type: string
-          enum:
-          - zip
-          - github
-          - gitlab
-        created_at:
-          type: string
-          format: date-time
-  parameters:
-    WorkspaceId:
-      name: workspace_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The workspace identifier
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+        status:
+          type: integer
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

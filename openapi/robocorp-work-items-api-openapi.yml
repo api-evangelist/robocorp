@@ -104,54 +104,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  schemas:
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        status:
-          type: integer
-    CreateWorkItemRequest:
-      type: object
-      properties:
-        process_id:
-          type: string
-          description: Process to assign the work item to
-        payload:
-          type: object
-          additionalProperties: true
-    WorkItem:
-      type: object
-      properties:
-        id:
-          type: string
-        process_id:
-          type: string
-        state:
-          type: string
-          enum:
-          - PENDING
-          - INPROGRESS
-          - COMPLETED
-          - FAILED
-        payload:
-          type: object
-          additionalProperties: true
-        created_at:
-          type: string
-          format: date-time
-    WorkItemList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/WorkItem'
-        has_more:
-          type: boolean
   parameters:
     WorkspaceId:
       name: workspace_id
@@ -180,6 +132,54 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+  schemas:
+    WorkItemList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/WorkItem'
+        has_more:
+          type: boolean
+    WorkItem:
+      type: object
+      properties:
+        id:
+          type: string
+        process_id:
+          type: string
+        state:
+          type: string
+          enum:
+          - PENDING
+          - INPROGRESS
+          - COMPLETED
+          - FAILED
+        payload:
+          type: object
+          additionalProperties: true
+        created_at:
+          type: string
+          format: date-time
+    CreateWorkItemRequest:
+      type: object
+      properties:
+        process_id:
+          type: string
+          description: Process to assign the work item to
+        payload:
+          type: object
+          additionalProperties: true
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: integer
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
