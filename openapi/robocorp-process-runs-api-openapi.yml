@@ -136,16 +136,29 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    RunId:
+      name: run_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The process run identifier
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The workspace identifier
+    ProcessId:
+      name: process_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The process identifier
   schemas:
-    ProcessRunList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProcessRun'
-        has_more:
-          type: boolean
     ProcessRun:
       type: object
       properties:
@@ -167,15 +180,6 @@ components:
         completed_at:
           type: string
           format: date-time
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        status:
-          type: integer
     StartProcessRunRequest:
       type: object
       properties:
@@ -186,37 +190,33 @@ components:
           type: array
           items:
             type: string
-  parameters:
-    WorkspaceId:
-      name: workspace_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The workspace identifier
-    RunId:
-      name: run_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The process run identifier
-    ProcessId:
-      name: process_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The process identifier
+    ProcessRunList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProcessRun'
+        has_more:
+          type: boolean
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: integer
   responses:
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Authentication failed
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication failed
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:

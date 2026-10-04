@@ -71,13 +71,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   parameters:
-    WorkspaceId:
-      name: workspace_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The workspace identifier
     RunId:
       name: run_id
       in: path
@@ -85,6 +78,13 @@ components:
       schema:
         type: string
       description: The process run identifier
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The workspace identifier
     ProcessId:
       name: process_id
       in: path
@@ -92,19 +92,6 @@ components:
       schema:
         type: string
       description: The process identifier
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
     StepRunList:
       type: object
@@ -113,15 +100,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/StepRun'
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-        message:
-          type: string
-        status:
-          type: integer
     StepRun:
       type: object
       properties:
@@ -143,6 +121,28 @@ components:
           type: array
           items:
             type: object
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+        message:
+          type: string
+        status:
+          type: integer
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

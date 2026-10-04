@@ -145,44 +145,27 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    WorkspaceId:
-      name: workspace_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The workspace identifier
   responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     Unauthorized:
       description: Authentication failed
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    TaskPackage:
+    TaskPackageList:
       type: object
       properties:
-        id:
-          type: string
-        name:
-          type: string
-        source_type:
-          type: string
-          enum:
-          - zip
-          - github
-          - gitlab
-        created_at:
-          type: string
-          format: date-time
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaskPackage'
     CreateTaskPackageRequest:
       type: object
       required:
@@ -202,13 +185,6 @@ components:
           format: uri
         branch:
           type: string
-    TaskPackageList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaskPackage'
     Error:
       type: object
       properties:
@@ -218,6 +194,30 @@ components:
           type: string
         status:
           type: integer
+    TaskPackage:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        source_type:
+          type: string
+          enum:
+          - zip
+          - github
+          - gitlab
+        created_at:
+          type: string
+          format: date-time
+  parameters:
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The workspace identifier
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

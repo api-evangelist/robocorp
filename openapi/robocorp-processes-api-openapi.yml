@@ -95,44 +95,29 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    WorkspaceId:
-      name: workspace_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The workspace identifier
-    ProcessId:
-      name: process_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The process identifier
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    ProcessList:
+    Process:
       type: object
       properties:
-        data:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        state:
+          type: string
+        steps:
           type: array
           items:
-            $ref: '#/components/schemas/Process'
-        has_more:
-          type: boolean
+            type: object
+        schedules:
+          type: array
+          items:
+            type: object
+        created_at:
+          type: string
+          format: date-time
     CreateProcessRequest:
       type: object
       required:
@@ -156,28 +141,15 @@ components:
             type: object
         notifications:
           type: object
-    Process:
+    ProcessList:
       type: object
       properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        state:
-          type: string
-        steps:
+        data:
           type: array
           items:
-            type: object
-        schedules:
-          type: array
-          items:
-            type: object
-        created_at:
-          type: string
-          format: date-time
+            $ref: '#/components/schemas/Process'
+        has_more:
+          type: boolean
     Error:
       type: object
       properties:
@@ -187,6 +159,34 @@ components:
           type: string
         status:
           type: integer
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The workspace identifier
+    ProcessId:
+      name: process_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The process identifier
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
