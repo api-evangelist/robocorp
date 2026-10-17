@@ -134,18 +134,33 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     NotFound:
       description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    WorkerGroupId:
+      name: worker_group_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The worker group identifier
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The workspace identifier
   schemas:
     WorkerGroupList:
       type: object
@@ -156,15 +171,6 @@ components:
             $ref: '#/components/schemas/WorkerGroup'
         has_more:
           type: boolean
-    CreateWorkerGroupRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        description:
-          type: string
     WorkerGroup:
       type: object
       properties:
@@ -188,21 +194,15 @@ components:
           type: string
         status:
           type: integer
-  parameters:
-    WorkerGroupId:
-      name: worker_group_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The worker group identifier
-    WorkspaceId:
-      name: workspace_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The workspace identifier
+    CreateWorkerGroupRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        description:
+          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

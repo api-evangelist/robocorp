@@ -95,29 +95,29 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    Process:
+    ProcessList:
       type: object
       properties:
-        id:
-          type: string
-        name:
-          type: string
-        description:
-          type: string
-        state:
-          type: string
-        steps:
+        data:
           type: array
           items:
-            type: object
-        schedules:
-          type: array
-          items:
-            type: object
-        created_at:
-          type: string
-          format: date-time
+            $ref: '#/components/schemas/Process'
+        has_more:
+          type: boolean
     CreateProcessRequest:
       type: object
       required:
@@ -141,15 +141,6 @@ components:
             type: object
         notifications:
           type: object
-    ProcessList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Process'
-        has_more:
-          type: boolean
     Error:
       type: object
       properties:
@@ -159,19 +150,28 @@ components:
           type: string
         status:
           type: integer
-  responses:
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    Process:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        state:
+          type: string
+        steps:
+          type: array
+          items:
+            type: object
+        schedules:
+          type: array
+          items:
+            type: object
+        created_at:
+          type: string
+          format: date-time
   parameters:
     WorkspaceId:
       name: workspace_id

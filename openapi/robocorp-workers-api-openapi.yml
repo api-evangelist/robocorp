@@ -143,15 +143,35 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    WorkerId:
+      name: worker_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The worker identifier
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The workspace identifier
   schemas:
-    LinkToken:
-      type: object
-      properties:
-        token:
-          type: string
-        expires_at:
-          type: string
-          format: date-time
     Worker:
       type: object
       properties:
@@ -173,23 +193,20 @@ components:
         created_at:
           type: string
           format: date-time
+    LinkToken:
+      type: object
+      properties:
+        token:
+          type: string
+        expires_at:
+          type: string
+          format: date-time
     UpdateWorkerRequest:
       type: object
       properties:
         name:
           type: string
         worker_group_id:
-          type: string
-    WorkerList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Worker'
-        has_more:
-          type: boolean
-        next:
           type: string
     Error:
       type: object
@@ -208,34 +225,17 @@ components:
         expires_in:
           type: integer
           description: Token expiry in seconds
-  responses:
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    WorkerId:
-      name: worker_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The worker identifier
-    WorkspaceId:
-      name: workspace_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The workspace identifier
+    WorkerList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Worker'
+        has_more:
+          type: boolean
+        next:
+          type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

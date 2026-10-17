@@ -106,35 +106,19 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     NotFound:
       description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    CreateAssetRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        content_type:
-          type: string
-    AssetList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Asset'
     Asset:
       type: object
       properties:
@@ -149,6 +133,15 @@ components:
         created_at:
           type: string
           format: date-time
+    CreateAssetRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        content_type:
+          type: string
     Error:
       type: object
       properties:
@@ -158,14 +151,14 @@ components:
           type: string
         status:
           type: integer
+    AssetList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Asset'
   parameters:
-    WorkspaceId:
-      name: workspace_id
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The workspace identifier
     AssetId:
       name: asset_id
       in: path
@@ -173,6 +166,13 @@ components:
       schema:
         type: string
       description: The asset identifier
+    WorkspaceId:
+      name: workspace_id
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The workspace identifier
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
