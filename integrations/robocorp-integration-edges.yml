@@ -1,9 +1,21 @@
-generated: '2026-10-14'
+generated: '2026-10-20'
 method: searched
+source:
+- https://marketplace.visualstudio.com/vscode
+- https://plugins.jetbrains.com/
+- https://zapier.com/apps/robocorp/integrations
+- https://n8n.io/integrations/robocorp/
+- https://composio.dev/toolkits/robocorp
+- https://monid.ai/tools/robocorp
 checked:
 - https://marketplace.visualstudio.com/vscode
 - https://plugins.jetbrains.com/
 - okta/integrations/okta-integration-edges.yml
+- https://composio.dev/toolkits/robocorp
+- https://monid.ai/tools/robocorp
+- https://n8n.io/integrations/robocorp/
+- https://zapier.com/apps/robocorp/integrations
+summary: null
 marketplace_apps: []
 edges:
 - partner_name: JetBrains Marketplace
@@ -61,6 +73,4 @@ edges:
   - OKTA_VERIFIED
   features:
   - OIDC
-source:
-- https://marketplace.visualstudio.com/vscode
-- https://plugins.jetbrains.com/
+templates: []
