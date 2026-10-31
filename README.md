@@ -1,4 +1,4 @@
-# Robocorp (robocorp)
+# Robocorp
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,90 +66,193 @@
 
 Robocorp is an open source RPA and workflow automation platform for building Python-based automation bots. The platform provides the Control Room API for managing workspaces, workers, processes, work items, assets, vaults, webhooks, and task packages. Robocorp also provides the RPA Framework, an open-source collection of Python libraries for robotic process automation including browser, desktop, email, Excel, PDF, and cloud service automation. The platform has evolved toward Sema4 AI for AI-powered automation actions.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/apis.yml)
+**Areas:** RPA · Workflow Automation · Python · Open Source · Automation
 
-## Scope
+## Robocorp on APIs.io
 
-- **Type:** Index
+Everything profiled for Robocorp is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/robocorp/](https://apis.io/providers/robocorp/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (13)
 
-- RPA
-- Workflow Automation
-- Python
-- Open Source
-- Automation
+- [RPA Framework](https://apis.io/apis/robocorp/rpa-framework/) — The RPA Framework is an open-source collection of Python libraries for robotic process automation designed for use with Robot Framework and Python. It…
+- [Robocorp Assets API](https://apis.io/apis/robocorp/robocorp-assets-api/) — Asset storage management
+- [Robocorp Assistants API](https://apis.io/apis/robocorp/robocorp-assistants-api/) — AI assistant management
+- [Robocorp Process Runs API](https://apis.io/apis/robocorp/robocorp-process-runs-api/) — Process execution and monitoring
+- [Robocorp Processes API](https://apis.io/apis/robocorp/robocorp-processes-api/) — Process definition and management
+- [Robocorp Step Runs API](https://apis.io/apis/robocorp/robocorp-step-runs-api/) — Individual step execution details
+- [Robocorp Task Packages API](https://apis.io/apis/robocorp/robocorp-task-packages-api/) — Task package deployment
+- [Robocorp Vault API](https://apis.io/apis/robocorp/robocorp-vault-api/) — Secret management
+- [Robocorp Webhooks API](https://apis.io/apis/robocorp/robocorp-webhooks-api/) — Webhook configuration
+- [Robocorp Work Items API](https://apis.io/apis/robocorp/robocorp-work-items-api/) — Work item queue management
+- [Robocorp Worker Groups API](https://apis.io/apis/robocorp/robocorp-worker-groups-api/) — Worker group organization
+- [Robocorp Workers API](https://apis.io/apis/robocorp/robocorp-workers-api/) — Worker agent management
+- [Robocorp Workspace API](https://apis.io/apis/robocorp/robocorp-workspace-api/) — Workspace information
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-27
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Robocorp Control Room API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Robocorp Control Room API provides programmatic access to the orchestration platform for RPA automations. It supports workspace management, worker lifecycle, worker group organization, process definition and execution, process run monitoring, step run outputs, work item management, asset storage, vault secrets, webhook configuration, and task package deployment. Authentication uses API keys with the RC-WSKEY prefix.
+- [Robocorp Agentic Access](https://apis.io/agentic-access/robocorp/robocorp-agentic-access/)
 
-- **Human URL:** [https://robocorp.com/api](https://robocorp.com/api)
-- **Base URL:** `https://cloud.robocorp.com/api/v1`
+#### JSON Schema (2)
 
-#### Tags
+The data models the API reads and writes.
 
-- RPA
-- Automation
-- Orchestration
-- Workflow
-- Workers
+- [Robocorp Process](https://apis.io/schemas/robocorp/robocorp-process/)
+- [Robocorp Work Item](https://apis.io/schemas/robocorp/robocorp-work-item/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://robocorp.com/api)
-- [Guide](https://robocorp.com/docs/control-room/apis-and-webhooks)
-- [OpenAPI](https://robocorp.com/api/openapi.json) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/openapi/robocorp-control-room-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Spectral Rules](https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/rules/robocorp-control-room-rules.yml)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-process-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-schema/robocorp-work-item-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Postman Collection](collections/robocorp-control-room.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/robocorp-control-room.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Data models expressed in JSON Structure.
 
-### RPA Framework
+- [Robocorp Process Structure](https://apis.io/json-structure/robocorp/robocorp-process-structure/)
 
-The RPA Framework is an open-source collection of Python libraries for robotic process automation designed for use with Robot Framework and Python. It includes libraries for browser automation, desktop automation, Excel, email, PDF, Windows UI, cloud service integrations, and more.
+#### JSON-LD (1)
 
-- **Human URL:** [https://rpaframework.org/](https://rpaframework.org/)
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Robocorp Context](https://apis.io/jsonld/robocorp/robocorp-context/)
 
-- RPA
-- Python
-- Open Source
-- Libraries
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://rpaframework.org/)
-- [Git Hub](https://github.com/robocorp/rpaframework)
-- [Postman Collection](collections/robocorp-control-room.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/robocorp-control-room.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Robocorp RPA Automation Vocabulary](https://apis.io/vocabularies/robocorp/robocorp-vocabulary/)
 
-## Common Properties
+#### Examples (2)
 
-- [LinkedIn](https://www.linkedin.com/company/robocorp)
+Example requests and responses.
+
+- [Robocorp Create Work Item Example](https://apis.io/examples/robocorp/robocorp-create-work-item-example/)
+- [Robocorp Start Process Run Example](https://apis.io/examples/robocorp/robocorp-start-process-run-example/)
+
+#### Collections (25)
+
+Postman and Open Collection request collections.
+
+- [Robocorp Control Room Assets API](https://apis.io/collections/robocorp/open-robocorp-assets-api/)
+- [Robocorp Control Room Assets Assistants API](https://apis.io/collections/robocorp/open-robocorp-assistants-api/)
+- [Robocorp Control Room API](https://apis.io/collections/robocorp/open-robocorp-control-room/)
+- [Robocorp Control Room Assets Process Runs API](https://apis.io/collections/robocorp/open-robocorp-process-runs-api/)
+- [Robocorp Control Room Assets Processes API](https://apis.io/collections/robocorp/open-robocorp-processes-api/)
+- [Robocorp Control Room Assets Step Runs API](https://apis.io/collections/robocorp/open-robocorp-step-runs-api/)
+- [Robocorp Control Room Assets Task Packages API](https://apis.io/collections/robocorp/open-robocorp-task-packages-api/)
+- [Robocorp Control Room Assets Vault API](https://apis.io/collections/robocorp/open-robocorp-vault-api/)
+- [Robocorp Control Room Assets Webhooks API](https://apis.io/collections/robocorp/open-robocorp-webhooks-api/)
+- [Robocorp Control Room Assets Work Items API](https://apis.io/collections/robocorp/open-robocorp-work-items-api/)
+- [Robocorp Control Room Assets Worker Groups API](https://apis.io/collections/robocorp/open-robocorp-worker-groups-api/)
+- [Robocorp Control Room Assets Workers API](https://apis.io/collections/robocorp/open-robocorp-workers-api/)
+- [Robocorp Control Room Assets Workspace API](https://apis.io/collections/robocorp/open-robocorp-workspace-api/)
+- [Robocorp Control Room Assets API](https://apis.io/collections/robocorp/postman-robocorp-assets-api/)
+- [Robocorp Control Room Assets Assistants API](https://apis.io/collections/robocorp/postman-robocorp-assistants-api/)
+- [Robocorp Control Room Assets Process Runs API](https://apis.io/collections/robocorp/postman-robocorp-process-runs-api/)
+- [Robocorp Control Room Assets Processes API](https://apis.io/collections/robocorp/postman-robocorp-processes-api/)
+- [Robocorp Control Room Assets Step Runs API](https://apis.io/collections/robocorp/postman-robocorp-step-runs-api/)
+- [Robocorp Control Room Assets Task Packages API](https://apis.io/collections/robocorp/postman-robocorp-task-packages-api/)
+- [Robocorp Control Room Assets Vault API](https://apis.io/collections/robocorp/postman-robocorp-vault-api/)
+- [Robocorp Control Room Assets Webhooks API](https://apis.io/collections/robocorp/postman-robocorp-webhooks-api/)
+- [Robocorp Control Room Assets Work Items API](https://apis.io/collections/robocorp/postman-robocorp-work-items-api/)
+- [Robocorp Control Room Assets Worker Groups API](https://apis.io/collections/robocorp/postman-robocorp-worker-groups-api/)
+- [Robocorp Control Room Assets Workers API](https://apis.io/collections/robocorp/postman-robocorp-workers-api/)
+- [Robocorp Control Room Assets Workspace API](https://apis.io/collections/robocorp/postman-robocorp-workspace-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Robocorp — control room rules](https://apis.io/rules/robocorp/robocorp-control-room-rules/)
+- [Robocorp — jsonschema rules](https://apis.io/rules/robocorp/robocorp-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Robocorp Authentication](https://apis.io/security/robocorp/robocorp-authentication/)
+- [Robocorp Domain Security](https://apis.io/security/robocorp/robocorp-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Robocorp Plans Pricing](https://apis.io/plans/robocorp/robocorp-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Robocorp Rate Limits](https://apis.io/rate-limits/robocorp/robocorp-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Robocorp Finops](https://apis.io/finops/robocorp/robocorp-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://robocorp.com)
 - [Documentation](https://robocorp.com/docs)
-- [Git Hub](https://github.com/robocorp)
-- [Py P I](https://pypi.org/project/robocorp/)
-- [Blog](https://robocorp.com/blog)
-- [Privacy Policy](https://robocorp.com/privacy-policy)
-- [Terms of Service](https://robocorp.com/terms-of-service)
-- [Status Page](https://status.robocorp.com)
 - [Changelog](https://robocorp.com/docs/changelog)
-- [J S O N L D Context](https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/json-ld/robocorp-context.jsonld)
-- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/robocorp/refs/heads/main/vocabulary/robocorp-vocabulary.yml)
+- [Blog](https://robocorp.com/blog)
+- [Terms of service](https://robocorp.com/terms-of-service)
+- [Privacy policy](https://robocorp.com/privacy-policy)
+- [Status](https://status.robocorp.com)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 34.3** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 57.1 |
+| Contract quality | 61.9 |
+| Contract governance | 27.3 |
+| Operational transparency | 28.9 |
+| Developer ergonomics | 25.0 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/robocorp/](https://apis.io/providers/robocorp/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Robocorp: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/robocorp/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
